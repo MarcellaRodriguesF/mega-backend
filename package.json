@@ -2,7 +2,7 @@
   "name": "mega-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
@@ -15,11 +15,14 @@
   "type": "module",
   "devDependencies": {
     "@types/express": "^5.0.6",
-    "@types/node": "^26.6.3",
+    "@types/node": "^26.6.4",
+    "prisma": "^7.10.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@prisma/client": "^7.10.0",
+    "dotenv": "^18.0.5",
     "express": "^5.2.1"
   }
 }
