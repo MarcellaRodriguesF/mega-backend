@@ -6,3 +6,61 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id              String    @id @default(uuid()) @db.Uuid
+  email           String    @unique @db.VarChar(255)
+  passwordHash    String    @map("password_hash") @db.VarChar(255)
+  accessProfileId String    @map("access_profile_id") @db.Uuid
+  status          String    @default("ACTIVE") @db.VarChar(20)
+  lastLoginAt     DateTime? @map("last_login_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  accessProfile AccessProfile @relation(fields: [accessProfileId], references: [id])
+
+  @@index([accessProfileId])
+  @@map("users")
+}
+
+model AccessProfile {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique @db.VarChar(255)
+  description String?  @db.VarChar(255)
+  status      String   @default("ACTIVE") @db.VarChar(20)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  users              User[]
+  profilePermissions ProfilePermission[]
+
+  @@map("access_profiles")
+}
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique @db.VarChar(100)
+  name        String   @db.VarChar(150)
+  description String?  @db.VarChar(255)
+  module      String   @db.VarChar(100)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  profilePermissions ProfilePermission[]
+
+  @@map("permissions")
+}
+
+model ProfilePermission {
+  id              String   @id @default(uuid()) @db.Uuid
+  accessProfileId String   @map("access_profile_id") @db.Uuid
+  permissionId    String   @map("permission_id") @db.Uuid
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  accessProfile AccessProfile @relation(fields: [accessProfileId], references: [id])
+  permission    Permission    @relation(fields: [permissionId], references: [id])
+
+  @@unique([accessProfileId, permissionId])
+  @@index([permissionId])
+  @@map("profile_permissions")
+}
