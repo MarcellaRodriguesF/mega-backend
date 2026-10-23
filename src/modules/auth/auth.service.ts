@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 
 import { prisma } from "../../database/prisma.js";
 import type { LoginInput } from "./auth.schemas.js";
+import { ApiError } from "../../shared/http/api-error.js";
 
 export class AuthService {
   async login({ email, password }: LoginInput) {
@@ -16,17 +17,17 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new Error("Credenciais inválidas.");
+      throw new ApiError("Credenciais inválidas.", 401, "INVALID_CREDENTIALS");
     }
 
     if (user.status !== "ACTIVE") {
-      throw new Error("Usuário inativo.");
+      throw new ApiError("Usuário inativo.", 403, "USER_INACTIVE");
     }
 
     const passwordIsValid = await bcrypt.compare(password, user.passwordHash);
 
     if (!passwordIsValid) {
-      throw new Error("Credenciais inválidas.");
+      throw new ApiError("Credenciais inválidas.", 401, "INVALID_CREDENTIALS");
     }
 
     const accessToken = jwt.sign(
