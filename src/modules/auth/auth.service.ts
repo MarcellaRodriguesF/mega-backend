@@ -4,9 +4,11 @@ import jwt from "jsonwebtoken";
 import { ApiError } from "../../shared/http/api-error.js";
 import { AuthRepository } from "./auth.repository.js";
 import type { LoginInput } from "./auth.schemas.js";
+import { AuthorizationRepository } from "../authorization/authorization.repository.js";
 
 export class AuthService {
   private readonly authRepository = new AuthRepository();
+  private authorizationRepository = new AuthorizationRepository();
 
   async login({ email, password }: LoginInput) {
     const user = await this.authRepository.findByEmail(email);
@@ -22,6 +24,11 @@ export class AuthService {
     if (user.status !== "ACTIVE") {
       throw new ApiError("Usuário inativo.", 403, "USER_INACTIVE");
     }
+
+    const permissions =
+      await this.authorizationRepository.findPermissionCodesByProfileId(
+        user.accessProfileId,
+      );
 
     const passwordIsValid = await bcrypt.compare(password, user.passwordHash);
 
@@ -66,6 +73,7 @@ export class AuthService {
           id: user.accessProfile.id,
           name: user.accessProfile.name,
         },
+        permissions,
       },
     };
   }
@@ -87,7 +95,6 @@ export class AuthService {
       accessProfile: {
         id: user.accessProfile.id,
         name: user.accessProfile.name,
-        
       },
     };
   }
