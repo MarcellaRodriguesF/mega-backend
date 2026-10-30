@@ -37,3 +37,18 @@ export type Permission = Prisma.PermissionModel
  * 
  */
 export type ProfilePermission = Prisma.ProfilePermissionModel
+/**
+ * Model Company
+ * 
+ */
+export type Company = Prisma.CompanyModel
+/**
+ * Model CompanyContact
+ * 
+ */
+export type CompanyContact = Prisma.CompanyContactModel
+/**
+ * Model Opportunity
+ * 
+ */
+export type Opportunity = Prisma.OpportunityModel

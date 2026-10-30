@@ -206,6 +206,7 @@ export type UserWhereInput = {
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  assignedOpportunities?: Prisma.OpportunityListRelationFilter
   accessProfile?: Prisma.XOR<Prisma.AccessProfileScalarRelationFilter, Prisma.AccessProfileWhereInput>
 }
 
@@ -218,6 +219,7 @@ export type UserOrderByWithRelationInput = {
   lastLoginAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  assignedOpportunities?: Prisma.OpportunityOrderByRelationAggregateInput
   accessProfile?: Prisma.AccessProfileOrderByWithRelationInput
 }
 
@@ -233,6 +235,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   lastLoginAt?: Prisma.DateTimeNullableFilter<"User"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
+  assignedOpportunities?: Prisma.OpportunityListRelationFilter
   accessProfile?: Prisma.XOR<Prisma.AccessProfileScalarRelationFilter, Prisma.AccessProfileWhereInput>
 }, "id" | "email">
 
@@ -272,6 +275,7 @@ export type UserCreateInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  assignedOpportunities?: Prisma.OpportunityCreateNestedManyWithoutOwnerInput
   accessProfile: Prisma.AccessProfileCreateNestedOneWithoutUsersInput
 }
 
@@ -284,6 +288,7 @@ export type UserUncheckedCreateInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  assignedOpportunities?: Prisma.OpportunityUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUpdateInput = {
@@ -294,6 +299,7 @@ export type UserUpdateInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedOpportunities?: Prisma.OpportunityUpdateManyWithoutOwnerNestedInput
   accessProfile?: Prisma.AccessProfileUpdateOneRequiredWithoutUsersNestedInput
 }
 
@@ -306,6 +312,7 @@ export type UserUncheckedUpdateInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedOpportunities?: Prisma.OpportunityUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -383,6 +390,11 @@ export type UserOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -437,6 +449,22 @@ export type UserUncheckedUpdateManyWithoutAccessProfileNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
+export type UserCreateNestedOneWithoutAssignedOpportunitiesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedOpportunitiesInput, Prisma.UserUncheckedCreateWithoutAssignedOpportunitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedOpportunitiesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutAssignedOpportunitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssignedOpportunitiesInput, Prisma.UserUncheckedCreateWithoutAssignedOpportunitiesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssignedOpportunitiesInput
+  upsert?: Prisma.UserUpsertWithoutAssignedOpportunitiesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedOpportunitiesInput, Prisma.UserUpdateWithoutAssignedOpportunitiesInput>, Prisma.UserUncheckedUpdateWithoutAssignedOpportunitiesInput>
+}
+
 export type UserCreateWithoutAccessProfileInput = {
   id?: string
   email: string
@@ -445,6 +473,7 @@ export type UserCreateWithoutAccessProfileInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  assignedOpportunities?: Prisma.OpportunityCreateNestedManyWithoutOwnerInput
 }
 
 export type UserUncheckedCreateWithoutAccessProfileInput = {
@@ -455,6 +484,7 @@ export type UserUncheckedCreateWithoutAccessProfileInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  assignedOpportunities?: Prisma.OpportunityUncheckedCreateNestedManyWithoutOwnerInput
 }
 
 export type UserCreateOrConnectWithoutAccessProfileInput = {
@@ -497,6 +527,66 @@ export type UserScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
+export type UserCreateWithoutAssignedOpportunitiesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  status?: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accessProfile: Prisma.AccessProfileCreateNestedOneWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutAssignedOpportunitiesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  accessProfileId: string
+  status?: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type UserCreateOrConnectWithoutAssignedOpportunitiesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedOpportunitiesInput, Prisma.UserUncheckedCreateWithoutAssignedOpportunitiesInput>
+}
+
+export type UserUpsertWithoutAssignedOpportunitiesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssignedOpportunitiesInput, Prisma.UserUncheckedUpdateWithoutAssignedOpportunitiesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssignedOpportunitiesInput, Prisma.UserUncheckedCreateWithoutAssignedOpportunitiesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssignedOpportunitiesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssignedOpportunitiesInput, Prisma.UserUncheckedUpdateWithoutAssignedOpportunitiesInput>
+}
+
+export type UserUpdateWithoutAssignedOpportunitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accessProfile?: Prisma.AccessProfileUpdateOneRequiredWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssignedOpportunitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  accessProfileId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type UserCreateManyAccessProfileInput = {
   id?: string
   email: string
@@ -515,6 +605,7 @@ export type UserUpdateWithoutAccessProfileInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedOpportunities?: Prisma.OpportunityUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccessProfileInput = {
@@ -525,6 +616,7 @@ export type UserUncheckedUpdateWithoutAccessProfileInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedOpportunities?: Prisma.OpportunityUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutAccessProfileInput = {
@@ -538,6 +630,35 @@ export type UserUncheckedUpdateManyWithoutAccessProfileInput = {
 }
 
 
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  assignedOpportunities: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  assignedOpportunities?: boolean | UserCountOutputTypeCountAssignedOpportunitiesArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssignedOpportunitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.OpportunityWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -548,7 +669,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   lastLoginAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  assignedOpportunities?: boolean | Prisma.User$assignedOpportunitiesArgs<ExtArgs>
   accessProfile?: boolean | Prisma.AccessProfileDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -588,7 +711,9 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "passwordHash" | "accessProfileId" | "status" | "lastLoginAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  assignedOpportunities?: boolean | Prisma.User$assignedOpportunitiesArgs<ExtArgs>
   accessProfile?: boolean | Prisma.AccessProfileDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accessProfile?: boolean | Prisma.AccessProfileDefaultArgs<ExtArgs>
@@ -600,6 +725,7 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    assignedOpportunities: Prisma.$OpportunityPayload<ExtArgs>[]
     accessProfile: Prisma.$AccessProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1005,6 +1131,7 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  assignedOpportunities<T extends Prisma.User$assignedOpportunitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedOpportunitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OpportunityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessProfile<T extends Prisma.AccessProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__AccessProfileClient<runtime.Types.Result.GetResult<Prisma.$AccessProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1441,6 +1568,30 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.assignedOpportunities
+ */
+export type User$assignedOpportunitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Opportunity
+   */
+  select?: Prisma.OpportunitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Opportunity
+   */
+  omit?: Prisma.OpportunityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OpportunityInclude<ExtArgs> | null
+  where?: Prisma.OpportunityWhereInput
+  orderBy?: Prisma.OpportunityOrderByWithRelationInput | Prisma.OpportunityOrderByWithRelationInput[]
+  cursor?: Prisma.OpportunityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.OpportunityScalarFieldEnum | Prisma.OpportunityScalarFieldEnum[]
 }
 
 /**

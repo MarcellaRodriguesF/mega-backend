@@ -54,7 +54,10 @@ export const ModelName = {
   User: 'User',
   AccessProfile: 'AccessProfile',
   Permission: 'Permission',
-  ProfilePermission: 'ProfilePermission'
+  ProfilePermission: 'ProfilePermission',
+  Company: 'Company',
+  CompanyContact: 'CompanyContact',
+  Opportunity: 'Opportunity'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -120,6 +123,64 @@ export const ProfilePermissionScalarFieldEnum = {
 } as const
 
 export type ProfilePermissionScalarFieldEnum = (typeof ProfilePermissionScalarFieldEnum)[keyof typeof ProfilePermissionScalarFieldEnum]
+
+
+export const CompanyScalarFieldEnum = {
+  id: 'id',
+  corporateName: 'corporateName',
+  tradeName: 'tradeName',
+  cnpj: 'cnpj',
+  zipCode: 'zipCode',
+  street: 'street',
+  number: 'number',
+  complement: 'complement',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  relationshipStage: 'relationshipStage',
+  status: 'status',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const CompanyContactScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  role: 'role',
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  isPrimary: 'isPrimary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyContactScalarFieldEnum = (typeof CompanyContactScalarFieldEnum)[keyof typeof CompanyContactScalarFieldEnum]
+
+
+export const OpportunityScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  ownerId: 'ownerId',
+  title: 'title',
+  description: 'description',
+  estimatedValue: 'estimatedValue',
+  stage: 'stage',
+  status: 'status',
+  probability: 'probability',
+  expectedCloseDate: 'expectedCloseDate',
+  lostReason: 'lostReason',
+  closedAt: 'closedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OpportunityScalarFieldEnum = (typeof OpportunityScalarFieldEnum)[keyof typeof OpportunityScalarFieldEnum]
 
 
 export const SortOrder = {
