@@ -17,6 +17,13 @@ const prisma = new PrismaClient({
   adapter,
 });
 
+// Remove os vínculos entre perfis e permissões
+// e depois remove todas as permissões cadastradas.
+// await prisma.$transaction([
+//   prisma.profilePermission.deleteMany(),
+//   prisma.permission.deleteMany(),
+// ]);
+
 const main = async () => {
   console.log("Iniciando seed...");
 
@@ -25,9 +32,7 @@ const main = async () => {
   // ==========================================
 
   const administratorProfile = await prisma.accessProfile.upsert({
-    where: {
-      name: "ADMINISTRADOR",
-    },
+    where: { name: "ADMINISTRADOR" },
     update: {},
     create: {
       name: "ADMINISTRADOR",
@@ -37,9 +42,7 @@ const main = async () => {
   });
 
   const engineerProfile = await prisma.accessProfile.upsert({
-    where: {
-      name: "ENGENHEIRO",
-    },
+    where: { name: "ENGENHEIRO" },
     update: {},
     create: {
       name: "ENGENHEIRO",
@@ -49,9 +52,7 @@ const main = async () => {
   });
 
   const executorProfile = await prisma.accessProfile.upsert({
-    where: {
-      name: "EXECUTOR",
-    },
+    where: { name: "EXECUTOR" },
     update: {},
     create: {
       name: "EXECUTOR",
@@ -61,93 +62,81 @@ const main = async () => {
   });
 
   // ==========================================
-  // PERMISSÕES
+  // PERMISSÕES DOS MÓDULOS
   // ==========================================
 
   const permissions = [
     {
-      code: "users.view",
-      name: "Visualizar usuários",
-      description: "Permite visualizar usuários",
-      module: "users",
+      code: "DASHBOARD_ACCESS",
+      name: "Acessar dashboard",
+      description: "Permite acessar o dashboard operacional",
+      module: "DASHBOARD",
     },
     {
-      code: "users.create",
-      name: "Criar usuários",
-      description: "Permite criar usuários",
-      module: "users",
+      code: "CLIENTS_ACCESS",
+      name: "Acessar clientes",
+      description: "Permite acessar o módulo de clientes",
+      module: "CLIENTS",
     },
     {
-      code: "users.update",
-      name: "Editar usuários",
-      description: "Permite editar usuários",
-      module: "users",
+      code: "UNITS_ACCESS",
+      name: "Acessar usinas",
+      description: "Permite acessar o módulo de usinas",
+      module: "UNITS",
     },
     {
-      code: "profiles.view",
-      name: "Visualizar perfis",
-      description: "Permite visualizar perfis de acesso",
-      module: "profiles",
+      code: "IMPLEMENTATIONS_ACCESS",
+      name: "Acessar implantações",
+      description: "Permite acessar o módulo de implantações",
+      module: "IMPLEMENTATIONS",
     },
     {
-      code: "profiles.create",
-      name: "Criar perfis",
-      description: "Permite criar perfis de acesso",
-      module: "profiles",
+      code: "ACTIVITIES_ACCESS",
+      name: "Acessar atividades",
+      description: "Permite acessar o módulo de atividades",
+      module: "ACTIVITIES",
     },
     {
-      code: "profiles.update",
-      name: "Editar perfis",
-      description: "Permite editar perfis de acesso",
-      module: "profiles",
+      code: "PROVIDERS_ACCESS",
+      name: "Acessar provedores",
+      description: "Permite acessar o módulo de provedores",
+      module: "PROVIDERS",
     },
     {
-      code: "permissions.view",
-      name: "Visualizar permissões",
-      description: "Permite visualizar permissões",
-      module: "permissions",
+      code: "TECHNICIANS_ACCESS",
+      name: "Acessar técnicos",
+      description: "Permite acessar o módulo de técnicos",
+      module: "TECHNICIANS",
     },
     {
-      code: "clients.view",
-      name: "Visualizar clientes",
-      description: "Permite visualizar clientes",
-      module: "clients",
+      code: "OCCURRENCES_ACCESS",
+      name: "Acessar chamados",
+      description: "Permite acessar o módulo de chamados",
+      module: "OCCURRENCES",
     },
     {
-      code: "clients.create",
-      name: "Criar clientes",
-      description: "Permite criar clientes",
-      module: "clients",
+      code: "REPORTS_ACCESS",
+      name: "Acessar relatórios",
+      description: "Permite acessar o módulo de relatórios",
+      module: "REPORTS",
     },
     {
-      code: "clients.update",
-      name: "Editar clientes",
-      description: "Permite editar clientes",
-      module: "clients",
+      code: "SETTINGS_ACCESS",
+      name: "Acessar configurações",
+      description: "Permite acessar as configurações do sistema",
+      module: "SETTINGS",
     },
     {
-      code: "activities.view",
-      name: "Visualizar atividades",
-      description: "Permite visualizar atividades",
-      module: "activities",
+      code: "USERS_ACCESS",
+      name: "Acessar usuários",
+      description: "Permite acessar o módulo de usuários",
+      module: "USERS",
     },
     {
-      code: "activities.create",
-      name: "Criar atividades",
-      description: "Permite criar atividades",
-      module: "activities",
-    },
-    {
-      code: "activities.update",
-      name: "Editar atividades",
-      description: "Permite editar atividades",
-      module: "activities",
-    },
-    {
-      code: "activities.complete",
-      name: "Concluir atividades",
-      description: "Permite concluir atividades",
-      module: "activities",
+      code: "ACCESS_PROFILES_ACCESS",
+      name: "Acessar perfis e permissões",
+      description: "Permite acessar a gestão de perfis e permissões",
+      module: "ACCESS_PROFILES",
     },
   ];
 
@@ -158,7 +147,11 @@ const main = async () => {
       where: {
         code: permission.code,
       },
-      update: {},
+      update: {
+        name: permission.name,
+        description: permission.description,
+        module: permission.module,
+      },
       create: permission,
     });
 
@@ -169,88 +162,77 @@ const main = async () => {
   // PERMISSÕES DO ADMINISTRADOR
   // ==========================================
 
-  for (const permission of createdPermissions) {
-    await prisma.profilePermission.upsert({
-      where: {
-        accessProfileId_permissionId: {
-          accessProfileId: administratorProfile.id,
-          permissionId: permission.id,
-        },
-      },
-      update: {},
-      create: {
-        accessProfileId: administratorProfile.id,
-        permissionId: permission.id,
-      },
-    });
-  }
+  const administratorPermissionCodes = permissions.map(
+    (permission) => permission.code,
+  );
 
   // ==========================================
   // PERMISSÕES DO ENGENHEIRO
   // ==========================================
 
   const engineerPermissionCodes = [
-    "users.view",
-    "profiles.view",
-    "permissions.view",
-    "clients.view",
-    "clients.create",
-    "clients.update",
-    "activities.view",
-    "activities.create",
-    "activities.update",
-    "activities.complete",
+    "DASHBOARD_ACCESS",
+    "CLIENTS_ACCESS",
+    "UNITS_ACCESS",
+    "IMPLEMENTATIONS_ACCESS",
+    "ACTIVITIES_ACCESS",
+    "PROVIDERS_ACCESS",
+    "TECHNICIANS_ACCESS",
+    "OCCURRENCES_ACCESS",
+    "REPORTS_ACCESS",
   ];
-
-  for (const permission of createdPermissions) {
-    if (!engineerPermissionCodes.includes(permission.code)) {
-      continue;
-    }
-
-    await prisma.profilePermission.upsert({
-      where: {
-        accessProfileId_permissionId: {
-          accessProfileId: engineerProfile.id,
-          permissionId: permission.id,
-        },
-      },
-      update: {},
-      create: {
-        accessProfileId: engineerProfile.id,
-        permissionId: permission.id,
-      },
-    });
-  }
 
   // ==========================================
   // PERMISSÕES DO EXECUTOR
   // ==========================================
 
   const executorPermissionCodes = [
-    "clients.view",
-    "activities.view",
-    "activities.update",
-    "activities.complete",
+    "DASHBOARD_ACCESS",
+    "UNITS_ACCESS",
+    "IMPLEMENTATIONS_ACCESS",
+    "ACTIVITIES_ACCESS",
+    "OCCURRENCES_ACCESS",
   ];
 
-  for (const permission of createdPermissions) {
-    if (!executorPermissionCodes.includes(permission.code)) {
-      continue;
-    }
+  // ==========================================
+  // VINCULAR PERMISSÕES AOS PERFIS
+  // ==========================================
 
-    await prisma.profilePermission.upsert({
-      where: {
-        accessProfileId_permissionId: {
-          accessProfileId: executorProfile.id,
+  const profilePermissions = [
+    {
+      profileId: administratorProfile.id,
+      permissionCodes: administratorPermissionCodes,
+    },
+    {
+      profileId: engineerProfile.id,
+      permissionCodes: engineerPermissionCodes,
+    },
+    {
+      profileId: executorProfile.id,
+      permissionCodes: executorPermissionCodes,
+    },
+  ];
+
+  for (const profile of profilePermissions) {
+    for (const permission of createdPermissions) {
+      if (!profile.permissionCodes.includes(permission.code)) {
+        continue;
+      }
+
+      await prisma.profilePermission.upsert({
+        where: {
+          accessProfileId_permissionId: {
+            accessProfileId: profile.profileId,
+            permissionId: permission.id,
+          },
+        },
+        update: {},
+        create: {
+          accessProfileId: profile.profileId,
           permissionId: permission.id,
         },
-      },
-      update: {},
-      create: {
-        accessProfileId: executorProfile.id,
-        permissionId: permission.id,
-      },
-    });
+      });
+    }
   }
 
   // ==========================================

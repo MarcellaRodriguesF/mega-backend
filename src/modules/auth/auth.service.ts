@@ -25,11 +25,6 @@ export class AuthService {
       throw new ApiError("Usuário inativo.", 403, "USER_INACTIVE");
     }
 
-    const permissions =
-      await this.authorizationRepository.findPermissionCodesByProfileId(
-        user.accessProfileId,
-      );
-
     const passwordIsValid = await bcrypt.compare(password, user.passwordHash);
 
     if (!passwordIsValid) {
@@ -73,7 +68,6 @@ export class AuthService {
           id: user.accessProfile.id,
           name: user.accessProfile.name,
         },
-        permissions,
       },
     };
   }
@@ -89,6 +83,11 @@ export class AuthService {
       throw new ApiError("Usuário inativo.", 403, "USER_INACTIVE");
     }
 
+    const permissions =
+      await this.authorizationRepository.findPermissionCodesByProfileId(
+        user.accessProfileId,
+      );
+
     return {
       id: user.id,
       email: user.email,
@@ -96,6 +95,7 @@ export class AuthService {
         id: user.accessProfile.id,
         name: user.accessProfile.name,
       },
+      permissions,
     };
   }
 }
