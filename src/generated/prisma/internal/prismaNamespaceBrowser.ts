@@ -56,6 +56,7 @@ export const ModelName = {
   Permission: 'Permission',
   ProfilePermission: 'ProfilePermission',
   Company: 'Company',
+  CompanyAddress: 'CompanyAddress',
   CompanyContact: 'CompanyContact',
   Opportunity: 'Opportunity'
 } as const
@@ -130,13 +131,6 @@ export const CompanyScalarFieldEnum = {
   corporateName: 'corporateName',
   tradeName: 'tradeName',
   cnpj: 'cnpj',
-  zipCode: 'zipCode',
-  street: 'street',
-  number: 'number',
-  complement: 'complement',
-  neighborhood: 'neighborhood',
-  city: 'city',
-  state: 'state',
   relationshipStage: 'relationshipStage',
   status: 'status',
   observations: 'observations',
@@ -145,6 +139,29 @@ export const CompanyScalarFieldEnum = {
 } as const
 
 export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const CompanyAddressScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  type: 'type',
+  zipCode: 'zipCode',
+  street: 'street',
+  number: 'number',
+  complement: 'complement',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  isPrimary: 'isPrimary',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyAddressScalarFieldEnum = (typeof CompanyAddressScalarFieldEnum)[keyof typeof CompanyAddressScalarFieldEnum]
 
 
 export const CompanyContactScalarFieldEnum = {

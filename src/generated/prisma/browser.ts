@@ -43,6 +43,11 @@ export type ProfilePermission = Prisma.ProfilePermissionModel
  */
 export type Company = Prisma.CompanyModel
 /**
+ * Model CompanyAddress
+ * 
+ */
+export type CompanyAddress = Prisma.CompanyAddressModel
+/**
  * Model CompanyContact
  * 
  */

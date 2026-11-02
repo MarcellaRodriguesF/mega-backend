@@ -469,10 +469,6 @@ export type CompanyContactUncheckedUpdateManyWithoutCompanyNestedInput = {
   deleteMany?: Prisma.CompanyContactScalarWhereInput | Prisma.CompanyContactScalarWhereInput[]
 }
 
-export type BoolFieldUpdateOperationsInput = {
-  set?: boolean
-}
-
 export type CompanyContactCreateWithoutCompanyInput = {
   id?: string
   name: string

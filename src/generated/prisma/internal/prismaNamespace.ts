@@ -402,6 +402,7 @@ export const ModelName = {
   Permission: 'Permission',
   ProfilePermission: 'ProfilePermission',
   Company: 'Company',
+  CompanyAddress: 'CompanyAddress',
   CompanyContact: 'CompanyContact',
   Opportunity: 'Opportunity'
 } as const
@@ -419,7 +420,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "accessProfile" | "permission" | "profilePermission" | "company" | "companyContact" | "opportunity"
+    modelProps: "user" | "accessProfile" | "permission" | "profilePermission" | "company" | "companyAddress" | "companyContact" | "opportunity"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -793,6 +794,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    CompanyAddress: {
+      payload: Prisma.$CompanyAddressPayload<ExtArgs>
+      fields: Prisma.CompanyAddressFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CompanyAddressFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CompanyAddressFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>
+        }
+        findFirst: {
+          args: Prisma.CompanyAddressFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CompanyAddressFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>
+        }
+        findMany: {
+          args: Prisma.CompanyAddressFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>[]
+        }
+        create: {
+          args: Prisma.CompanyAddressCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>
+        }
+        createMany: {
+          args: Prisma.CompanyAddressCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CompanyAddressCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>[]
+        }
+        delete: {
+          args: Prisma.CompanyAddressDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>
+        }
+        update: {
+          args: Prisma.CompanyAddressUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>
+        }
+        deleteMany: {
+          args: Prisma.CompanyAddressDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CompanyAddressUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CompanyAddressUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>[]
+        }
+        upsert: {
+          args: Prisma.CompanyAddressUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CompanyAddressPayload>
+        }
+        aggregate: {
+          args: Prisma.CompanyAddressAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCompanyAddress>
+        }
+        groupBy: {
+          args: Prisma.CompanyAddressGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanyAddressGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CompanyAddressCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CompanyAddressCountAggregateOutputType> | number
+        }
+      }
+    }
     CompanyContact: {
       payload: Prisma.$CompanyContactPayload<ExtArgs>
       fields: Prisma.CompanyContactFieldRefs
@@ -1034,13 +1109,6 @@ export const CompanyScalarFieldEnum = {
   corporateName: 'corporateName',
   tradeName: 'tradeName',
   cnpj: 'cnpj',
-  zipCode: 'zipCode',
-  street: 'street',
-  number: 'number',
-  complement: 'complement',
-  neighborhood: 'neighborhood',
-  city: 'city',
-  state: 'state',
   relationshipStage: 'relationshipStage',
   status: 'status',
   observations: 'observations',
@@ -1049,6 +1117,29 @@ export const CompanyScalarFieldEnum = {
 } as const
 
 export type CompanyScalarFieldEnum = (typeof CompanyScalarFieldEnum)[keyof typeof CompanyScalarFieldEnum]
+
+
+export const CompanyAddressScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  type: 'type',
+  zipCode: 'zipCode',
+  street: 'street',
+  number: 'number',
+  complement: 'complement',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  isPrimary: 'isPrimary',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CompanyAddressScalarFieldEnum = (typeof CompanyAddressScalarFieldEnum)[keyof typeof CompanyAddressScalarFieldEnum]
 
 
 export const CompanyContactScalarFieldEnum = {
@@ -1146,6 +1237,20 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
@@ -1177,20 +1282,6 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
  * Reference to a field of type 'Int[]'
  */
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 /**
@@ -1349,6 +1440,7 @@ export type GlobalOmitConfig = {
   permission?: Prisma.PermissionOmit
   profilePermission?: Prisma.ProfilePermissionOmit
   company?: Prisma.CompanyOmit
+  companyAddress?: Prisma.CompanyAddressOmit
   companyContact?: Prisma.CompanyContactOmit
   opportunity?: Prisma.OpportunityOmit
 }
