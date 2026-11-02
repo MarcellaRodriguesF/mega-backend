@@ -1,10 +1,25 @@
 import { prisma } from "../../database/prisma.js";
-import type { CreateCompanyData, UpdateCompanyData } from "./companies.types.js";
+import type {
+  CreateCompanyData,
+  UpdateCompanyData,
+} from "./companies.types.js";
 
 export class CompaniesRepository {
   create(data: CreateCompanyData) {
+    const { address, ...companyData } = data;
+
     return prisma.company.create({
-      data,
+      data: {
+        ...companyData,
+        ...(address && {
+          addresses: {
+            create: address,
+          },
+        }),
+      },
+      include: {
+        addresses: true,
+      },
     });
   }
 
@@ -13,6 +28,9 @@ export class CompaniesRepository {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        addresses: true,
+      },
     });
   }
 
@@ -20,6 +38,7 @@ export class CompaniesRepository {
     return prisma.company.findUnique({
       where: { id },
       include: {
+        addresses: true,
         contacts: true,
         opportunities: true,
       },
@@ -32,10 +51,49 @@ export class CompaniesRepository {
     });
   }
 
-  update(id: string, data: UpdateCompanyData) {
-    return prisma.company.update({
-      where: { id },
-      data,
+  async update(id: string, data: UpdateCompanyData) {
+    const { address, ...companyData } = data;
+       
+    return prisma.$transaction(async (transaction) => {
+      await transaction.company.update({
+        where: { id },
+        data: companyData,
+      });
+
+      if (address) {
+        const primaryAddress = await transaction.companyAddress.findFirst({
+          where: {
+            companyId: id,
+            isPrimary: true,
+          },
+        });
+
+        if (primaryAddress) {
+          await transaction.companyAddress.update({
+            where: {
+              id: primaryAddress.id,
+            },
+            data: address,
+          });
+        } else {
+          await transaction.companyAddress.create({
+            data: {
+              ...address,
+              companyId: id,
+            },
+          });
+        }
+      }
+
+      return transaction.company.findUnique({
+        where: { id },
+        include: {
+          addresses: true,
+          contacts: true,
+          opportunities: true,
+        },
+      });
     });
   }
 }
+ 
