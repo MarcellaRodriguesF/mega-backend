@@ -53,7 +53,7 @@ export class CompaniesRepository {
 
   async update(id: string, data: UpdateCompanyData) {
     const { address, ...companyData } = data;
-       
+
     return prisma.$transaction(async (transaction) => {
       await transaction.company.update({
         where: { id },
@@ -61,17 +61,30 @@ export class CompaniesRepository {
       });
 
       if (address) {
-        const primaryAddress = await transaction.companyAddress.findFirst({
+        // Primeiro tenta localizar o endereço principal.
+        let existingAddress = await transaction.companyAddress.findFirst({
           where: {
             companyId: id,
             isPrimary: true,
           },
         });
 
-        if (primaryAddress) {
+        // Se não houver endereço principal, reutiliza o mais antigo.
+        if (!existingAddress) {
+          existingAddress = await transaction.companyAddress.findFirst({
+            where: {
+              companyId: id,
+            },
+            orderBy: {
+              createdAt: "asc",
+            },
+          });
+        }
+
+        if (existingAddress) {
           await transaction.companyAddress.update({
             where: {
-              id: primaryAddress.id,
+              id: existingAddress.id,
             },
             data: address,
           });
@@ -96,4 +109,3 @@ export class CompaniesRepository {
     });
   }
 }
- 

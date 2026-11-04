@@ -83,7 +83,7 @@ export const createCompanySchema = z.object({
 
   relationshipStage: z
     .nativeEnum(CompanyRelationshipStage)
-    .default(CompanyRelationshipStage.LEAD),
+    .default(CompanyRelationshipStage.CUSTOMER),
 
   observations: z.string().trim().nullable().optional(),
 
