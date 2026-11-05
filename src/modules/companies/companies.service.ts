@@ -63,4 +63,41 @@ export class CompaniesService {
 
     return this.companiesRepository.update(id, data);
   }
+
+  async delete(id: string) {
+    const company = await this.companiesRepository.findById(id);
+
+    if (!company) {
+      throw new ApiError("Empresa não encontrada.", 404, "COMPANY_NOT_FOUND");
+    }
+
+    const hasContacts = company.contacts.length > 0;
+    const hasOpportunities = company.opportunities.length > 0;
+
+    if (hasContacts && hasOpportunities) {
+      throw new ApiError(
+        "Não é possível excluir esta empresa porque existem contatos e oportunidades associados.",
+        409,
+        "COMPANY_HAS_ASSOCIATED_RELATIONS",
+      );
+    }
+
+    if (hasContacts) {
+      throw new ApiError(
+        "Não é possível excluir esta empresa porque existem contatos associados.",
+        409,
+        "COMPANY_HAS_ASSOCIATED_CONTACTS",
+      );
+    }
+
+    if (hasOpportunities) {
+      throw new ApiError(
+        "Não é possível excluir esta empresa porque existem oportunidades associadas.",
+        409,
+        "COMPANY_HAS_ASSOCIATED_OPPORTUNITIES",
+      );
+    }
+
+    return this.companiesRepository.delete(id);
+  }
 }

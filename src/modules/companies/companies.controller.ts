@@ -54,4 +54,16 @@ export class CompaniesController {
 
     return successResponse(res, company, "Empresa atualizada com sucesso.");
   };
+
+  delete = async (req: Request, res: Response) => {
+    const id = req.params.id;
+
+    if (!id || Array.isArray(id)) {
+      throw new Error("ID da empresa inválido.");
+    }
+
+    await this.companiesService.delete(id);
+
+    return successResponse(res, null, "Empresa excluída com sucesso.");
+  };
 }

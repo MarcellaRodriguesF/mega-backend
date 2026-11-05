@@ -22,4 +22,8 @@ companiesRoutes.patch("/:id", authMiddleware, (req, res, next) => {
   companiesController.update(req, res).catch(next);
 });
 
+companiesRoutes.delete("/:id", authMiddleware, (req, res, next) => {
+  companiesController.delete(req, res).catch(next);
+});
+
 export { companiesRoutes };

@@ -108,4 +108,10 @@ export class CompaniesRepository {
       });
     });
   }
+
+  async delete(id: string) {
+    return prisma.company.delete({
+      where: { id },
+    });
+  }
 }
