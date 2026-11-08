@@ -2,10 +2,15 @@ import { Router } from "express";
 
 import { authMiddleware } from "../../middlewares/auth.middleware.js";
 import { CompaniesController } from "./companies.controller.js";
+import { contactsRoutes } from "../contacts/contacts.routes.js";
 
 const companiesRoutes = Router();
 const companiesController = new CompaniesController();
 
+// Rotas de contatos
+companiesRoutes.use("/:companyId/contacts", contactsRoutes);
+
+// Rotas de empresas
 companiesRoutes.post("/", authMiddleware, (req, res, next) => {
   companiesController.create(req, res).catch(next);
 });
