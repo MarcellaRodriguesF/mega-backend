@@ -14,9 +14,14 @@ const companiesController = new CompaniesController();
 companiesRoutes.use("/:companyId/contacts", contactsRoutes);
 
 // Rotas de empresas
-companiesRoutes.post("/", authMiddleware, (req, res, next) => {
-  companiesController.create(req, res).catch(next);
-});
+companiesRoutes.post(
+  "/",
+  authMiddleware,
+  authorizePermission(PERMISSIONS.CLIENTS),
+  (req, res, next) => {
+    companiesController.create(req, res).catch(next);
+  },
+);
 
 companiesRoutes.get(
   "/",
@@ -27,16 +32,31 @@ companiesRoutes.get(
   },
 );
 
-companiesRoutes.get("/:id", authMiddleware, (req, res, next) => {
-  companiesController.findById(req, res).catch(next);
-});
+companiesRoutes.get(
+  "/:id",
+  authMiddleware,
+  authorizePermission(PERMISSIONS.CLIENTS),
+  (req, res, next) => {
+    companiesController.findById(req, res).catch(next);
+  },
+);
 
-companiesRoutes.patch("/:id", authMiddleware, (req, res, next) => {
-  companiesController.update(req, res).catch(next);
-});
+companiesRoutes.patch(
+  "/:id",
+  authMiddleware,
+  authorizePermission(PERMISSIONS.CLIENTS),
+  (req, res, next) => {
+    companiesController.update(req, res).catch(next);
+  },
+);
 
-companiesRoutes.delete("/:id", authMiddleware, (req, res, next) => {
-  companiesController.delete(req, res).catch(next);
-});
+companiesRoutes.delete(
+  "/:id",
+  authMiddleware,
+  authorizePermission(PERMISSIONS.CLIENTS),
+  (req, res, next) => {
+    companiesController.delete(req, res).catch(next);
+  },
+);
 
 export { companiesRoutes };
