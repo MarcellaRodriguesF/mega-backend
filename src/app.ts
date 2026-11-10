@@ -6,6 +6,7 @@ import { companiesRoutes } from "./modules/companies/companies.routes.js";
 import { usersRoutes } from "./modules/users/users.routes.js";
 
 import { errorMiddleware } from "./middlewares/error.middleware.js";
+import { accessProfilesRoutes } from "./modules/access-profiles/access-profiles.routes.js";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(express.json());
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/companies", companiesRoutes);
 app.use("/api/v1/users", usersRoutes);
+app.use("/api/v1/access-profiles", accessProfilesRoutes);
 
 app.use(errorMiddleware);
 
