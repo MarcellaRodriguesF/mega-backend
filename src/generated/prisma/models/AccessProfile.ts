@@ -360,10 +360,6 @@ export type AccessProfileUpdateOneRequiredWithoutUsersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.AccessProfileUpdateToOneWithWhereWithoutUsersInput, Prisma.AccessProfileUpdateWithoutUsersInput>, Prisma.AccessProfileUncheckedUpdateWithoutUsersInput>
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type AccessProfileCreateNestedOneWithoutProfilePermissionsInput = {
   create?: Prisma.XOR<Prisma.AccessProfileCreateWithoutProfilePermissionsInput, Prisma.AccessProfileUncheckedCreateWithoutProfilePermissionsInput>
   connectOrCreate?: Prisma.AccessProfileCreateOrConnectWithoutProfilePermissionsInput

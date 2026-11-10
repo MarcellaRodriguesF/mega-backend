@@ -63,6 +63,7 @@ export class AuthService {
       accessToken,
       user: {
         id: user.id,
+        name: user.name,
         email: user.email,
         accessProfile: {
           id: user.accessProfile.id,
@@ -90,6 +91,7 @@ export class AuthService {
 
     return {
       id: user.id,
+      name: user.name,
       email: user.email,
       accessProfile: {
         id: user.accessProfile.id,

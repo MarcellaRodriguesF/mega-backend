@@ -2,6 +2,7 @@ import { prisma } from "../../database/prisma.js";
 
 const userSelect = {
   id: true,
+  name: true,
   email: true,
   accessProfileId: true,
   status: true,
@@ -20,12 +21,14 @@ const userSelect = {
 
 export class UsersRepository {
   create(data: {
+    name?: string;
     email: string;
     passwordHash: string;
     accessProfileId: string;
   }) {
     return prisma.user.create({
       data: {
+        ...(data.name !== undefined && { name: data.name }),
         email: data.email,
         passwordHash: data.passwordHash,
         accessProfile: {
@@ -86,6 +89,7 @@ export class UsersRepository {
   update(
     id: string,
     data: {
+      name?: string;
       email?: string;
       passwordHash?: string;
       accessProfileId?: string;
@@ -95,6 +99,7 @@ export class UsersRepository {
     return prisma.user.update({
       where: { id },
       data: {
+        ...(data.name !== undefined && { name: data.name }),
         ...(data.email !== undefined && { email: data.email }),
         ...(data.passwordHash !== undefined && {
           passwordHash: data.passwordHash,

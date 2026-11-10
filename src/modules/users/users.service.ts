@@ -33,6 +33,7 @@ export class UsersService {
     const passwordHash = await bcrypt.hash(data.password, 10);
 
     return this.usersRepository.create({
+      ...(data.name !== undefined && { name: data.name }),
       email: data.email,
       passwordHash,
       accessProfileId: data.accessProfileId,
@@ -90,6 +91,7 @@ export class UsersService {
       : undefined;
 
     return this.usersRepository.update(id, {
+      ...(data.name !== undefined && { name: data.name }),
       ...(data.email !== undefined && { email: data.email }),
       ...(passwordHash !== undefined && { passwordHash }),
       ...(data.accessProfileId !== undefined && {

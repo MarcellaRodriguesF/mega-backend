@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 export const createUserSchema = z.object({
+  name: z.string().trim().min(1).max(150).optional(),
+
   email: z
     .string()
     .trim()
@@ -18,6 +20,8 @@ export const createUserSchema = z.object({
 
 export const updateUserSchema = z
   .object({
+    name: z.string().trim().min(1).max(150).optional(),
+
     email: z
       .string()
       .trim()
