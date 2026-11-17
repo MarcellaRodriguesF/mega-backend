@@ -27,6 +27,7 @@ export type AggregateProvider = {
 export type ProviderMinAggregateOutputType = {
   id: string | null
   name: string | null
+  phone: string | null
   status: string | null
   observations: string | null
   createdAt: Date | null
@@ -36,6 +37,7 @@ export type ProviderMinAggregateOutputType = {
 export type ProviderMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  phone: string | null
   status: string | null
   observations: string | null
   createdAt: Date | null
@@ -45,6 +47,7 @@ export type ProviderMaxAggregateOutputType = {
 export type ProviderCountAggregateOutputType = {
   id: number
   name: number
+  phone: number
   status: number
   observations: number
   createdAt: number
@@ -56,6 +59,7 @@ export type ProviderCountAggregateOutputType = {
 export type ProviderMinAggregateInputType = {
   id?: true
   name?: true
+  phone?: true
   status?: true
   observations?: true
   createdAt?: true
@@ -65,6 +69,7 @@ export type ProviderMinAggregateInputType = {
 export type ProviderMaxAggregateInputType = {
   id?: true
   name?: true
+  phone?: true
   status?: true
   observations?: true
   createdAt?: true
@@ -74,6 +79,7 @@ export type ProviderMaxAggregateInputType = {
 export type ProviderCountAggregateInputType = {
   id?: true
   name?: true
+  phone?: true
   status?: true
   observations?: true
   createdAt?: true
@@ -156,6 +162,7 @@ export type ProviderGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type ProviderGroupByOutputType = {
   id: string
   name: string
+  phone: string | null
   status: string
   observations: string | null
   createdAt: Date
@@ -186,6 +193,7 @@ export type ProviderWhereInput = {
   NOT?: Prisma.ProviderWhereInput | Prisma.ProviderWhereInput[]
   id?: Prisma.UuidFilter<"Provider"> | string
   name?: Prisma.StringFilter<"Provider"> | string
+  phone?: Prisma.StringNullableFilter<"Provider"> | string | null
   status?: Prisma.StringFilter<"Provider"> | string
   observations?: Prisma.StringNullableFilter<"Provider"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Provider"> | Date | string
@@ -198,6 +206,7 @@ export type ProviderWhereInput = {
 export type ProviderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   observations?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -213,6 +222,7 @@ export type ProviderWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProviderWhereInput[]
   NOT?: Prisma.ProviderWhereInput | Prisma.ProviderWhereInput[]
   name?: Prisma.StringFilter<"Provider"> | string
+  phone?: Prisma.StringNullableFilter<"Provider"> | string | null
   status?: Prisma.StringFilter<"Provider"> | string
   observations?: Prisma.StringNullableFilter<"Provider"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Provider"> | Date | string
@@ -225,6 +235,7 @@ export type ProviderWhereUniqueInput = Prisma.AtLeast<{
 export type ProviderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   observations?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -240,6 +251,7 @@ export type ProviderScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProviderScalarWhereWithAggregatesInput | Prisma.ProviderScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Provider"> | string
   name?: Prisma.StringWithAggregatesFilter<"Provider"> | string
+  phone?: Prisma.StringNullableWithAggregatesFilter<"Provider"> | string | null
   status?: Prisma.StringWithAggregatesFilter<"Provider"> | string
   observations?: Prisma.StringNullableWithAggregatesFilter<"Provider"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Provider"> | Date | string
@@ -249,6 +261,7 @@ export type ProviderScalarWhereWithAggregatesInput = {
 export type ProviderCreateInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -261,6 +274,7 @@ export type ProviderCreateInput = {
 export type ProviderUncheckedCreateInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -273,6 +287,7 @@ export type ProviderUncheckedCreateInput = {
 export type ProviderUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -285,6 +300,7 @@ export type ProviderUpdateInput = {
 export type ProviderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -297,6 +313,7 @@ export type ProviderUncheckedUpdateInput = {
 export type ProviderCreateManyInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -306,6 +323,7 @@ export type ProviderCreateManyInput = {
 export type ProviderUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -315,6 +333,7 @@ export type ProviderUpdateManyMutationInput = {
 export type ProviderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -324,6 +343,7 @@ export type ProviderUncheckedUpdateManyInput = {
 export type ProviderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   status?: Prisma.SortOrder
   observations?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -333,6 +353,7 @@ export type ProviderCountOrderByAggregateInput = {
 export type ProviderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   status?: Prisma.SortOrder
   observations?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -342,6 +363,7 @@ export type ProviderMaxOrderByAggregateInput = {
 export type ProviderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
   status?: Prisma.SortOrder
   observations?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -405,6 +427,7 @@ export type ProviderUpdateOneWithoutConnectivitiesNestedInput = {
 export type ProviderCreateWithoutContactsInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -416,6 +439,7 @@ export type ProviderCreateWithoutContactsInput = {
 export type ProviderUncheckedCreateWithoutContactsInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -443,6 +467,7 @@ export type ProviderUpdateToOneWithWhereWithoutContactsInput = {
 export type ProviderUpdateWithoutContactsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -454,6 +479,7 @@ export type ProviderUpdateWithoutContactsInput = {
 export type ProviderUncheckedUpdateWithoutContactsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -465,6 +491,7 @@ export type ProviderUncheckedUpdateWithoutContactsInput = {
 export type ProviderCreateWithoutDocumentsInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -476,6 +503,7 @@ export type ProviderCreateWithoutDocumentsInput = {
 export type ProviderUncheckedCreateWithoutDocumentsInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -503,6 +531,7 @@ export type ProviderUpdateToOneWithWhereWithoutDocumentsInput = {
 export type ProviderUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -514,6 +543,7 @@ export type ProviderUpdateWithoutDocumentsInput = {
 export type ProviderUncheckedUpdateWithoutDocumentsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -525,6 +555,7 @@ export type ProviderUncheckedUpdateWithoutDocumentsInput = {
 export type ProviderCreateWithoutConnectivitiesInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -536,6 +567,7 @@ export type ProviderCreateWithoutConnectivitiesInput = {
 export type ProviderUncheckedCreateWithoutConnectivitiesInput = {
   id?: string
   name: string
+  phone?: string | null
   status?: string
   observations?: string | null
   createdAt?: Date | string
@@ -563,6 +595,7 @@ export type ProviderUpdateToOneWithWhereWithoutConnectivitiesInput = {
 export type ProviderUpdateWithoutConnectivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -574,6 +607,7 @@ export type ProviderUpdateWithoutConnectivitiesInput = {
 export type ProviderUncheckedUpdateWithoutConnectivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -634,6 +668,7 @@ export type ProviderCountOutputTypeCountConnectivitiesArgs<ExtArgs extends runti
 export type ProviderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  phone?: boolean
   status?: boolean
   observations?: boolean
   createdAt?: boolean
@@ -647,6 +682,7 @@ export type ProviderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type ProviderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  phone?: boolean
   status?: boolean
   observations?: boolean
   createdAt?: boolean
@@ -656,6 +692,7 @@ export type ProviderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ProviderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  phone?: boolean
   status?: boolean
   observations?: boolean
   createdAt?: boolean
@@ -665,13 +702,14 @@ export type ProviderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type ProviderSelectScalar = {
   id?: boolean
   name?: boolean
+  phone?: boolean
   status?: boolean
   observations?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProviderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "status" | "observations" | "createdAt" | "updatedAt", ExtArgs["result"]["provider"]>
+export type ProviderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "phone" | "status" | "observations" | "createdAt" | "updatedAt", ExtArgs["result"]["provider"]>
 export type ProviderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   contacts?: boolean | Prisma.Provider$contactsArgs<ExtArgs>
   documents?: boolean | Prisma.Provider$documentsArgs<ExtArgs>
@@ -691,6 +729,7 @@ export type $ProviderPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    phone: string | null
     status: string
     observations: string | null
     createdAt: Date
@@ -1123,6 +1162,7 @@ export interface Prisma__ProviderClient<T, Null = never, ExtArgs extends runtime
 export interface ProviderFieldRefs {
   readonly id: Prisma.FieldRef<"Provider", 'String'>
   readonly name: Prisma.FieldRef<"Provider", 'String'>
+  readonly phone: Prisma.FieldRef<"Provider", 'String'>
   readonly status: Prisma.FieldRef<"Provider", 'String'>
   readonly observations: Prisma.FieldRef<"Provider", 'String'>
   readonly createdAt: Prisma.FieldRef<"Provider", 'DateTime'>

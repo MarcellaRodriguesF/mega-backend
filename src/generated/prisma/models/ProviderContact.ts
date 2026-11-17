@@ -31,7 +31,6 @@ export type ProviderContactMinAggregateOutputType = {
   role: string | null
   email: string | null
   phone: string | null
-  whatsapp: string | null
   isPrimary: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -44,7 +43,6 @@ export type ProviderContactMaxAggregateOutputType = {
   role: string | null
   email: string | null
   phone: string | null
-  whatsapp: string | null
   isPrimary: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -57,7 +55,6 @@ export type ProviderContactCountAggregateOutputType = {
   role: number
   email: number
   phone: number
-  whatsapp: number
   isPrimary: number
   createdAt: number
   updatedAt: number
@@ -72,7 +69,6 @@ export type ProviderContactMinAggregateInputType = {
   role?: true
   email?: true
   phone?: true
-  whatsapp?: true
   isPrimary?: true
   createdAt?: true
   updatedAt?: true
@@ -85,7 +81,6 @@ export type ProviderContactMaxAggregateInputType = {
   role?: true
   email?: true
   phone?: true
-  whatsapp?: true
   isPrimary?: true
   createdAt?: true
   updatedAt?: true
@@ -98,7 +93,6 @@ export type ProviderContactCountAggregateInputType = {
   role?: true
   email?: true
   phone?: true
-  whatsapp?: true
   isPrimary?: true
   createdAt?: true
   updatedAt?: true
@@ -184,7 +178,6 @@ export type ProviderContactGroupByOutputType = {
   role: string | null
   email: string | null
   phone: string | null
-  whatsapp: string | null
   isPrimary: boolean
   createdAt: Date
   updatedAt: Date
@@ -218,7 +211,6 @@ export type ProviderContactWhereInput = {
   role?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   email?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   phone?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
-  whatsapp?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   isPrimary?: Prisma.BoolFilter<"ProviderContact"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProviderContact"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderContact"> | Date | string
@@ -232,7 +224,6 @@ export type ProviderContactOrderByWithRelationInput = {
   role?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  whatsapp?: Prisma.SortOrderInput | Prisma.SortOrder
   isPrimary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -249,7 +240,6 @@ export type ProviderContactWhereUniqueInput = Prisma.AtLeast<{
   role?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   email?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   phone?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
-  whatsapp?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   isPrimary?: Prisma.BoolFilter<"ProviderContact"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProviderContact"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderContact"> | Date | string
@@ -263,7 +253,6 @@ export type ProviderContactOrderByWithAggregationInput = {
   role?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
-  whatsapp?: Prisma.SortOrderInput | Prisma.SortOrder
   isPrimary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -282,7 +271,6 @@ export type ProviderContactScalarWhereWithAggregatesInput = {
   role?: Prisma.StringNullableWithAggregatesFilter<"ProviderContact"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"ProviderContact"> | string | null
   phone?: Prisma.StringNullableWithAggregatesFilter<"ProviderContact"> | string | null
-  whatsapp?: Prisma.StringNullableWithAggregatesFilter<"ProviderContact"> | string | null
   isPrimary?: Prisma.BoolWithAggregatesFilter<"ProviderContact"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderContact"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ProviderContact"> | Date | string
@@ -294,7 +282,6 @@ export type ProviderContactCreateInput = {
   role?: string | null
   email?: string | null
   phone?: string | null
-  whatsapp?: string | null
   isPrimary?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -308,7 +295,6 @@ export type ProviderContactUncheckedCreateInput = {
   role?: string | null
   email?: string | null
   phone?: string | null
-  whatsapp?: string | null
   isPrimary?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -320,7 +306,6 @@ export type ProviderContactUpdateInput = {
   role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -334,7 +319,6 @@ export type ProviderContactUncheckedUpdateInput = {
   role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -347,7 +331,6 @@ export type ProviderContactCreateManyInput = {
   role?: string | null
   email?: string | null
   phone?: string | null
-  whatsapp?: string | null
   isPrimary?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -359,7 +342,6 @@ export type ProviderContactUpdateManyMutationInput = {
   role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -372,7 +354,6 @@ export type ProviderContactUncheckedUpdateManyInput = {
   role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -395,7 +376,6 @@ export type ProviderContactCountOrderByAggregateInput = {
   role?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  whatsapp?: Prisma.SortOrder
   isPrimary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -408,7 +388,6 @@ export type ProviderContactMaxOrderByAggregateInput = {
   role?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  whatsapp?: Prisma.SortOrder
   isPrimary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -421,7 +400,6 @@ export type ProviderContactMinOrderByAggregateInput = {
   role?: Prisma.SortOrder
   email?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  whatsapp?: Prisma.SortOrder
   isPrimary?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -475,7 +453,6 @@ export type ProviderContactCreateWithoutProviderInput = {
   role?: string | null
   email?: string | null
   phone?: string | null
-  whatsapp?: string | null
   isPrimary?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -487,7 +464,6 @@ export type ProviderContactUncheckedCreateWithoutProviderInput = {
   role?: string | null
   email?: string | null
   phone?: string | null
-  whatsapp?: string | null
   isPrimary?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -529,7 +505,6 @@ export type ProviderContactScalarWhereInput = {
   role?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   email?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   phone?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
-  whatsapp?: Prisma.StringNullableFilter<"ProviderContact"> | string | null
   isPrimary?: Prisma.BoolFilter<"ProviderContact"> | boolean
   createdAt?: Prisma.DateTimeFilter<"ProviderContact"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderContact"> | Date | string
@@ -541,7 +516,6 @@ export type ProviderContactCreateManyProviderInput = {
   role?: string | null
   email?: string | null
   phone?: string | null
-  whatsapp?: string | null
   isPrimary?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -553,7 +527,6 @@ export type ProviderContactUpdateWithoutProviderInput = {
   role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -565,7 +538,6 @@ export type ProviderContactUncheckedUpdateWithoutProviderInput = {
   role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -577,7 +549,6 @@ export type ProviderContactUncheckedUpdateManyWithoutProviderInput = {
   role?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  whatsapp?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   isPrimary?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -592,7 +563,6 @@ export type ProviderContactSelect<ExtArgs extends runtime.Types.Extensions.Inter
   role?: boolean
   email?: boolean
   phone?: boolean
-  whatsapp?: boolean
   isPrimary?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -606,7 +576,6 @@ export type ProviderContactSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   role?: boolean
   email?: boolean
   phone?: boolean
-  whatsapp?: boolean
   isPrimary?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -620,7 +589,6 @@ export type ProviderContactSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   role?: boolean
   email?: boolean
   phone?: boolean
-  whatsapp?: boolean
   isPrimary?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -634,13 +602,12 @@ export type ProviderContactSelectScalar = {
   role?: boolean
   email?: boolean
   phone?: boolean
-  whatsapp?: boolean
   isPrimary?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProviderContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "providerId" | "name" | "role" | "email" | "phone" | "whatsapp" | "isPrimary" | "createdAt" | "updatedAt", ExtArgs["result"]["providerContact"]>
+export type ProviderContactOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "providerId" | "name" | "role" | "email" | "phone" | "isPrimary" | "createdAt" | "updatedAt", ExtArgs["result"]["providerContact"]>
 export type ProviderContactInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   provider?: boolean | Prisma.ProviderDefaultArgs<ExtArgs>
 }
@@ -663,7 +630,6 @@ export type $ProviderContactPayload<ExtArgs extends runtime.Types.Extensions.Int
     role: string | null
     email: string | null
     phone: string | null
-    whatsapp: string | null
     isPrimary: boolean
     createdAt: Date
     updatedAt: Date
@@ -1097,7 +1063,6 @@ export interface ProviderContactFieldRefs {
   readonly role: Prisma.FieldRef<"ProviderContact", 'String'>
   readonly email: Prisma.FieldRef<"ProviderContact", 'String'>
   readonly phone: Prisma.FieldRef<"ProviderContact", 'String'>
-  readonly whatsapp: Prisma.FieldRef<"ProviderContact", 'String'>
   readonly isPrimary: Prisma.FieldRef<"ProviderContact", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"ProviderContact", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ProviderContact", 'DateTime'>

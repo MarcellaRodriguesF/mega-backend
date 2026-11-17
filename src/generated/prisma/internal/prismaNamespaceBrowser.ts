@@ -211,6 +211,7 @@ export type OpportunityScalarFieldEnum = (typeof OpportunityScalarFieldEnum)[key
 export const ProviderScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  phone: 'phone',
   status: 'status',
   observations: 'observations',
   createdAt: 'createdAt',
@@ -227,7 +228,6 @@ export const ProviderContactScalarFieldEnum = {
   role: 'role',
   email: 'email',
   phone: 'phone',
-  whatsapp: 'whatsapp',
   isPrimary: 'isPrimary',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'

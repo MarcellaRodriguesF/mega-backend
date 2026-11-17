@@ -1,3 +1,4 @@
+
 import { z } from "zod";
 
 import { RecordStatus } from "../../shared/enums/record-status.enum.js";
@@ -8,6 +9,13 @@ export const createProviderSchema = z.object({
     .trim()
     .min(1, "O nome do provedor é obrigatório.")
     .max(255, "O nome deve ter no máximo 255 caracteres."),
+
+  phone: z
+    .string()
+    .trim()
+    .max(20, "O telefone deve ter no máximo 20 caracteres.")
+    .nullable()
+    .optional(),
 
   observations: z.string().trim().nullable().optional(),
 });

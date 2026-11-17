@@ -180,6 +180,7 @@ model Opportunity {
 model Provider {
   id           String  @id @default(uuid()) @db.Uuid
   name         String  @db.VarChar(255)
+  phone        String? @db.VarChar(20)
   status       String  @default("ACTIVE") @db.VarChar(20)
   observations String? @db.Text
 
@@ -203,7 +204,6 @@ model ProviderContact {
   role      String? @db.VarChar(100)
   email     String? @db.VarChar(255)
   phone     String? @db.VarChar(20)
-  whatsapp  String? @db.VarChar(20)
   isPrimary Boolean @default(false) @map("is_primary")
 
   provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)

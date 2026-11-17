@@ -4,10 +4,15 @@ import { authMiddleware } from "../../middlewares/auth.middleware.js";
 import { authorizePermission } from "../../middlewares/authorization.middleware.js";
 
 import { ProvidersController } from "./providers.controller.js";
+import { providerContactsRoutes } from "../provider-contacts/provider-contacts.routes.js";
+import { providerDocumentsRoutes } from "../provider-documents/provider-documents.routes.js";
 import { PERMISSIONS } from "../authorization/authorization.permissions.js";
 
 const providersRoutes = Router();
 const providersController = new ProvidersController();
+
+providersRoutes.use("/:providerId/contacts", providerContactsRoutes);
+providersRoutes.use("/:providerId/documents", providerDocumentsRoutes);
 
 providersRoutes.post(
   "/",
