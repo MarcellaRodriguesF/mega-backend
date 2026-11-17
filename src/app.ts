@@ -10,6 +10,7 @@ import { accessProfilesRoutes } from "./modules/access-profiles/access-profiles.
 
 import { providersRoutes } from "./modules/providers/providers.routes.js";
 import { unitsRoutes } from "./modules/units/units.routes.js";
+import { unitConnectivitiesRoutes } from "./modules/unit-connectivities/unit-connectivities.routes.js";
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/access-profiles", accessProfilesRoutes);
 app.use("/api/v1/providers", providersRoutes);
 app.use("/api/v1/units", unitsRoutes);
-
+app.use("/api/v1/unit-connectivities", unitConnectivitiesRoutes);
 app.use(errorMiddleware);
 
 export { app };
