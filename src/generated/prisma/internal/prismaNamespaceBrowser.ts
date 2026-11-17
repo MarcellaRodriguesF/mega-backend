@@ -58,7 +58,14 @@ export const ModelName = {
   Company: 'Company',
   CompanyAddress: 'CompanyAddress',
   CompanyContact: 'CompanyContact',
-  Opportunity: 'Opportunity'
+  Opportunity: 'Opportunity',
+  Provider: 'Provider',
+  ProviderContact: 'ProviderContact',
+  ProviderDocument: 'ProviderDocument',
+  Unit: 'Unit',
+  UnitAddress: 'UnitAddress',
+  UnitDocument: 'UnitDocument',
+  UnitConnectivity: 'UnitConnectivity'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -199,6 +206,135 @@ export const OpportunityScalarFieldEnum = {
 } as const
 
 export type OpportunityScalarFieldEnum = (typeof OpportunityScalarFieldEnum)[keyof typeof OpportunityScalarFieldEnum]
+
+
+export const ProviderScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  status: 'status',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProviderScalarFieldEnum = (typeof ProviderScalarFieldEnum)[keyof typeof ProviderScalarFieldEnum]
+
+
+export const ProviderContactScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  name: 'name',
+  role: 'role',
+  email: 'email',
+  phone: 'phone',
+  whatsapp: 'whatsapp',
+  isPrimary: 'isPrimary',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProviderContactScalarFieldEnum = (typeof ProviderContactScalarFieldEnum)[keyof typeof ProviderContactScalarFieldEnum]
+
+
+export const ProviderDocumentScalarFieldEnum = {
+  id: 'id',
+  providerId: 'providerId',
+  name: 'name',
+  type: 'type',
+  fileName: 'fileName',
+  storageKey: 'storageKey',
+  mimeType: 'mimeType',
+  sizeBytes: 'sizeBytes',
+  expiresAt: 'expiresAt',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProviderDocumentScalarFieldEnum = (typeof ProviderDocumentScalarFieldEnum)[keyof typeof ProviderDocumentScalarFieldEnum]
+
+
+export const UnitScalarFieldEnum = {
+  id: 'id',
+  companyId: 'companyId',
+  name: 'name',
+  type: 'type',
+  status: 'status',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnitScalarFieldEnum = (typeof UnitScalarFieldEnum)[keyof typeof UnitScalarFieldEnum]
+
+
+export const UnitAddressScalarFieldEnum = {
+  id: 'id',
+  unitId: 'unitId',
+  zipCode: 'zipCode',
+  street: 'street',
+  number: 'number',
+  complement: 'complement',
+  neighborhood: 'neighborhood',
+  city: 'city',
+  state: 'state',
+  areaType: 'areaType',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnitAddressScalarFieldEnum = (typeof UnitAddressScalarFieldEnum)[keyof typeof UnitAddressScalarFieldEnum]
+
+
+export const UnitDocumentScalarFieldEnum = {
+  id: 'id',
+  unitId: 'unitId',
+  name: 'name',
+  type: 'type',
+  fileName: 'fileName',
+  storageKey: 'storageKey',
+  mimeType: 'mimeType',
+  sizeBytes: 'sizeBytes',
+  expiresAt: 'expiresAt',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnitDocumentScalarFieldEnum = (typeof UnitDocumentScalarFieldEnum)[keyof typeof UnitDocumentScalarFieldEnum]
+
+
+export const UnitConnectivityScalarFieldEnum = {
+  id: 'id',
+  unitId: 'unitId',
+  providerId: 'providerId',
+  name: 'name',
+  technology: 'technology',
+  downloadCapacityMbps: 'downloadCapacityMbps',
+  uploadCapacityMbps: 'uploadCapacityMbps',
+  responseTimeMs: 'responseTimeMs',
+  throughputMbps: 'throughputMbps',
+  rxSignalDbm: 'rxSignalDbm',
+  publicIp: 'publicIp',
+  gatewayIp: 'gatewayIp',
+  localIp: 'localIp',
+  slaPercentage: 'slaPercentage',
+  mttrHours: 'mttrHours',
+  networkName: 'networkName',
+  wanIp: 'wanIp',
+  monitoringEnabled: 'monitoringEnabled',
+  serviceStartDate: 'serviceStartDate',
+  serviceEndDate: 'serviceEndDate',
+  status: 'status',
+  observations: 'observations',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type UnitConnectivityScalarFieldEnum = (typeof UnitConnectivityScalarFieldEnum)[keyof typeof UnitConnectivityScalarFieldEnum]
 
 
 export const SortOrder = {

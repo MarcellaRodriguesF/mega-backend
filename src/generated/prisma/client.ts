@@ -81,3 +81,38 @@ export type CompanyContact = Prisma.CompanyContactModel
  * 
  */
 export type Opportunity = Prisma.OpportunityModel
+/**
+ * Model Provider
+ * 
+ */
+export type Provider = Prisma.ProviderModel
+/**
+ * Model ProviderContact
+ * 
+ */
+export type ProviderContact = Prisma.ProviderContactModel
+/**
+ * Model ProviderDocument
+ * 
+ */
+export type ProviderDocument = Prisma.ProviderDocumentModel
+/**
+ * Model Unit
+ * 
+ */
+export type Unit = Prisma.UnitModel
+/**
+ * Model UnitAddress
+ * 
+ */
+export type UnitAddress = Prisma.UnitAddressModel
+/**
+ * Model UnitDocument
+ * 
+ */
+export type UnitDocument = Prisma.UnitDocumentModel
+/**
+ * Model UnitConnectivity
+ * 
+ */
+export type UnitConnectivity = Prisma.UnitConnectivityModel
