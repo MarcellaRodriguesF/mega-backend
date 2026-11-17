@@ -1,63 +1,41 @@
 import { z } from "zod";
 
-const optionalText = (maxLength: number) =>
-  z.string().trim().max(maxLength).nullable().optional();
+const nullableText = z.preprocess((value) => {
+  if (value === undefined || value === null || value === "") return null;
+  return value;
+}, z.string().trim().nullable());
 
-const optionalDate = z.preprocess(
-  (value) => (value === "" ? null : value),
-  z.union([z.null(), z.coerce.date()]).optional(),
-);
+const optionalNullableText = z.preprocess((value) => {
+  if (value === undefined) return undefined;
+  if (value === null || value === "") return null;
+  return value;
+}, z.string().trim().nullable().optional());
 
-export const createProviderDocumentSchema = z.object({
+export const createProviderDocumentFieldsSchema = z.object({
   name: z
     .string()
     .trim()
     .min(1, "O nome do documento é obrigatório.")
     .max(150, "O nome deve ter no máximo 150 caracteres."),
 
-  type: z
-    .string()
-    .trim()
-    .min(1, "O tipo do documento é obrigatório.")
-    .max(50, "O tipo deve ter no máximo 50 caracteres."),
-
-  fileName: z
-    .string()
-    .trim()
-    .min(1, "O nome do arquivo é obrigatório.")
-    .max(255, "O nome do arquivo deve ter no máximo 255 caracteres."),
-
-  storageKey: z
-    .string()
-    .trim()
-    .min(1, "A chave de armazenamento é obrigatória.")
-    .max(500, "A chave de armazenamento deve ter no máximo 500 caracteres.")
-    .optional(),
-
-  mimeType: optionalText(100),
-
-  sizeBytes: z
-    .number()
-    .int("O tamanho do arquivo deve ser um número inteiro.")
-    .nonnegative("O tamanho do arquivo não pode ser negativo.")
-    .nullable()
-    .optional(),
-
-  expiresAt: optionalDate,
-
-  observations: z.string().trim().nullable().optional(),
+  observations: nullableText,
 });
 
-export const updateProviderDocumentSchema = createProviderDocumentSchema
-  .partial()
-  .refine((data) => Object.keys(data).length > 0, {
-    message: "Informe pelo menos um campo para atualização.",
-  });
+export const updateProviderDocumentFieldsSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, "O nome do documento é obrigatório.")
+    .max(150, "O nome deve ter no máximo 150 caracteres.")
+    .optional(),
 
-export type CreateProviderDocumentInput = z.infer<
-  typeof createProviderDocumentSchema
+  observations: optionalNullableText,
+});
+
+export type CreateProviderDocumentFields = z.infer<
+  typeof createProviderDocumentFieldsSchema
 >;
 
-export type UpdateProviderDocumentInput = z.infer<
-  typeof updateProviderDocumentSchema
+export type UpdateProviderDocumentFields = z.infer<
+  typeof updateProviderDocumentFieldsSchema
 >;

@@ -1,11 +1,18 @@
-import type {
-  CreateProviderDocumentInput,
-  UpdateProviderDocumentInput,
-} from "./provider-documents.schemas.js";
-
-export type CreateProviderDocumentData = CreateProviderDocumentInput & {
+export interface CreateProviderDocumentData {
   providerId: string;
+  name: string;
+  fileName: string;
   storageKey: string;
-};
+  mimeType: string;
+  sizeBytes: number;
+  observations: string | null;
+}
 
-export type UpdateProviderDocumentData = UpdateProviderDocumentInput;
+export interface UpdateProviderDocumentData {
+  name?: string;
+  fileName?: string;
+  storageKey?: string;
+  mimeType?: string;
+  sizeBytes?: number;
+  observations?: string | null;
+}

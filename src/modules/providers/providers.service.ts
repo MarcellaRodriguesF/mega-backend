@@ -1,4 +1,5 @@
 import { ApiError } from "../../shared/http/api-error.js";
+import { fileStorage } from "../../shared/storage/file-storage.service.js";
 import { ProvidersRepository } from "./providers.repository.js";
 import type {
   CreateProviderInput,
@@ -51,6 +52,18 @@ export class ProvidersService {
       );
     }
 
-    return this.providersRepository.delete(id);
+    const storageKeys = provider.documents.map((document) => document.storageKey);
+
+    await this.providersRepository.delete(id);
+
+    await Promise.all(
+      storageKeys.map((storageKey) =>
+        fileStorage.remove("documents", storageKey).catch(() => {
+          console.error(
+            "Provedor excluído, mas um arquivo de documento não foi removido.",
+          );
+        }),
+      ),
+    );
   }
 }

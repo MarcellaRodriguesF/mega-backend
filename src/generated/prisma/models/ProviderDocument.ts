@@ -225,7 +225,7 @@ export type ProviderDocumentGroupByOutputType = {
   id: string
   providerId: string
   name: string
-  type: string
+  type: string | null
   fileName: string
   storageKey: string
   mimeType: string | null
@@ -263,7 +263,7 @@ export type ProviderDocumentWhereInput = {
   id?: Prisma.UuidFilter<"ProviderDocument"> | string
   providerId?: Prisma.UuidFilter<"ProviderDocument"> | string
   name?: Prisma.StringFilter<"ProviderDocument"> | string
-  type?: Prisma.StringFilter<"ProviderDocument"> | string
+  type?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
   fileName?: Prisma.StringFilter<"ProviderDocument"> | string
   storageKey?: Prisma.StringFilter<"ProviderDocument"> | string
   mimeType?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
@@ -279,7 +279,7 @@ export type ProviderDocumentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  type?: Prisma.SortOrderInput | Prisma.SortOrder
   fileName?: Prisma.SortOrder
   storageKey?: Prisma.SortOrder
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -298,7 +298,7 @@ export type ProviderDocumentWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ProviderDocumentWhereInput | Prisma.ProviderDocumentWhereInput[]
   providerId?: Prisma.UuidFilter<"ProviderDocument"> | string
   name?: Prisma.StringFilter<"ProviderDocument"> | string
-  type?: Prisma.StringFilter<"ProviderDocument"> | string
+  type?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
   fileName?: Prisma.StringFilter<"ProviderDocument"> | string
   storageKey?: Prisma.StringFilter<"ProviderDocument"> | string
   mimeType?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
@@ -314,7 +314,7 @@ export type ProviderDocumentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  type?: Prisma.SortOrderInput | Prisma.SortOrder
   fileName?: Prisma.SortOrder
   storageKey?: Prisma.SortOrder
   mimeType?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -337,7 +337,7 @@ export type ProviderDocumentScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"ProviderDocument"> | string
   providerId?: Prisma.UuidWithAggregatesFilter<"ProviderDocument"> | string
   name?: Prisma.StringWithAggregatesFilter<"ProviderDocument"> | string
-  type?: Prisma.StringWithAggregatesFilter<"ProviderDocument"> | string
+  type?: Prisma.StringNullableWithAggregatesFilter<"ProviderDocument"> | string | null
   fileName?: Prisma.StringWithAggregatesFilter<"ProviderDocument"> | string
   storageKey?: Prisma.StringWithAggregatesFilter<"ProviderDocument"> | string
   mimeType?: Prisma.StringNullableWithAggregatesFilter<"ProviderDocument"> | string | null
@@ -351,7 +351,7 @@ export type ProviderDocumentScalarWhereWithAggregatesInput = {
 export type ProviderDocumentCreateInput = {
   id?: string
   name: string
-  type: string
+  type?: string | null
   fileName: string
   storageKey: string
   mimeType?: string | null
@@ -367,7 +367,7 @@ export type ProviderDocumentUncheckedCreateInput = {
   id?: string
   providerId: string
   name: string
-  type: string
+  type?: string | null
   fileName: string
   storageKey: string
   mimeType?: string | null
@@ -381,7 +381,7 @@ export type ProviderDocumentUncheckedCreateInput = {
 export type ProviderDocumentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -397,7 +397,7 @@ export type ProviderDocumentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -412,7 +412,7 @@ export type ProviderDocumentCreateManyInput = {
   id?: string
   providerId: string
   name: string
-  type: string
+  type?: string | null
   fileName: string
   storageKey: string
   mimeType?: string | null
@@ -426,7 +426,7 @@ export type ProviderDocumentCreateManyInput = {
 export type ProviderDocumentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -441,7 +441,7 @@ export type ProviderDocumentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -560,7 +560,7 @@ export type ProviderDocumentUncheckedUpdateManyWithoutProviderNestedInput = {
 export type ProviderDocumentCreateWithoutProviderInput = {
   id?: string
   name: string
-  type: string
+  type?: string | null
   fileName: string
   storageKey: string
   mimeType?: string | null
@@ -574,7 +574,7 @@ export type ProviderDocumentCreateWithoutProviderInput = {
 export type ProviderDocumentUncheckedCreateWithoutProviderInput = {
   id?: string
   name: string
-  type: string
+  type?: string | null
   fileName: string
   storageKey: string
   mimeType?: string | null
@@ -618,7 +618,7 @@ export type ProviderDocumentScalarWhereInput = {
   id?: Prisma.UuidFilter<"ProviderDocument"> | string
   providerId?: Prisma.UuidFilter<"ProviderDocument"> | string
   name?: Prisma.StringFilter<"ProviderDocument"> | string
-  type?: Prisma.StringFilter<"ProviderDocument"> | string
+  type?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
   fileName?: Prisma.StringFilter<"ProviderDocument"> | string
   storageKey?: Prisma.StringFilter<"ProviderDocument"> | string
   mimeType?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
@@ -632,7 +632,7 @@ export type ProviderDocumentScalarWhereInput = {
 export type ProviderDocumentCreateManyProviderInput = {
   id?: string
   name: string
-  type: string
+  type?: string | null
   fileName: string
   storageKey: string
   mimeType?: string | null
@@ -646,7 +646,7 @@ export type ProviderDocumentCreateManyProviderInput = {
 export type ProviderDocumentUpdateWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -660,7 +660,7 @@ export type ProviderDocumentUpdateWithoutProviderInput = {
 export type ProviderDocumentUncheckedUpdateWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -674,7 +674,7 @@ export type ProviderDocumentUncheckedUpdateWithoutProviderInput = {
 export type ProviderDocumentUncheckedUpdateManyWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  type?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
   storageKey?: Prisma.StringFieldUpdateOperationsInput | string
   mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -770,7 +770,7 @@ export type $ProviderDocumentPayload<ExtArgs extends runtime.Types.Extensions.In
     id: string
     providerId: string
     name: string
-    type: string
+    type: string | null
     fileName: string
     storageKey: string
     mimeType: string | null
