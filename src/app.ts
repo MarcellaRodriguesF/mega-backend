@@ -9,6 +9,7 @@ import { errorMiddleware } from "./middlewares/error.middleware.js";
 import { accessProfilesRoutes } from "./modules/access-profiles/access-profiles.routes.js";
 
 import { providersRoutes } from "./modules/providers/providers.routes.js";
+import { unitsRoutes } from "./modules/units/units.routes.js";
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/api/v1/companies", companiesRoutes);
 app.use("/api/v1/users", usersRoutes);
 app.use("/api/v1/access-profiles", accessProfilesRoutes);
 app.use("/api/v1/providers", providersRoutes);
+app.use("/api/v1/units", unitsRoutes);
 
 app.use(errorMiddleware);
 
