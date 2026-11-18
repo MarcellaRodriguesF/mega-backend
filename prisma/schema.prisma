@@ -1,0 +1,364 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id              String    @id @default(uuid()) @db.Uuid
+  name            String?   @db.VarChar(150)
+  email           String    @unique @db.VarChar(255)
+  passwordHash    String    @map("password_hash") @db.VarChar(255)
+  accessProfileId String    @map("access_profile_id") @db.Uuid
+  status          String    @default("ACTIVE") @db.VarChar(20)
+  lastLoginAt     DateTime? @map("last_login_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  assignedOpportunities Opportunity[] @relation("OpportunityOwner")
+  accessProfile         AccessProfile @relation(fields: [accessProfileId], references: [id])
+
+  @@index([accessProfileId])
+  @@map("users")
+}
+
+model AccessProfile {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique @db.VarChar(255)
+  description String?  @db.VarChar(255)
+  status      String   @default("ACTIVE") @db.VarChar(20)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  users              User[]
+  profilePermissions ProfilePermission[]
+
+  @@map("access_profiles")
+}
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique @db.VarChar(100)
+  name        String   @db.VarChar(150)
+  description String?  @db.VarChar(255)
+  module      String   @db.VarChar(100)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  profilePermissions ProfilePermission[]
+
+  @@map("permissions")
+}
+
+model ProfilePermission {
+  id              String   @id @default(uuid()) @db.Uuid
+  accessProfileId String   @map("access_profile_id") @db.Uuid
+  permissionId    String   @map("permission_id") @db.Uuid
+  createdAt       DateTime @default(now()) @map("created_at")
+
+  accessProfile AccessProfile @relation(fields: [accessProfileId], references: [id])
+  permission    Permission    @relation(fields: [permissionId], references: [id])
+
+  @@unique([accessProfileId, permissionId])
+  @@index([permissionId])
+  @@map("profile_permissions")
+}
+
+model Company {
+  id            String  @id @default(uuid()) @db.Uuid
+  corporateName String? @map("corporate_name") @db.VarChar(255)
+  tradeName     String  @map("trade_name") @db.VarChar(255)
+  cnpj          String? @unique @db.VarChar(14)
+
+  relationshipStage String @default("CUSTOMER") @map("relationship_stage") @db.VarChar(20)
+  status            String @default("ACTIVE") @db.VarChar(20)
+
+  observations String? @db.Text
+
+  addresses     CompanyAddress[]
+  contacts      CompanyContact[]
+  opportunities Opportunity[]
+  units         Unit[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([corporateName])
+  @@index([tradeName])
+  @@index([relationshipStage])
+  @@index([status])
+  @@map("companies")
+}
+
+model CompanyAddress {
+  id        String @id @default(uuid()) @db.Uuid
+  companyId String @map("company_id") @db.Uuid
+
+  name String @db.VarChar(150)
+  type String @default("OTHER") @db.VarChar(30)
+
+  zipCode      String? @map("zip_code") @db.VarChar(8)
+  street       String? @db.VarChar(255)
+  number       String? @db.VarChar(20)
+  complement   String? @db.VarChar(150)
+  neighborhood String? @db.VarChar(100)
+  city         String? @db.VarChar(100)
+  state        String? @db.VarChar(2)
+
+  latitude  Float?
+  longitude Float?
+
+  isPrimary    Boolean @default(false) @map("is_primary")
+  observations String? @db.Text
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([companyId])
+  @@index([type])
+  @@index([city, state])
+  @@map("company_addresses")
+}
+
+model CompanyContact {
+  id        String @id @default(uuid()) @db.Uuid
+  companyId String @map("company_id") @db.Uuid
+
+  name      String  @db.VarChar(150)
+  role      String? @db.VarChar(100)
+  email     String? @db.VarChar(255)
+  phone     String? @db.VarChar(20)
+  whatsapp  String? @db.VarChar(20)
+  isPrimary Boolean @default(false) @map("is_primary")
+
+  company Company @relation(fields: [companyId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([companyId])
+  @@map("company_contacts")
+}
+
+model Opportunity {
+  id        String  @id @default(uuid()) @db.Uuid
+  companyId String  @map("company_id") @db.Uuid
+  ownerId   String? @map("owner_id") @db.Uuid
+
+  title       String  @db.VarChar(255)
+  description String? @db.Text
+
+  estimatedValue Decimal? @map("estimated_value") @db.Decimal(14, 2)
+
+  stage  String @default("QUALIFICATION") @db.VarChar(30)
+  status String @default("ACTIVE") @db.VarChar(20)
+
+  probability       Int?      @db.SmallInt
+  expectedCloseDate DateTime? @map("expected_close_date") @db.Date
+
+  lostReason String?   @map("lost_reason") @db.Text
+  closedAt   DateTime? @map("closed_at")
+
+  company Company @relation(fields: [companyId], references: [id])
+  owner   User?   @relation("OpportunityOwner", fields: [ownerId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([companyId])
+  @@index([ownerId])
+  @@index([stage])
+  @@index([status])
+  @@map("opportunities")
+}
+
+model Provider {
+  id           String  @id @default(uuid()) @db.Uuid
+  name         String  @db.VarChar(255)
+  phone        String? @db.VarChar(20)
+  status       String  @default("ACTIVE") @db.VarChar(20)
+  observations String? @db.Text
+
+  contacts       ProviderContact[]
+  documents      ProviderDocument[]
+  connectivities UnitConnectivity[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([name])
+  @@index([status])
+  @@map("providers")
+}
+
+model ProviderContact {
+  id         String @id @default(uuid()) @db.Uuid
+  providerId String @map("provider_id") @db.Uuid
+
+  name      String  @db.VarChar(150)
+  role      String? @db.VarChar(100)
+  email     String? @db.VarChar(255)
+  phone     String? @db.VarChar(20)
+  isPrimary Boolean @default(false) @map("is_primary")
+
+  provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([providerId])
+  @@map("provider_contacts")
+}
+
+model ProviderDocument {
+  id         String @id @default(uuid()) @db.Uuid
+  providerId String @map("provider_id") @db.Uuid
+
+  name         String    @db.VarChar(150)
+  type         String?   @db.VarChar(50)
+  fileName     String    @map("file_name") @db.VarChar(255)
+  storageKey   String    @map("storage_key") @db.VarChar(500)
+  mimeType     String?   @map("mime_type") @db.VarChar(100)
+  sizeBytes    Int?      @map("size_bytes")
+  expiresAt    DateTime? @map("expires_at") @db.Date
+  observations String?   @db.Text
+
+  provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([providerId])
+  @@index([type])
+  @@index([expiresAt])
+  @@map("provider_documents")
+}
+
+model Unit {
+  id        String @id @default(uuid()) @db.Uuid
+  companyId String @map("company_id") @db.Uuid
+
+  name   String @db.VarChar(255)
+  type   String @db.VarChar(100)
+  status String @default("ACTIVE") @db.VarChar(20)
+
+  observations String? @db.Text
+
+  company        Company            @relation(fields: [companyId], references: [id])
+  address        UnitAddress?
+  documents      UnitDocument[]
+  connectivities UnitConnectivity[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([companyId])
+  @@index([name])
+  @@index([type])
+  @@index([status])
+  @@map("units")
+}
+
+model UnitAddress {
+  id     String @id @default(uuid()) @db.Uuid
+  unitId String @unique @map("unit_id") @db.Uuid
+
+  zipCode      String? @map("zip_code") @db.VarChar(8)
+  street       String? @db.VarChar(255)
+  number       String? @db.VarChar(20)
+  complement   String? @db.VarChar(150)
+  neighborhood String? @db.VarChar(100)
+  city         String? @db.VarChar(100)
+  state        String? @db.VarChar(2)
+
+  areaType String @default("URBAN") @map("area_type") @db.VarChar(20)
+
+  latitude  Float?
+  longitude Float?
+
+  observations String? @db.Text
+
+  unit Unit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([city, state])
+  @@map("unit_addresses")
+}
+
+model UnitDocument {
+  id     String @id @default(uuid()) @db.Uuid
+  unitId String @map("unit_id") @db.Uuid
+
+  name         String    @db.VarChar(150)
+  type         String    @db.VarChar(50)
+  fileName     String    @map("file_name") @db.VarChar(255)
+  storageKey   String    @map("storage_key") @db.VarChar(500)
+  mimeType     String?   @map("mime_type") @db.VarChar(100)
+  sizeBytes    Int?      @map("size_bytes")
+  expiresAt    DateTime? @map("expires_at") @db.Date
+  observations String?   @db.Text
+
+  unit Unit @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([unitId])
+  @@index([type])
+  @@index([expiresAt])
+  @@map("unit_documents")
+}
+
+model UnitConnectivity {
+  id         String  @id @default(uuid()) @db.Uuid
+  unitId     String  @map("unit_id") @db.Uuid
+  providerId String? @map("provider_id") @db.Uuid
+
+  name       String @db.VarChar(150)
+  technology String @db.VarChar(100)
+
+  downloadCapacityMbps Float? @map("download_capacity_mbps")
+  uploadCapacityMbps   Float? @map("upload_capacity_mbps")
+
+  responseTimeMs Float? @map("response_time_ms")
+  throughputMbps Float? @map("throughput_mbps")
+  rxSignalDbm    Float? @map("rx_signal_dbm")
+
+  publicIp  String? @map("public_ip") @db.VarChar(45)
+  gatewayIp String? @map("gateway_ip") @db.VarChar(45)
+  localIp   String? @map("local_ip") @db.VarChar(45)
+
+  slaPercentage Float? @map("sla_percentage")
+  mttrHours     Float? @map("mttr_hours")
+
+  networkName String? @map("network_name") @db.VarChar(150)
+  wanIp       String? @map("wan_ip") @db.VarChar(45)
+
+  monitoringEnabled Boolean @default(false) @map("monitoring_enabled")
+
+  serviceStartDate DateTime? @map("service_start_date") @db.Date
+  serviceEndDate   DateTime? @map("service_end_date") @db.Date
+
+  status String @default("ACTIVE") @db.VarChar(20)
+
+  observations String? @db.Text
+
+  unit     Unit      @relation(fields: [unitId], references: [id])
+  provider Provider? @relation(fields: [providerId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([unitId])
+  @@index([providerId])
+  @@index([technology])
+  @@index([status])
+  @@map("unit_connectivities")
+}
