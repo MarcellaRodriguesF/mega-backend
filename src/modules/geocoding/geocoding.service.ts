@@ -4,26 +4,41 @@ import { PlusCodes } from "olc-plus-codes";
 import { ApiError } from "../../shared/http/api-error.js";
 
 interface NominatimResponse {
-  lat: string;
-  lon: string;
-  address?: {
-    city?: string;
-    town?: string;
-    village?: string;
-    municipality?: string;
-    county?: string;
-    state?: string;
-    country_code?: string;
-    [key: string]: string | undefined;
-  };
-}
-
-export interface ReverseGeocodingResult {
-  city: string;
-  state: string;
-  country: string;
-  plusCode: string;
-}
+    lat: string;
+    lon: string;
+    address?: {
+      road?: string;
+      residential?: string;
+      pedestrian?: string;
+      highway?: string;
+      house_number?: string;
+      postcode?: string;
+      neighbourhood?: string;
+      suburb?: string;
+      quarter?: string;
+      city_district?: string;
+      city?: string;
+      town?: string;
+      village?: string;
+      municipality?: string;
+      county?: string;
+      state?: string;
+      country_code?: string;
+      "ISO3166-2-lvl4"?: string;
+      [key: string]: string | undefined;
+    };
+  }
+  
+  export interface ReverseGeocodingResult {
+    city: string;
+    state: string;
+    country: string;
+    plusCode: string;
+    zipCode: string | null;
+    street: string | null;
+    number: string | null;
+    neighborhood: string | null;
+  }
 
 const plusCodes = new PlusCodes();
 
@@ -182,11 +197,29 @@ export class GeocodingService {
     );
 
     const normalizedResult: ReverseGeocodingResult = {
-      city,
-      state,
-      country: "Brasil",
-      plusCode,
-    };
+        city,
+        state,
+        country: "Brasil",
+        plusCode,
+      
+        zipCode: address.postcode ?? null,
+      
+        street:
+          address.road ||
+          address.residential ||
+          address.pedestrian ||
+          address.highway ||
+          null,
+      
+        number: address.house_number ?? null,
+      
+        neighborhood:
+          address.neighbourhood ||
+          address.suburb ||
+          address.quarter ||
+          address.city_district ||
+          null,
+      };
 
     cache.set(cacheKey, normalizedResult);
 
