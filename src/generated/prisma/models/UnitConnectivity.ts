@@ -321,7 +321,7 @@ export type UnitConnectivityGroupByOutputType = {
   id: string
   unitId: string
   providerId: string | null
-  name: string
+  name: string | null
   technology: string
   downloadCapacityMbps: number | null
   uploadCapacityMbps: number | null
@@ -371,7 +371,7 @@ export type UnitConnectivityWhereInput = {
   id?: Prisma.UuidFilter<"UnitConnectivity"> | string
   unitId?: Prisma.UuidFilter<"UnitConnectivity"> | string
   providerId?: Prisma.UuidNullableFilter<"UnitConnectivity"> | string | null
-  name?: Prisma.StringFilter<"UnitConnectivity"> | string
+  name?: Prisma.StringNullableFilter<"UnitConnectivity"> | string | null
   technology?: Prisma.StringFilter<"UnitConnectivity"> | string
   downloadCapacityMbps?: Prisma.FloatNullableFilter<"UnitConnectivity"> | number | null
   uploadCapacityMbps?: Prisma.FloatNullableFilter<"UnitConnectivity"> | number | null
@@ -400,7 +400,7 @@ export type UnitConnectivityOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   unitId?: Prisma.SortOrder
   providerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
   technology?: Prisma.SortOrder
   downloadCapacityMbps?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadCapacityMbps?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -432,7 +432,7 @@ export type UnitConnectivityWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UnitConnectivityWhereInput | Prisma.UnitConnectivityWhereInput[]
   unitId?: Prisma.UuidFilter<"UnitConnectivity"> | string
   providerId?: Prisma.UuidNullableFilter<"UnitConnectivity"> | string | null
-  name?: Prisma.StringFilter<"UnitConnectivity"> | string
+  name?: Prisma.StringNullableFilter<"UnitConnectivity"> | string | null
   technology?: Prisma.StringFilter<"UnitConnectivity"> | string
   downloadCapacityMbps?: Prisma.FloatNullableFilter<"UnitConnectivity"> | number | null
   uploadCapacityMbps?: Prisma.FloatNullableFilter<"UnitConnectivity"> | number | null
@@ -461,7 +461,7 @@ export type UnitConnectivityOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   unitId?: Prisma.SortOrder
   providerId?: Prisma.SortOrderInput | Prisma.SortOrder
-  name?: Prisma.SortOrder
+  name?: Prisma.SortOrderInput | Prisma.SortOrder
   technology?: Prisma.SortOrder
   downloadCapacityMbps?: Prisma.SortOrderInput | Prisma.SortOrder
   uploadCapacityMbps?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -496,7 +496,7 @@ export type UnitConnectivityScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"UnitConnectivity"> | string
   unitId?: Prisma.UuidWithAggregatesFilter<"UnitConnectivity"> | string
   providerId?: Prisma.UuidNullableWithAggregatesFilter<"UnitConnectivity"> | string | null
-  name?: Prisma.StringWithAggregatesFilter<"UnitConnectivity"> | string
+  name?: Prisma.StringNullableWithAggregatesFilter<"UnitConnectivity"> | string | null
   technology?: Prisma.StringWithAggregatesFilter<"UnitConnectivity"> | string
   downloadCapacityMbps?: Prisma.FloatNullableWithAggregatesFilter<"UnitConnectivity"> | number | null
   uploadCapacityMbps?: Prisma.FloatNullableWithAggregatesFilter<"UnitConnectivity"> | number | null
@@ -521,7 +521,7 @@ export type UnitConnectivityScalarWhereWithAggregatesInput = {
 
 export type UnitConnectivityCreateInput = {
   id?: string
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -550,7 +550,7 @@ export type UnitConnectivityUncheckedCreateInput = {
   id?: string
   unitId: string
   providerId?: string | null
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -575,7 +575,7 @@ export type UnitConnectivityUncheckedCreateInput = {
 
 export type UnitConnectivityUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -604,7 +604,7 @@ export type UnitConnectivityUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   unitId?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -631,7 +631,7 @@ export type UnitConnectivityCreateManyInput = {
   id?: string
   unitId: string
   providerId?: string | null
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -656,7 +656,7 @@ export type UnitConnectivityCreateManyInput = {
 
 export type UnitConnectivityUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -683,7 +683,7 @@ export type UnitConnectivityUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   unitId?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -903,7 +903,7 @@ export type UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput = {
 
 export type UnitConnectivityCreateWithoutProviderInput = {
   id?: string
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -930,7 +930,7 @@ export type UnitConnectivityCreateWithoutProviderInput = {
 export type UnitConnectivityUncheckedCreateWithoutProviderInput = {
   id?: string
   unitId: string
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -986,7 +986,7 @@ export type UnitConnectivityScalarWhereInput = {
   id?: Prisma.UuidFilter<"UnitConnectivity"> | string
   unitId?: Prisma.UuidFilter<"UnitConnectivity"> | string
   providerId?: Prisma.UuidNullableFilter<"UnitConnectivity"> | string | null
-  name?: Prisma.StringFilter<"UnitConnectivity"> | string
+  name?: Prisma.StringNullableFilter<"UnitConnectivity"> | string | null
   technology?: Prisma.StringFilter<"UnitConnectivity"> | string
   downloadCapacityMbps?: Prisma.FloatNullableFilter<"UnitConnectivity"> | number | null
   uploadCapacityMbps?: Prisma.FloatNullableFilter<"UnitConnectivity"> | number | null
@@ -1011,7 +1011,7 @@ export type UnitConnectivityScalarWhereInput = {
 
 export type UnitConnectivityCreateWithoutUnitInput = {
   id?: string
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -1038,7 +1038,7 @@ export type UnitConnectivityCreateWithoutUnitInput = {
 export type UnitConnectivityUncheckedCreateWithoutUnitInput = {
   id?: string
   providerId?: string | null
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -1090,7 +1090,7 @@ export type UnitConnectivityUpdateManyWithWhereWithoutUnitInput = {
 export type UnitConnectivityCreateManyProviderInput = {
   id?: string
   unitId: string
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -1115,7 +1115,7 @@ export type UnitConnectivityCreateManyProviderInput = {
 
 export type UnitConnectivityUpdateWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1142,7 +1142,7 @@ export type UnitConnectivityUpdateWithoutProviderInput = {
 export type UnitConnectivityUncheckedUpdateWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1168,7 +1168,7 @@ export type UnitConnectivityUncheckedUpdateWithoutProviderInput = {
 export type UnitConnectivityUncheckedUpdateManyWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1194,7 +1194,7 @@ export type UnitConnectivityUncheckedUpdateManyWithoutProviderInput = {
 export type UnitConnectivityCreateManyUnitInput = {
   id?: string
   providerId?: string | null
-  name: string
+  name?: string | null
   technology: string
   downloadCapacityMbps?: number | null
   uploadCapacityMbps?: number | null
@@ -1219,7 +1219,7 @@ export type UnitConnectivityCreateManyUnitInput = {
 
 export type UnitConnectivityUpdateWithoutUnitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1246,7 +1246,7 @@ export type UnitConnectivityUpdateWithoutUnitInput = {
 export type UnitConnectivityUncheckedUpdateWithoutUnitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1272,7 +1272,7 @@ export type UnitConnectivityUncheckedUpdateWithoutUnitInput = {
 export type UnitConnectivityUncheckedUpdateManyWithoutUnitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  name?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   technology?: Prisma.StringFieldUpdateOperationsInput | string
   downloadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   uploadCapacityMbps?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
@@ -1435,7 +1435,7 @@ export type $UnitConnectivityPayload<ExtArgs extends runtime.Types.Extensions.In
     id: string
     unitId: string
     providerId: string | null
-    name: string
+    name: string | null
     technology: string
     downloadCapacityMbps: number | null
     uploadCapacityMbps: number | null

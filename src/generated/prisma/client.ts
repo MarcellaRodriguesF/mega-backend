@@ -116,3 +116,38 @@ export type UnitDocument = Prisma.UnitDocumentModel
  * 
  */
 export type UnitConnectivity = Prisma.UnitConnectivityModel
+/**
+ * Model Template
+ * 
+ */
+export type Template = Prisma.TemplateModel
+/**
+ * Model TemplateStage
+ * 
+ */
+export type TemplateStage = Prisma.TemplateStageModel
+/**
+ * Model TemplateActivity
+ * 
+ */
+export type TemplateActivity = Prisma.TemplateActivityModel
+/**
+ * Model ActivityRequirement
+ * 
+ */
+export type ActivityRequirement = Prisma.ActivityRequirementModel
+/**
+ * Model ActivityRequirementEvidenceType
+ * 
+ */
+export type ActivityRequirementEvidenceType = Prisma.ActivityRequirementEvidenceTypeModel
+/**
+ * Model FormTemplate
+ * 
+ */
+export type FormTemplate = Prisma.FormTemplateModel
+/**
+ * Model FormField
+ * 
+ */
+export type FormField = Prisma.FormFieldModel

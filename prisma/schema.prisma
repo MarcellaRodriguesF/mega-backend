@@ -364,3 +364,166 @@ model UnitConnectivity {
   @@index([status])
   @@map("unit_connectivities")
 }
+
+enum TemplateStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+
+  @@map("template_status")
+}
+
+enum ActivityRequirementType {
+  EVIDENCE
+  FORM
+  QUANTITY
+  COMMENT
+  ENGINEER_APPROVAL
+  DAILY_REPORT
+  COMPLETION_PERCENTAGE
+
+  @@map("activity_requirement_type")
+}
+
+enum FormFieldType {
+  TEXT
+  TEXTAREA
+  NUMBER
+  DATE
+  SINGLE_SELECT
+  MULTIPLE_SELECT
+  CHECKBOX
+  FILE
+
+  @@map("form_field_type")
+}
+
+model Template {
+  id          String         @id @default(uuid()) @db.Uuid
+  name        String         @db.VarChar(255)
+  description String?        @db.Text
+  status      TemplateStatus @default(DRAFT)
+
+  stages TemplateStage[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([name])
+  @@index([status])
+  @@map("templates")
+}
+
+model TemplateStage {
+  id          String  @id @default(uuid()) @db.Uuid
+  templateId  String  @map("template_id") @db.Uuid
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+  order       Int
+
+  template   Template           @relation(fields: [templateId], references: [id], onDelete: Cascade)
+  activities TemplateActivity[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([templateId, order])
+  @@index([templateId])
+  @@map("template_stages")
+}
+
+model TemplateActivity {
+  id          String  @id @default(uuid()) @db.Uuid
+  stageId     String  @map("stage_id") @db.Uuid
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+  order       Int
+
+  stage        TemplateStage         @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  requirements ActivityRequirement[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([stageId, order])
+  @@index([stageId])
+  @@map("template_activities")
+}
+
+model ActivityRequirement {
+  id             String                  @id @default(uuid()) @db.Uuid
+  activityId     String                  @map("activity_id") @db.Uuid
+  type           ActivityRequirementType
+  isRequired     Boolean                 @default(false) @map("is_required")
+  order          Int
+  configuration  Json?
+  formTemplateId String?                 @map("form_template_id") @db.Uuid
+
+  activity      TemplateActivity                  @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  formTemplate  FormTemplate?                     @relation(fields: [formTemplateId], references: [id], onDelete: Restrict)
+  evidenceTypes ActivityRequirementEvidenceType[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([activityId, order])
+  @@index([activityId])
+  @@index([formTemplateId])
+  @@index([type])
+  @@map("activity_requirements")
+}
+
+model ActivityRequirementEvidenceType {
+  id            String @id @default(uuid()) @db.Uuid
+  requirementId String @map("requirement_id") @db.Uuid
+  type          String @db.VarChar(50)
+
+  requirement ActivityRequirement @relation(fields: [requirementId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([requirementId, type])
+  @@index([requirementId])
+  @@map("activity_requirement_evidence_types")
+}
+
+model FormTemplate {
+  id          String  @id @default(uuid()) @db.Uuid
+  name        String  @db.VarChar(255)
+  description String? @db.Text
+  status      String  @default("ACTIVE") @db.VarChar(20)
+
+  fields       FormField[]
+  requirements ActivityRequirement[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([name])
+  @@index([status])
+  @@map("form_templates")
+}
+
+model FormField {
+  id             String        @id @default(uuid()) @db.Uuid
+  formTemplateId String        @map("form_template_id") @db.Uuid
+  key            String        @db.VarChar(100)
+  label          String        @db.VarChar(255)
+  description    String?       @db.Text
+  type           FormFieldType
+  placeholder    String?       @db.VarChar(255)
+  isRequired     Boolean       @default(false) @map("is_required")
+  order          Int
+  options        Json?
+
+  formTemplate FormTemplate @relation(fields: [formTemplateId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([formTemplateId, key])
+  @@unique([formTemplateId, order])
+  @@index([formTemplateId])
+  @@map("form_fields")
+}

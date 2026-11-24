@@ -9,7 +9,37 @@
 * 🟢 You can import this file directly.
 */
 
+export const TemplateStatus = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  ARCHIVED: 'ARCHIVED'
+} as const
+
+export type TemplateStatus = (typeof TemplateStatus)[keyof typeof TemplateStatus]
 
 
-// This file is empty because there are no enums in the schema.
-export {}
+export const ActivityRequirementType = {
+  EVIDENCE: 'EVIDENCE',
+  FORM: 'FORM',
+  QUANTITY: 'QUANTITY',
+  COMMENT: 'COMMENT',
+  ENGINEER_APPROVAL: 'ENGINEER_APPROVAL',
+  DAILY_REPORT: 'DAILY_REPORT',
+  COMPLETION_PERCENTAGE: 'COMPLETION_PERCENTAGE'
+} as const
+
+export type ActivityRequirementType = (typeof ActivityRequirementType)[keyof typeof ActivityRequirementType]
+
+
+export const FormFieldType = {
+  TEXT: 'TEXT',
+  TEXTAREA: 'TEXTAREA',
+  NUMBER: 'NUMBER',
+  DATE: 'DATE',
+  SINGLE_SELECT: 'SINGLE_SELECT',
+  MULTIPLE_SELECT: 'MULTIPLE_SELECT',
+  CHECKBOX: 'CHECKBOX',
+  FILE: 'FILE'
+} as const
+
+export type FormFieldType = (typeof FormFieldType)[keyof typeof FormFieldType]

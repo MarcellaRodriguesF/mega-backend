@@ -52,7 +52,7 @@ export class UnitConnectivitiesService {
         return this.repository.update(tx, inactive.id, {
           status: RecordStatus.ACTIVE,
           ...(inactive.name !== undefined
-            ? { name: this.connectivityName(inactive.name) }
+            ? { name: this.connectivityName(inactive.name ?? undefined) }
             : {}),
           ...(data.publicIp !== undefined ? { publicIp: data.publicIp } : {}),
           ...(data.observations !== undefined
@@ -64,7 +64,7 @@ export class UnitConnectivitiesService {
       return this.repository.create(tx, {
         unitId: data.unitId,
         providerId: data.providerId,
-        name: this.connectivityName(inactive?.name),
+        name: this.connectivityName(inactive?.name ?? undefined),
         technology: data.technology,
         status: RecordStatus.ACTIVE,
         ...(data.publicIp !== undefined ? { publicIp: data.publicIp } : {}),
