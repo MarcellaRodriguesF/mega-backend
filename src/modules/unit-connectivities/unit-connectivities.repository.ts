@@ -102,10 +102,15 @@ export class UnitConnectivitiesRepository {
     });
   }
 
-  findLatestInactiveByUnit(db: UnitConnectivityDb, unitId: string) {
+  findLatestInactiveByCombo(
+    db: UnitConnectivityDb,
+    combo: { unitId: string; providerId: string; technology: string },
+  ) {
     return db.unitConnectivity.findFirst({
       where: {
-        unitId,
+        unitId: combo.unitId,
+        providerId: combo.providerId,
+        technology: combo.technology,
         status: RecordStatus.INACTIVE,
       },
       orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],

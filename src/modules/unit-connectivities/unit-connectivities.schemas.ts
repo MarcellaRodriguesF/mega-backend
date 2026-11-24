@@ -6,7 +6,6 @@ const optionalString = (maxLength: number) =>
 const nameField = z
   .string()
   .trim()
-  .min(1, "O nome da conectividade é obrigatório.")
   .max(150);
 
 const technologyField = z
@@ -20,7 +19,6 @@ const providerIdField = z.string().uuid("Informe um provedor válido.");
 export const createUnitConnectivitySchema = z.object({
   unitId: z.string().uuid("Informe uma unidade válida."),
   providerId: providerIdField,
-  name: nameField.optional(),
   technology: technologyField,
   publicIp: optionalString(45),
   observations: z.string().trim().nullable().optional(),

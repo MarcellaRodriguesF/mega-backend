@@ -18,7 +18,7 @@ const ACTIVE_UNIT_CONFLICT = {
   code: "CONNECTIVITY_ALREADY_EXISTS",
 } as const;
 
-const DEFAULT_CONNECTIVITY_NAME = "Conectividade";
+const DEFAULT_CONNECTIVITY_NAME = "";
 
 export class UnitConnectivitiesService {
   private readonly repository = new UnitConnectivitiesRepository();
@@ -38,18 +38,21 @@ export class UnitConnectivitiesService {
         );
       }
 
-      const inactive = await this.repository.findLatestInactiveByUnit(
-        tx,
-        data.unitId,
-      );
+      const inactive = await this.repository.findLatestInactiveByCombo(tx, {
+        unitId: data.unitId,
+        providerId: data.providerId,
+        technology: data.technology,
+      });
 
-      if (inactive) {
+      if (
+        inactive &&
+        inactive.providerId === data.providerId &&
+        inactive.technology === data.technology
+      ) {
         return this.repository.update(tx, inactive.id, {
-          providerId: data.providerId,
-          technology: data.technology,
           status: RecordStatus.ACTIVE,
-          ...(data.name !== undefined
-            ? { name: this.connectivityName(data.name) }
+          ...(inactive.name !== undefined
+            ? { name: this.connectivityName(inactive.name) }
             : {}),
           ...(data.publicIp !== undefined ? { publicIp: data.publicIp } : {}),
           ...(data.observations !== undefined
@@ -61,7 +64,7 @@ export class UnitConnectivitiesService {
       return this.repository.create(tx, {
         unitId: data.unitId,
         providerId: data.providerId,
-        name: this.connectivityName(data.name),
+        name: this.connectivityName(inactive?.name),
         technology: data.technology,
         status: RecordStatus.ACTIVE,
         ...(data.publicIp !== undefined ? { publicIp: data.publicIp } : {}),

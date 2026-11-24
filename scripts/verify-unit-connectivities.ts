@@ -134,6 +134,40 @@ async function main() {
     );
     pass("reativação do registro inativo preservando id, createdAt e dado técnico");
 
+    await service.delete(reactivated.id);
+
+    const differentCombo = await service.create({
+      unitId: unitA.id,
+      providerId: provider.id,
+      name: "Outra tecnologia",
+      technology: "RADIO",
+      publicIp: "200.10.0.20",
+    });
+
+    assert(
+      differentCombo.id !== created.id,
+      "Provedor ou tecnologia diferentes deveriam criar um novo registro.",
+    );
+    assert(differentCombo.status === RecordStatus.ACTIVE, "O novo registro deveria nascer ativo.");
+
+    const previousCombo = await service.findById(created.id);
+    assert(
+      previousCombo.status === RecordStatus.INACTIVE,
+      "O registro de outra tecnologia não deveria ser reativado.",
+    );
+    pass("criação com outra tecnologia não reativa o registro anterior");
+
+    await service.delete(differentCombo.id);
+
+    const restored = await service.create({
+      unitId: unitA.id,
+      providerId: provider.id,
+      name: "Conexão reativada",
+      technology: "FIBRA",
+      publicIp: "200.10.0.8",
+    });
+    assert(restored.id === created.id, "A fibra inativa deveria ser reativada de novo.");
+
     await expectConflict(() =>
       service.create({
         unitId: unitA.id,
