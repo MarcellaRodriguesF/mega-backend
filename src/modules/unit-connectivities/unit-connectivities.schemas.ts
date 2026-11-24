@@ -20,7 +20,7 @@ const providerIdField = z.string().uuid("Informe um provedor válido.");
 export const createUnitConnectivitySchema = z.object({
   unitId: z.string().uuid("Informe uma unidade válida."),
   providerId: providerIdField,
-  name: nameField,
+  name: nameField.optional(),
   technology: technologyField,
   publicIp: optionalString(45),
   observations: z.string().trim().nullable().optional(),

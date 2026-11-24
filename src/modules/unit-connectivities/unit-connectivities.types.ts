@@ -4,17 +4,14 @@ import type {
   UpdateUnitConnectivityInput,
 } from "./unit-connectivities.schemas.js";
 
-export type CreateUnitConnectivityData = CreateUnitConnectivityInput & {
+export type CreateUnitConnectivityData = Omit<
+  CreateUnitConnectivityInput,
+  "name"
+> & {
+  name: string;
   status: RecordStatus;
 };
 
 export type UpdateUnitConnectivityData = UpdateUnitConnectivityInput & {
   status?: RecordStatus;
-};
-
-export type UnitConnectivityCombo = {
-  unitId: string;
-  providerId: string;
-  technology: string;
-  excludeId?: string;
 };

@@ -356,6 +356,8 @@ model UnitConnectivity {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  // No máximo uma conectividade ACTIVE por unidade
+  // (índice único parcial unit_connectivities_one_active_per_unit_idx).
   @@index([unitId])
   @@index([providerId])
   @@index([technology])

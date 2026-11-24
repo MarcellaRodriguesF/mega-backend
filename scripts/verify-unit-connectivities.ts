@@ -66,7 +66,6 @@ async function main() {
     const parsed = createUnitConnectivitySchema.parse({
       unitId: unitA.id,
       providerId: provider.id,
-      name: "Conexão principal",
       technology: "FIBRA",
       publicIp: "200.10.0.1",
       monitoringEnabled: true,
@@ -78,7 +77,11 @@ async function main() {
       !("downloadCapacityMbps" in parsed),
       "O schema deveria ignorar campos técnicos.",
     );
-    pass("schema do cadastro básico ignora monitoramento e campos técnicos");
+    assert(
+      parsed.name === undefined,
+      "O nome da conectividade não deveria ser obrigatório.",
+    );
+    pass("schema do cadastro básico ignora monitoramento, campos técnicos e nome");
 
     const created = await service.create({
       unitId: unitA.id,
@@ -142,31 +145,33 @@ async function main() {
     );
     pass("bloqueio de duplicidade ativa");
 
-    const radio = await service.create({
-      unitId: unitA.id,
-      providerId: provider.id,
-      name: "Enlace rádio",
+    await expectConflict(() =>
+      service.create({
+        unitId: unitA.id,
+        providerId: provider.id,
+        name: "Enlace rádio",
+        technology: "RADIO",
+        publicIp: "200.10.1.1",
+      }),
+    );
+    pass("segunda conectividade da mesma unidade é bloqueada");
+
+    const updated = await service.update(reactivated.id, {
       technology: "RADIO",
       publicIp: "200.10.1.1",
     });
+    assert(updated.id === reactivated.id, "A edição deveria atualizar o mesmo registro.");
+    assert(updated.technology === "RADIO", "A edição deveria gravar a nova tecnologia.");
 
-    const activeOnUnit = await service.findByUnitId(unitA.id);
-    const technologies = activeOnUnit.map((item) => item.technology).sort();
-    assert(
-      technologies.includes("FIBRA") && technologies.includes("RADIO"),
-      "Fibra e rádio do mesmo provedor deveriam permanecer ativas.",
-    );
-    pass("fibra e rádio do mesmo provedor");
+    const activeAfterUpdate = await service.findByUnitId(unitA.id);
+    assert(activeAfterUpdate.length === 1, "A edição não deveria criar outra conectividade.");
+    assert(activeAfterUpdate[0]?.id === reactivated.id, "A listagem deveria manter o registro editado.");
 
-    await expectConflict(() =>
-      service.update(radio.id, {
-        technology: "FIBRA",
-      }),
-    );
-
-    const radioAfterConflict = await service.findById(radio.id);
-    assert(radioAfterConflict.technology === "RADIO", "O conflito de update não deveria gravar a tecnologia.");
-    pass("atualização para combinação já ocupada");
+    await service.update(reactivated.id, {
+      technology: "FIBRA",
+      publicIp: "200.10.0.8",
+    });
+    pass("edição atualiza o registro existente");
 
     await service.delete(reactivated.id);
 
@@ -229,7 +234,7 @@ async function main() {
     const succeeded = settled.filter((item) => item.status === "fulfilled");
     const failed = settled.filter((item) => item.status === "rejected");
 
-    assert(succeeded.length === 0, "As duas simultâneas deveriam falhar porque a fibra já está ativa.");
+    assert(succeeded.length === 0, "As duas simultâneas deveriam falhar porque a unidade já possui conectividade ativa.");
     assert(failed.length === 2, "As duas requisições simultâneas deveriam ser recusadas.");
     for (const item of failed) {
       assert(item.status === "rejected", "Resultado rejeitado.");
@@ -268,16 +273,18 @@ async function main() {
     assert(rejection.reason instanceof ApiError, "A corrida deveria falhar com ApiError.");
     assert(rejection.reason.statusCode === 409, "A corrida deveria responder 409.");
 
-    const activeFiber = await prisma.unitConnectivity.count({
+    const activeOnUnit = await prisma.unitConnectivity.count({
       where: {
         unitId: unitA.id,
-        providerId: provider.id,
-        technology: "FIBRA",
         status: RecordStatus.ACTIVE,
       },
     });
-    assert(activeFiber === 1, `Deveria existir uma fibra ativa, encontrado ${activeFiber}.`);
-    pass("duas criações simultâneas da mesma combinação");
+    assert(activeOnUnit === 1, `Deveria existir uma conectividade ativa, encontrado ${activeOnUnit}.`);
+    pass("duas criações simultâneas da mesma unidade");
+
+    const winner = createdOnce[0];
+    assert(winner?.status === "fulfilled", "A criação vencedora deveria existir.");
+    await service.delete(winner.value.id);
 
     const differentUnits = await Promise.all([
       service.create({

@@ -12,47 +12,45 @@ import type {
   UpdateUnitConnectivityInput,
 } from "./unit-connectivities.schemas.js";
 
-const ACTIVE_COMBO_CONFLICT = {
-  message:
-    "Já existe uma conectividade ativa para esta unidade, provedor e tecnologia.",
+const ACTIVE_UNIT_CONFLICT = {
+  message: "Esta unidade já possui uma conectividade cadastrada.",
   statusCode: 409,
   code: "CONNECTIVITY_ALREADY_EXISTS",
 } as const;
+
+const DEFAULT_CONNECTIVITY_NAME = "Conectividade";
 
 export class UnitConnectivitiesService {
   private readonly repository = new UnitConnectivitiesRepository();
 
   async create(data: CreateUnitConnectivityInput) {
-    return this.withComboConflict(() => prisma.$transaction(async (tx) => {
+    return this.withActiveConflict(() => prisma.$transaction(async (tx) => {
       await this.lockUnit(tx, data.unitId);
       await this.assertProvider(tx, data.providerId);
 
-      const active = await this.repository.findActiveByCombo(tx, {
-        unitId: data.unitId,
-        providerId: data.providerId,
-        technology: data.technology,
-      });
+      const active = await this.repository.findActiveByUnit(tx, data.unitId);
 
       if (active) {
         throw new ApiError(
-          ACTIVE_COMBO_CONFLICT.message,
-          ACTIVE_COMBO_CONFLICT.statusCode,
-          ACTIVE_COMBO_CONFLICT.code,
+          ACTIVE_UNIT_CONFLICT.message,
+          ACTIVE_UNIT_CONFLICT.statusCode,
+          ACTIVE_UNIT_CONFLICT.code,
         );
       }
 
-      const inactive = await this.repository.findLatestInactiveByCombo(tx, {
-        unitId: data.unitId,
-        providerId: data.providerId,
-        technology: data.technology,
-      });
+      const inactive = await this.repository.findLatestInactiveByUnit(
+        tx,
+        data.unitId,
+      );
 
       if (inactive) {
         return this.repository.update(tx, inactive.id, {
           providerId: data.providerId,
-          name: data.name,
           technology: data.technology,
           status: RecordStatus.ACTIVE,
+          ...(data.name !== undefined
+            ? { name: this.connectivityName(data.name) }
+            : {}),
           ...(data.publicIp !== undefined ? { publicIp: data.publicIp } : {}),
           ...(data.observations !== undefined
             ? { observations: data.observations }
@@ -61,8 +59,15 @@ export class UnitConnectivitiesService {
       }
 
       return this.repository.create(tx, {
-        ...data,
+        unitId: data.unitId,
+        providerId: data.providerId,
+        name: this.connectivityName(data.name),
+        technology: data.technology,
         status: RecordStatus.ACTIVE,
+        ...(data.publicIp !== undefined ? { publicIp: data.publicIp } : {}),
+        ...(data.observations !== undefined
+          ? { observations: data.observations }
+          : {}),
       });
     }));
   }
@@ -110,7 +115,7 @@ export class UnitConnectivitiesService {
       );
     }
 
-    return this.withComboConflict(() => prisma.$transaction(async (tx) => {
+    return this.withActiveConflict(() => prisma.$transaction(async (tx) => {
       await this.lockUnit(tx, current.unitId);
 
       const fresh = await this.repository.findById(id, tx);
@@ -127,34 +132,12 @@ export class UnitConnectivitiesService {
         await this.assertProvider(tx, data.providerId);
       }
 
-      const nextProviderId = data.providerId ?? fresh.providerId;
-      const nextTechnology = data.technology ?? fresh.technology;
-      const comboChanged =
-        nextProviderId !== fresh.providerId ||
-        nextTechnology !== fresh.technology;
-
-      if (
-        fresh.status === RecordStatus.ACTIVE &&
-        comboChanged &&
-        nextProviderId
-      ) {
-        const active = await this.repository.findActiveByCombo(tx, {
-          unitId: fresh.unitId,
-          providerId: nextProviderId,
-          technology: nextTechnology,
-          excludeId: fresh.id,
-        });
-
-        if (active) {
-          throw new ApiError(
-            ACTIVE_COMBO_CONFLICT.message,
-            ACTIVE_COMBO_CONFLICT.statusCode,
-            ACTIVE_COMBO_CONFLICT.code,
-          );
-        }
-      }
-
-      return this.repository.update(tx, fresh.id, data);
+      return this.repository.update(tx, fresh.id, {
+        ...data,
+        ...(data.name !== undefined
+          ? { name: this.connectivityName(data.name) }
+          : {}),
+      });
     }));
   }
 
@@ -186,7 +169,12 @@ export class UnitConnectivitiesService {
     });
   }
 
-  private async withComboConflict<T>(action: () => Promise<T>) {
+  private connectivityName(name?: string) {
+    const trimmed = name?.trim();
+    return trimmed ? trimmed : DEFAULT_CONNECTIVITY_NAME;
+  }
+
+  private async withActiveConflict<T>(action: () => Promise<T>) {
     try {
       return await action();
     } catch (error) {
@@ -195,9 +183,9 @@ export class UnitConnectivitiesService {
         error.code === "P2002"
       ) {
         throw new ApiError(
-          ACTIVE_COMBO_CONFLICT.message,
-          ACTIVE_COMBO_CONFLICT.statusCode,
-          ACTIVE_COMBO_CONFLICT.code,
+          ACTIVE_UNIT_CONFLICT.message,
+          ACTIVE_UNIT_CONFLICT.statusCode,
+          ACTIVE_UNIT_CONFLICT.code,
         );
       }
 

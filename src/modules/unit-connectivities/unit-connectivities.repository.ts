@@ -4,7 +4,6 @@ import { prisma } from "../../database/prisma.js";
 import { RecordStatus } from "../../shared/enums/record-status.enum.js";
 import type {
   CreateUnitConnectivityData,
-  UnitConnectivityCombo,
   UpdateUnitConnectivityData,
 } from "./unit-connectivities.types.js";
 
@@ -91,20 +90,11 @@ export class UnitConnectivitiesRepository {
     });
   }
 
-  findActiveByCombo(db: UnitConnectivityDb, combo: UnitConnectivityCombo) {
+  findActiveByUnit(db: UnitConnectivityDb, unitId: string) {
     return db.unitConnectivity.findFirst({
       where: {
-        unitId: combo.unitId,
-        providerId: combo.providerId,
-        technology: combo.technology,
+        unitId,
         status: RecordStatus.ACTIVE,
-        ...(combo.excludeId
-          ? {
-              id: {
-                not: combo.excludeId,
-              },
-            }
-          : {}),
       },
       select: {
         id: true,
@@ -112,15 +102,10 @@ export class UnitConnectivitiesRepository {
     });
   }
 
-  findLatestInactiveByCombo(
-    db: UnitConnectivityDb,
-    combo: Pick<UnitConnectivityCombo, "unitId" | "providerId" | "technology">,
-  ) {
+  findLatestInactiveByUnit(db: UnitConnectivityDb, unitId: string) {
     return db.unitConnectivity.findFirst({
       where: {
-        unitId: combo.unitId,
-        providerId: combo.providerId,
-        technology: combo.technology,
+        unitId,
         status: RecordStatus.INACTIVE,
       },
       orderBy: [{ updatedAt: "desc" }, { createdAt: "desc" }],
