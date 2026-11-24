@@ -321,7 +321,7 @@ model UnitConnectivity {
   unitId     String  @map("unit_id") @db.Uuid
   providerId String? @map("provider_id") @db.Uuid
 
-  name       String @db.VarChar(150)
+  name       String? @db.VarChar(150)
   technology String @db.VarChar(100)
 
   downloadCapacityMbps Float? @map("download_capacity_mbps")
