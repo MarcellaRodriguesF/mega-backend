@@ -1,5 +1,6 @@
 
 import { prisma } from "../../database/prisma.js";
+import { RecordStatus } from "../../shared/enums/record-status.enum.js";
 import type {
   CreateUnitData,
   UpdateUnitData,
@@ -54,6 +55,42 @@ export class UnitsRepository {
         connectivities: {
           include: {
             provider: true,
+          },
+        },
+      },
+    });
+  }
+
+  findByCompanyId(companyId: string, status?: string) {
+    return prisma.unit.findMany({
+      where: {
+        companyId,
+        ...(status ? { status } : {}),
+      },
+      orderBy: {
+        name: "asc",
+      },
+      select: {
+        id: true,
+        name: true,
+        status: true,
+        connectivities: {
+          where: {
+            status: RecordStatus.ACTIVE,
+          },
+          orderBy: {
+            updatedAt: "desc",
+          },
+          take: 1,
+          select: {
+            publicIp: true,
+            provider: {
+              select: {
+                id: true,
+                name: true,
+                phone: true,
+              },
+            },
           },
         },
       },

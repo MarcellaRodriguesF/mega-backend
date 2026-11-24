@@ -4,6 +4,7 @@ import type { Request, Response } from "express";
 import { UnitsService } from "./units.service.js";
 import {
   createUnitSchema,
+  listCompanyUnitsQuerySchema,
   updateUnitSchema,
 } from "./units.schemas.js";
 import { successResponse } from "../../shared/http/api-response.js";
@@ -21,6 +22,27 @@ export class UnitsController {
       unit,
       "Unidade cadastrada com sucesso.",
       201,
+    );
+  };
+
+  findByCompanyId = async (req: Request, res: Response) => {
+    const companyId = req.params.companyId;
+
+    if (!companyId || Array.isArray(companyId)) {
+      throw new Error("ID da empresa inválido.");
+    }
+
+    const query = listCompanyUnitsQuerySchema.parse({
+      search: typeof req.query.search === "string" ? req.query.search : undefined,
+      status: typeof req.query.status === "string" ? req.query.status : undefined,
+    });
+
+    const units = await this.unitsService.findByCompanyId(companyId, query);
+
+    return successResponse(
+      res,
+      units,
+      "Unidades da empresa listadas com sucesso.",
     );
   };
 

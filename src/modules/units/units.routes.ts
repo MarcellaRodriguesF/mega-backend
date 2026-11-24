@@ -8,7 +8,17 @@ import { UnitsController } from "./units.controller.js";
 import { PERMISSIONS } from "../authorization/authorization.permissions.js";
 
 const unitsRoutes = Router();
+const companyUnitsRoutes = Router({ mergeParams: true });
 const unitsController = new UnitsController();
+
+companyUnitsRoutes.get(
+  "/",
+  authMiddleware,
+  authorizePermission(PERMISSIONS.CLIENTS),
+  (req, res, next) => {
+    unitsController.findByCompanyId(req, res).catch(next);
+  },
+);
 
 unitsRoutes.post(
   "/",
@@ -55,4 +65,4 @@ unitsRoutes.delete(
   },
 );
 
-export { unitsRoutes };
+export { unitsRoutes, companyUnitsRoutes };

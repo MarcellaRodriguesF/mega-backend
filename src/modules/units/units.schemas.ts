@@ -55,6 +55,11 @@ export const createUnitAddressSchema = z
     }
   );
 
+export const listCompanyUnitsQuerySchema = z.object({
+  search: z.string().trim().optional(),
+  status: z.enum([RecordStatus.ACTIVE, RecordStatus.INACTIVE]).optional(),
+});
+
 export const createUnitSchema = z.object({
   companyId: z.string().uuid("Informe uma empresa válida."),
 
@@ -85,6 +90,8 @@ export const updateUnitSchema = createUnitSchema
   .refine((data) => Object.keys(data).length > 0, {
     message: "Informe pelo menos um campo para atualização.",
   });
+
+export type ListCompanyUnitsQuery = z.infer<typeof listCompanyUnitsQuerySchema>;
 
 export type CreateUnitAddressInput = z.infer<typeof createUnitAddressSchema>;
 

@@ -3,8 +3,18 @@ import { ApiError } from "../../shared/http/api-error.js";
 import { UnitsRepository } from "./units.repository.js";
 import type {
   CreateUnitInput,
+  ListCompanyUnitsQuery,
   UpdateUnitInput,
 } from "./units.schemas.js";
+import type { CompanyUnitListItem } from "./units.types.js";
+
+function normalizeSearch(value: string) {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
 
 export class UnitsService {
   private readonly unitsRepository = new UnitsRepository();
@@ -27,6 +37,53 @@ export class UnitsService {
 
   async findAll() {
     return this.unitsRepository.findAll();
+  }
+
+  async findByCompanyId(companyId: string, query: ListCompanyUnitsQuery) {
+    const company = await this.unitsRepository.findCompanyById(companyId);
+
+    if (!company) {
+      throw new ApiError(
+        "Empresa não encontrada.",
+        404,
+        "COMPANY_NOT_FOUND",
+      );
+    }
+
+    const units = await this.unitsRepository.findByCompanyId(
+      companyId,
+      query.status,
+    );
+
+    const items: CompanyUnitListItem[] = units.map((unit) => {
+      const connectivity = unit.connectivities[0];
+
+      return {
+        id: unit.id,
+        name: unit.name,
+        status: unit.status,
+        publicIp: connectivity?.publicIp ?? null,
+        provider: connectivity?.provider
+          ? {
+              id: connectivity.provider.id,
+              name: connectivity.provider.name,
+              phone: connectivity.provider.phone,
+            }
+          : null,
+      };
+    });
+
+    const search = normalizeSearch(query.search ?? "");
+
+    if (!search) {
+      return items;
+    }
+
+    return items.filter((unit) =>
+      [unit.name, unit.publicIp ?? "", unit.provider?.name ?? ""].some(
+        (field) => normalizeSearch(field).includes(search),
+      ),
+    );
   }
 
   async findById(id: string) {
