@@ -191,6 +191,7 @@ export type TemplateWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Template"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Template"> | Date | string
   stages?: Prisma.TemplateStageListRelationFilter
+  implementations?: Prisma.ImplementationListRelationFilter
 }
 
 export type TemplateOrderByWithRelationInput = {
@@ -201,6 +202,7 @@ export type TemplateOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   stages?: Prisma.TemplateStageOrderByRelationAggregateInput
+  implementations?: Prisma.ImplementationOrderByRelationAggregateInput
 }
 
 export type TemplateWhereUniqueInput = Prisma.AtLeast<{
@@ -214,6 +216,7 @@ export type TemplateWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Template"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Template"> | Date | string
   stages?: Prisma.TemplateStageListRelationFilter
+  implementations?: Prisma.ImplementationListRelationFilter
 }, "id">
 
 export type TemplateOrderByWithAggregationInput = {
@@ -248,6 +251,7 @@ export type TemplateCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stages?: Prisma.TemplateStageCreateNestedManyWithoutTemplateInput
+  implementations?: Prisma.ImplementationCreateNestedManyWithoutTemplateInput
 }
 
 export type TemplateUncheckedCreateInput = {
@@ -258,6 +262,7 @@ export type TemplateUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stages?: Prisma.TemplateStageUncheckedCreateNestedManyWithoutTemplateInput
+  implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutTemplateInput
 }
 
 export type TemplateUpdateInput = {
@@ -268,6 +273,7 @@ export type TemplateUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stages?: Prisma.TemplateStageUpdateManyWithoutTemplateNestedInput
+  implementations?: Prisma.ImplementationUpdateManyWithoutTemplateNestedInput
 }
 
 export type TemplateUncheckedUpdateInput = {
@@ -278,6 +284,7 @@ export type TemplateUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stages?: Prisma.TemplateStageUncheckedUpdateManyWithoutTemplateNestedInput
+  implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
 export type TemplateCreateManyInput = {
@@ -339,6 +346,11 @@ export type TemplateScalarRelationFilter = {
   isNot?: Prisma.TemplateWhereInput
 }
 
+export type TemplateNullableScalarRelationFilter = {
+  is?: Prisma.TemplateWhereInput | null
+  isNot?: Prisma.TemplateWhereInput | null
+}
+
 export type EnumTemplateStatusFieldUpdateOperationsInput = {
   set?: $Enums.TemplateStatus
 }
@@ -357,6 +369,22 @@ export type TemplateUpdateOneRequiredWithoutStagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TemplateUpdateToOneWithWhereWithoutStagesInput, Prisma.TemplateUpdateWithoutStagesInput>, Prisma.TemplateUncheckedUpdateWithoutStagesInput>
 }
 
+export type TemplateCreateNestedOneWithoutImplementationsInput = {
+  create?: Prisma.XOR<Prisma.TemplateCreateWithoutImplementationsInput, Prisma.TemplateUncheckedCreateWithoutImplementationsInput>
+  connectOrCreate?: Prisma.TemplateCreateOrConnectWithoutImplementationsInput
+  connect?: Prisma.TemplateWhereUniqueInput
+}
+
+export type TemplateUpdateOneWithoutImplementationsNestedInput = {
+  create?: Prisma.XOR<Prisma.TemplateCreateWithoutImplementationsInput, Prisma.TemplateUncheckedCreateWithoutImplementationsInput>
+  connectOrCreate?: Prisma.TemplateCreateOrConnectWithoutImplementationsInput
+  upsert?: Prisma.TemplateUpsertWithoutImplementationsInput
+  disconnect?: Prisma.TemplateWhereInput | boolean
+  delete?: Prisma.TemplateWhereInput | boolean
+  connect?: Prisma.TemplateWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TemplateUpdateToOneWithWhereWithoutImplementationsInput, Prisma.TemplateUpdateWithoutImplementationsInput>, Prisma.TemplateUncheckedUpdateWithoutImplementationsInput>
+}
+
 export type TemplateCreateWithoutStagesInput = {
   id?: string
   name: string
@@ -364,6 +392,7 @@ export type TemplateCreateWithoutStagesInput = {
   status?: $Enums.TemplateStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  implementations?: Prisma.ImplementationCreateNestedManyWithoutTemplateInput
 }
 
 export type TemplateUncheckedCreateWithoutStagesInput = {
@@ -373,6 +402,7 @@ export type TemplateUncheckedCreateWithoutStagesInput = {
   status?: $Enums.TemplateStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutTemplateInput
 }
 
 export type TemplateCreateOrConnectWithoutStagesInput = {
@@ -398,6 +428,7 @@ export type TemplateUpdateWithoutStagesInput = {
   status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  implementations?: Prisma.ImplementationUpdateManyWithoutTemplateNestedInput
 }
 
 export type TemplateUncheckedUpdateWithoutStagesInput = {
@@ -407,6 +438,63 @@ export type TemplateUncheckedUpdateWithoutStagesInput = {
   status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutTemplateNestedInput
+}
+
+export type TemplateCreateWithoutImplementationsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  status?: $Enums.TemplateStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stages?: Prisma.TemplateStageCreateNestedManyWithoutTemplateInput
+}
+
+export type TemplateUncheckedCreateWithoutImplementationsInput = {
+  id?: string
+  name: string
+  description?: string | null
+  status?: $Enums.TemplateStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  stages?: Prisma.TemplateStageUncheckedCreateNestedManyWithoutTemplateInput
+}
+
+export type TemplateCreateOrConnectWithoutImplementationsInput = {
+  where: Prisma.TemplateWhereUniqueInput
+  create: Prisma.XOR<Prisma.TemplateCreateWithoutImplementationsInput, Prisma.TemplateUncheckedCreateWithoutImplementationsInput>
+}
+
+export type TemplateUpsertWithoutImplementationsInput = {
+  update: Prisma.XOR<Prisma.TemplateUpdateWithoutImplementationsInput, Prisma.TemplateUncheckedUpdateWithoutImplementationsInput>
+  create: Prisma.XOR<Prisma.TemplateCreateWithoutImplementationsInput, Prisma.TemplateUncheckedCreateWithoutImplementationsInput>
+  where?: Prisma.TemplateWhereInput
+}
+
+export type TemplateUpdateToOneWithWhereWithoutImplementationsInput = {
+  where?: Prisma.TemplateWhereInput
+  data: Prisma.XOR<Prisma.TemplateUpdateWithoutImplementationsInput, Prisma.TemplateUncheckedUpdateWithoutImplementationsInput>
+}
+
+export type TemplateUpdateWithoutImplementationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stages?: Prisma.TemplateStageUpdateManyWithoutTemplateNestedInput
+}
+
+export type TemplateUncheckedUpdateWithoutImplementationsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumTemplateStatusFieldUpdateOperationsInput | $Enums.TemplateStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  stages?: Prisma.TemplateStageUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
 
@@ -416,10 +504,12 @@ export type TemplateUncheckedUpdateWithoutStagesInput = {
 
 export type TemplateCountOutputType = {
   stages: number
+  implementations: number
 }
 
 export type TemplateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stages?: boolean | TemplateCountOutputTypeCountStagesArgs
+  implementations?: boolean | TemplateCountOutputTypeCountImplementationsArgs
 }
 
 /**
@@ -439,6 +529,13 @@ export type TemplateCountOutputTypeCountStagesArgs<ExtArgs extends runtime.Types
   where?: Prisma.TemplateStageWhereInput
 }
 
+/**
+ * TemplateCountOutputType without action
+ */
+export type TemplateCountOutputTypeCountImplementationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ImplementationWhereInput
+}
+
 
 export type TemplateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -448,6 +545,7 @@ export type TemplateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   stages?: boolean | Prisma.Template$stagesArgs<ExtArgs>
+  implementations?: boolean | Prisma.Template$implementationsArgs<ExtArgs>
   _count?: boolean | Prisma.TemplateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["template"]>
 
@@ -481,6 +579,7 @@ export type TemplateSelectScalar = {
 export type TemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["template"]>
 export type TemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stages?: boolean | Prisma.Template$stagesArgs<ExtArgs>
+  implementations?: boolean | Prisma.Template$implementationsArgs<ExtArgs>
   _count?: boolean | Prisma.TemplateCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TemplateIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -490,6 +589,7 @@ export type $TemplatePayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   name: "Template"
   objects: {
     stages: Prisma.$TemplateStagePayload<ExtArgs>[]
+    implementations: Prisma.$ImplementationPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -893,6 +993,7 @@ readonly fields: TemplateFieldRefs;
 export interface Prisma__TemplateClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   stages<T extends Prisma.Template$stagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Template$stagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TemplateStagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  implementations<T extends Prisma.Template$implementationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Template$implementationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1342,6 +1443,30 @@ export type Template$stagesArgs<ExtArgs extends runtime.Types.Extensions.Interna
   take?: number
   skip?: number
   distinct?: Prisma.TemplateStageScalarFieldEnum | Prisma.TemplateStageScalarFieldEnum[]
+}
+
+/**
+ * Template.implementations
+ */
+export type Template$implementationsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Implementation
+   */
+  select?: Prisma.ImplementationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Implementation
+   */
+  omit?: Prisma.ImplementationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImplementationInclude<ExtArgs> | null
+  where?: Prisma.ImplementationWhereInput
+  orderBy?: Prisma.ImplementationOrderByWithRelationInput | Prisma.ImplementationOrderByWithRelationInput[]
+  cursor?: Prisma.ImplementationWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ImplementationScalarFieldEnum | Prisma.ImplementationScalarFieldEnum[]
 }
 
 /**

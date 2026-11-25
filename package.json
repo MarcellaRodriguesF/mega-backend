@@ -8,7 +8,7 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "typecheck": "tsc --noEmit",
-    "test": "tsx --test src/modules/templates/templates.rules.test.ts src/modules/form-templates/form-templates.rules.test.ts"
+    "test": "tsx --test src/modules/templates/templates.rules.test.ts src/modules/form-templates/form-templates.rules.test.ts src/modules/implementations/implementations.snapshot.test.ts src/modules/implementations/implementations.integration.test.ts"
   },
   "keywords": [],
   "author": "",

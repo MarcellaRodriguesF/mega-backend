@@ -215,6 +215,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   assignedOpportunities?: Prisma.OpportunityListRelationFilter
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentListRelationFilter
   accessProfile?: Prisma.XOR<Prisma.AccessProfileScalarRelationFilter, Prisma.AccessProfileWhereInput>
 }
 
@@ -229,6 +230,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   assignedOpportunities?: Prisma.OpportunityOrderByRelationAggregateInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentOrderByRelationAggregateInput
   accessProfile?: Prisma.AccessProfileOrderByWithRelationInput
 }
 
@@ -246,6 +248,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   assignedOpportunities?: Prisma.OpportunityListRelationFilter
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentListRelationFilter
   accessProfile?: Prisma.XOR<Prisma.AccessProfileScalarRelationFilter, Prisma.AccessProfileWhereInput>
 }, "id" | "email">
 
@@ -289,6 +292,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedOpportunities?: Prisma.OpportunityCreateNestedManyWithoutOwnerInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentCreateNestedManyWithoutUserInput
   accessProfile: Prisma.AccessProfileCreateNestedOneWithoutUsersInput
 }
 
@@ -303,6 +307,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedOpportunities?: Prisma.OpportunityUncheckedCreateNestedManyWithoutOwnerInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -315,6 +320,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedOpportunities?: Prisma.OpportunityUpdateManyWithoutOwnerNestedInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUpdateManyWithoutUserNestedInput
   accessProfile?: Prisma.AccessProfileUpdateOneRequiredWithoutUsersNestedInput
 }
 
@@ -329,6 +335,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedOpportunities?: Prisma.OpportunityUncheckedUpdateManyWithoutOwnerNestedInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -417,6 +424,11 @@ export type UserNullableScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput | null
 }
 
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
+}
+
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -491,6 +503,20 @@ export type UserUpdateOneWithoutAssignedOpportunitiesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssignedOpportunitiesInput, Prisma.UserUpdateWithoutAssignedOpportunitiesInput>, Prisma.UserUncheckedUpdateWithoutAssignedOpportunitiesInput>
 }
 
+export type UserCreateNestedOneWithoutImplementationAssignmentsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutImplementationAssignmentsInput, Prisma.UserUncheckedCreateWithoutImplementationAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImplementationAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutImplementationAssignmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutImplementationAssignmentsInput, Prisma.UserUncheckedCreateWithoutImplementationAssignmentsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutImplementationAssignmentsInput
+  upsert?: Prisma.UserUpsertWithoutImplementationAssignmentsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutImplementationAssignmentsInput, Prisma.UserUpdateWithoutImplementationAssignmentsInput>, Prisma.UserUncheckedUpdateWithoutImplementationAssignmentsInput>
+}
+
 export type UserCreateWithoutAccessProfileInput = {
   id?: string
   name?: string | null
@@ -501,6 +527,7 @@ export type UserCreateWithoutAccessProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedOpportunities?: Prisma.OpportunityCreateNestedManyWithoutOwnerInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccessProfileInput = {
@@ -513,6 +540,7 @@ export type UserUncheckedCreateWithoutAccessProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   assignedOpportunities?: Prisma.OpportunityUncheckedCreateNestedManyWithoutOwnerInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccessProfileInput = {
@@ -565,6 +593,7 @@ export type UserCreateWithoutAssignedOpportunitiesInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentCreateNestedManyWithoutUserInput
   accessProfile: Prisma.AccessProfileCreateNestedOneWithoutUsersInput
 }
 
@@ -578,6 +607,7 @@ export type UserUncheckedCreateWithoutAssignedOpportunitiesInput = {
   lastLoginAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignedOpportunitiesInput = {
@@ -605,6 +635,7 @@ export type UserUpdateWithoutAssignedOpportunitiesInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUpdateManyWithoutUserNestedInput
   accessProfile?: Prisma.AccessProfileUpdateOneRequiredWithoutUsersNestedInput
 }
 
@@ -618,6 +649,75 @@ export type UserUncheckedUpdateWithoutAssignedOpportunitiesInput = {
   lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutImplementationAssignmentsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  passwordHash: string
+  status?: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignedOpportunities?: Prisma.OpportunityCreateNestedManyWithoutOwnerInput
+  accessProfile: Prisma.AccessProfileCreateNestedOneWithoutUsersInput
+}
+
+export type UserUncheckedCreateWithoutImplementationAssignmentsInput = {
+  id?: string
+  name?: string | null
+  email: string
+  passwordHash: string
+  accessProfileId: string
+  status?: string
+  lastLoginAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  assignedOpportunities?: Prisma.OpportunityUncheckedCreateNestedManyWithoutOwnerInput
+}
+
+export type UserCreateOrConnectWithoutImplementationAssignmentsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutImplementationAssignmentsInput, Prisma.UserUncheckedCreateWithoutImplementationAssignmentsInput>
+}
+
+export type UserUpsertWithoutImplementationAssignmentsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutImplementationAssignmentsInput, Prisma.UserUncheckedUpdateWithoutImplementationAssignmentsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutImplementationAssignmentsInput, Prisma.UserUncheckedCreateWithoutImplementationAssignmentsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutImplementationAssignmentsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutImplementationAssignmentsInput, Prisma.UserUncheckedUpdateWithoutImplementationAssignmentsInput>
+}
+
+export type UserUpdateWithoutImplementationAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedOpportunities?: Prisma.OpportunityUpdateManyWithoutOwnerNestedInput
+  accessProfile?: Prisma.AccessProfileUpdateOneRequiredWithoutUsersNestedInput
+}
+
+export type UserUncheckedUpdateWithoutImplementationAssignmentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  accessProfileId?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  lastLoginAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  assignedOpportunities?: Prisma.OpportunityUncheckedUpdateManyWithoutOwnerNestedInput
 }
 
 export type UserCreateManyAccessProfileInput = {
@@ -641,6 +741,7 @@ export type UserUpdateWithoutAccessProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedOpportunities?: Prisma.OpportunityUpdateManyWithoutOwnerNestedInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccessProfileInput = {
@@ -653,6 +754,7 @@ export type UserUncheckedUpdateWithoutAccessProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignedOpportunities?: Prisma.OpportunityUncheckedUpdateManyWithoutOwnerNestedInput
+  implementationAssignments?: Prisma.ImplementationActivityAssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutAccessProfileInput = {
@@ -673,10 +775,12 @@ export type UserUncheckedUpdateManyWithoutAccessProfileInput = {
 
 export type UserCountOutputType = {
   assignedOpportunities: number
+  implementationAssignments: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignedOpportunities?: boolean | UserCountOutputTypeCountAssignedOpportunitiesArgs
+  implementationAssignments?: boolean | UserCountOutputTypeCountImplementationAssignmentsArgs
 }
 
 /**
@@ -696,6 +800,13 @@ export type UserCountOutputTypeCountAssignedOpportunitiesArgs<ExtArgs extends ru
   where?: Prisma.OpportunityWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountImplementationAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ImplementationActivityAssignmentWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -708,6 +819,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   assignedOpportunities?: boolean | Prisma.User$assignedOpportunitiesArgs<ExtArgs>
+  implementationAssignments?: boolean | Prisma.User$implementationAssignmentsArgs<ExtArgs>
   accessProfile?: boolean | Prisma.AccessProfileDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -753,6 +865,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "passwordHash" | "accessProfileId" | "status" | "lastLoginAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   assignedOpportunities?: boolean | Prisma.User$assignedOpportunitiesArgs<ExtArgs>
+  implementationAssignments?: boolean | Prisma.User$implementationAssignmentsArgs<ExtArgs>
   accessProfile?: boolean | Prisma.AccessProfileDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -767,6 +880,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     assignedOpportunities: Prisma.$OpportunityPayload<ExtArgs>[]
+    implementationAssignments: Prisma.$ImplementationActivityAssignmentPayload<ExtArgs>[]
     accessProfile: Prisma.$AccessProfilePayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1174,6 +1288,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   assignedOpportunities<T extends Prisma.User$assignedOpportunitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignedOpportunitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OpportunityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  implementationAssignments<T extends Prisma.User$implementationAssignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$implementationAssignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationActivityAssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   accessProfile<T extends Prisma.AccessProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AccessProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__AccessProfileClient<runtime.Types.Result.GetResult<Prisma.$AccessProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1635,6 +1750,30 @@ export type User$assignedOpportunitiesArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.OpportunityScalarFieldEnum | Prisma.OpportunityScalarFieldEnum[]
+}
+
+/**
+ * User.implementationAssignments
+ */
+export type User$implementationAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ImplementationActivityAssignment
+   */
+  select?: Prisma.ImplementationActivityAssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ImplementationActivityAssignment
+   */
+  omit?: Prisma.ImplementationActivityAssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImplementationActivityAssignmentInclude<ExtArgs> | null
+  where?: Prisma.ImplementationActivityAssignmentWhereInput
+  orderBy?: Prisma.ImplementationActivityAssignmentOrderByWithRelationInput | Prisma.ImplementationActivityAssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.ImplementationActivityAssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ImplementationActivityAssignmentScalarFieldEnum | Prisma.ImplementationActivityAssignmentScalarFieldEnum[]
 }
 
 /**

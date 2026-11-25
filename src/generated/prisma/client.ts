@@ -151,3 +151,43 @@ export type FormTemplate = Prisma.FormTemplateModel
  * 
  */
 export type FormField = Prisma.FormFieldModel
+/**
+ * Model Implementation
+ * 
+ */
+export type Implementation = Prisma.ImplementationModel
+/**
+ * Model ImplementationStage
+ * 
+ */
+export type ImplementationStage = Prisma.ImplementationStageModel
+/**
+ * Model ImplementationActivity
+ * 
+ */
+export type ImplementationActivity = Prisma.ImplementationActivityModel
+/**
+ * Model ImplementationActivityAssignment
+ * 
+ */
+export type ImplementationActivityAssignment = Prisma.ImplementationActivityAssignmentModel
+/**
+ * Model ImplementationRequirement
+ * 
+ */
+export type ImplementationRequirement = Prisma.ImplementationRequirementModel
+/**
+ * Model ImplementationRequirementEvidenceType
+ * 
+ */
+export type ImplementationRequirementEvidenceType = Prisma.ImplementationRequirementEvidenceTypeModel
+/**
+ * Model ImplementationFormSnapshot
+ * 
+ */
+export type ImplementationFormSnapshot = Prisma.ImplementationFormSnapshotModel
+/**
+ * Model ImplementationFormField
+ * 
+ */
+export type ImplementationFormField = Prisma.ImplementationFormFieldModel

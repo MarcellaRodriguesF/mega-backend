@@ -43,3 +43,54 @@ export const FormFieldType = {
 } as const
 
 export type FormFieldType = (typeof FormFieldType)[keyof typeof FormFieldType]
+
+
+export const ImplementationStatus = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ImplementationStatus = (typeof ImplementationStatus)[keyof typeof ImplementationStatus]
+
+
+export const ImplementationWorkStatus = {
+  NOT_STARTED: 'NOT_STARTED',
+  IN_PROGRESS: 'IN_PROGRESS',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type ImplementationWorkStatus = (typeof ImplementationWorkStatus)[keyof typeof ImplementationWorkStatus]
+
+
+export const ImplementationAssignmentRole = {
+  EXECUTION: 'EXECUTION',
+  COMPLETION: 'COMPLETION'
+} as const
+
+export type ImplementationAssignmentRole = (typeof ImplementationAssignmentRole)[keyof typeof ImplementationAssignmentRole]
+
+
+export const ConnectivityFieldTarget = {
+  PROVIDER_ID: 'PROVIDER_ID',
+  TECHNOLOGY: 'TECHNOLOGY',
+  DOWNLOAD_CAPACITY_MBPS: 'DOWNLOAD_CAPACITY_MBPS',
+  UPLOAD_CAPACITY_MBPS: 'UPLOAD_CAPACITY_MBPS',
+  RESPONSE_TIME_MS: 'RESPONSE_TIME_MS',
+  THROUGHPUT_MBPS: 'THROUGHPUT_MBPS',
+  RX_SIGNAL_DBM: 'RX_SIGNAL_DBM',
+  PUBLIC_IP: 'PUBLIC_IP',
+  GATEWAY_IP: 'GATEWAY_IP',
+  LOCAL_IP: 'LOCAL_IP',
+  WAN_IP: 'WAN_IP',
+  NETWORK_NAME: 'NETWORK_NAME',
+  SLA_PERCENTAGE: 'SLA_PERCENTAGE',
+  MTTR_HOURS: 'MTTR_HOURS',
+  MONITORING_ENABLED: 'MONITORING_ENABLED',
+  SERVICE_START_DATE: 'SERVICE_START_DATE',
+  SERVICE_END_DATE: 'SERVICE_END_DATE',
+  OBSERVATIONS: 'OBSERVATIONS',
+  CONNECTIVITY_NAME: 'CONNECTIVITY_NAME'
+} as const
+
+export type ConnectivityFieldTarget = (typeof ConnectivityFieldTarget)[keyof typeof ConnectivityFieldTarget]

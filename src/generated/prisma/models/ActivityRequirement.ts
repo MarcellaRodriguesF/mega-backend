@@ -247,6 +247,7 @@ export type ActivityRequirementWhereInput = {
   activity?: Prisma.XOR<Prisma.TemplateActivityScalarRelationFilter, Prisma.TemplateActivityWhereInput>
   formTemplate?: Prisma.XOR<Prisma.FormTemplateNullableScalarRelationFilter, Prisma.FormTemplateWhereInput> | null
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeListRelationFilter
+  implementationRequirements?: Prisma.ImplementationRequirementListRelationFilter
 }
 
 export type ActivityRequirementOrderByWithRelationInput = {
@@ -262,6 +263,7 @@ export type ActivityRequirementOrderByWithRelationInput = {
   activity?: Prisma.TemplateActivityOrderByWithRelationInput
   formTemplate?: Prisma.FormTemplateOrderByWithRelationInput
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeOrderByRelationAggregateInput
+  implementationRequirements?: Prisma.ImplementationRequirementOrderByRelationAggregateInput
 }
 
 export type ActivityRequirementWhereUniqueInput = Prisma.AtLeast<{
@@ -281,6 +283,7 @@ export type ActivityRequirementWhereUniqueInput = Prisma.AtLeast<{
   activity?: Prisma.XOR<Prisma.TemplateActivityScalarRelationFilter, Prisma.TemplateActivityWhereInput>
   formTemplate?: Prisma.XOR<Prisma.FormTemplateNullableScalarRelationFilter, Prisma.FormTemplateWhereInput> | null
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeListRelationFilter
+  implementationRequirements?: Prisma.ImplementationRequirementListRelationFilter
 }, "id" | "activityId_order">
 
 export type ActivityRequirementOrderByWithAggregationInput = {
@@ -326,6 +329,7 @@ export type ActivityRequirementCreateInput = {
   activity: Prisma.TemplateActivityCreateNestedOneWithoutRequirementsInput
   formTemplate?: Prisma.FormTemplateCreateNestedOneWithoutRequirementsInput
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
+  implementationRequirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementUncheckedCreateInput = {
@@ -339,6 +343,7 @@ export type ActivityRequirementUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementUpdateInput = {
@@ -352,6 +357,7 @@ export type ActivityRequirementUpdateInput = {
   activity?: Prisma.TemplateActivityUpdateOneRequiredWithoutRequirementsNestedInput
   formTemplate?: Prisma.FormTemplateUpdateOneWithoutRequirementsNestedInput
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
+  implementationRequirements?: Prisma.ImplementationRequirementUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementUncheckedUpdateInput = {
@@ -365,6 +371,7 @@ export type ActivityRequirementUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementCreateManyInput = {
@@ -461,6 +468,11 @@ export type ActivityRequirementSumOrderByAggregateInput = {
 export type ActivityRequirementScalarRelationFilter = {
   is?: Prisma.ActivityRequirementWhereInput
   isNot?: Prisma.ActivityRequirementWhereInput
+}
+
+export type ActivityRequirementNullableScalarRelationFilter = {
+  is?: Prisma.ActivityRequirementWhereInput | null
+  isNot?: Prisma.ActivityRequirementWhereInput | null
 }
 
 export type ActivityRequirementCreateNestedManyWithoutActivityInput = {
@@ -565,6 +577,22 @@ export type ActivityRequirementUncheckedUpdateManyWithoutFormTemplateNestedInput
   deleteMany?: Prisma.ActivityRequirementScalarWhereInput | Prisma.ActivityRequirementScalarWhereInput[]
 }
 
+export type ActivityRequirementCreateNestedOneWithoutImplementationRequirementsInput = {
+  create?: Prisma.XOR<Prisma.ActivityRequirementCreateWithoutImplementationRequirementsInput, Prisma.ActivityRequirementUncheckedCreateWithoutImplementationRequirementsInput>
+  connectOrCreate?: Prisma.ActivityRequirementCreateOrConnectWithoutImplementationRequirementsInput
+  connect?: Prisma.ActivityRequirementWhereUniqueInput
+}
+
+export type ActivityRequirementUpdateOneWithoutImplementationRequirementsNestedInput = {
+  create?: Prisma.XOR<Prisma.ActivityRequirementCreateWithoutImplementationRequirementsInput, Prisma.ActivityRequirementUncheckedCreateWithoutImplementationRequirementsInput>
+  connectOrCreate?: Prisma.ActivityRequirementCreateOrConnectWithoutImplementationRequirementsInput
+  upsert?: Prisma.ActivityRequirementUpsertWithoutImplementationRequirementsInput
+  disconnect?: Prisma.ActivityRequirementWhereInput | boolean
+  delete?: Prisma.ActivityRequirementWhereInput | boolean
+  connect?: Prisma.ActivityRequirementWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ActivityRequirementUpdateToOneWithWhereWithoutImplementationRequirementsInput, Prisma.ActivityRequirementUpdateWithoutImplementationRequirementsInput>, Prisma.ActivityRequirementUncheckedUpdateWithoutImplementationRequirementsInput>
+}
+
 export type ActivityRequirementCreateWithoutActivityInput = {
   id?: string
   type: $Enums.ActivityRequirementType
@@ -575,6 +603,7 @@ export type ActivityRequirementCreateWithoutActivityInput = {
   updatedAt?: Date | string
   formTemplate?: Prisma.FormTemplateCreateNestedOneWithoutRequirementsInput
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
+  implementationRequirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementUncheckedCreateWithoutActivityInput = {
@@ -587,6 +616,7 @@ export type ActivityRequirementUncheckedCreateWithoutActivityInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementCreateOrConnectWithoutActivityInput = {
@@ -640,6 +670,7 @@ export type ActivityRequirementCreateWithoutEvidenceTypesInput = {
   updatedAt?: Date | string
   activity: Prisma.TemplateActivityCreateNestedOneWithoutRequirementsInput
   formTemplate?: Prisma.FormTemplateCreateNestedOneWithoutRequirementsInput
+  implementationRequirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementUncheckedCreateWithoutEvidenceTypesInput = {
@@ -652,6 +683,7 @@ export type ActivityRequirementUncheckedCreateWithoutEvidenceTypesInput = {
   formTemplateId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementCreateOrConnectWithoutEvidenceTypesInput = {
@@ -680,6 +712,7 @@ export type ActivityRequirementUpdateWithoutEvidenceTypesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activity?: Prisma.TemplateActivityUpdateOneRequiredWithoutRequirementsNestedInput
   formTemplate?: Prisma.FormTemplateUpdateOneWithoutRequirementsNestedInput
+  implementationRequirements?: Prisma.ImplementationRequirementUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementUncheckedUpdateWithoutEvidenceTypesInput = {
@@ -692,6 +725,7 @@ export type ActivityRequirementUncheckedUpdateWithoutEvidenceTypesInput = {
   formTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementCreateWithoutFormTemplateInput = {
@@ -704,6 +738,7 @@ export type ActivityRequirementCreateWithoutFormTemplateInput = {
   updatedAt?: Date | string
   activity: Prisma.TemplateActivityCreateNestedOneWithoutRequirementsInput
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
+  implementationRequirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementUncheckedCreateWithoutFormTemplateInput = {
@@ -716,6 +751,7 @@ export type ActivityRequirementUncheckedCreateWithoutFormTemplateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedCreateNestedManyWithoutSourceRequirementInput
 }
 
 export type ActivityRequirementCreateOrConnectWithoutFormTemplateInput = {
@@ -744,6 +780,74 @@ export type ActivityRequirementUpdateManyWithWhereWithoutFormTemplateInput = {
   data: Prisma.XOR<Prisma.ActivityRequirementUpdateManyMutationInput, Prisma.ActivityRequirementUncheckedUpdateManyWithoutFormTemplateInput>
 }
 
+export type ActivityRequirementCreateWithoutImplementationRequirementsInput = {
+  id?: string
+  type: $Enums.ActivityRequirementType
+  isRequired?: boolean
+  order: number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activity: Prisma.TemplateActivityCreateNestedOneWithoutRequirementsInput
+  formTemplate?: Prisma.FormTemplateCreateNestedOneWithoutRequirementsInput
+  evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
+}
+
+export type ActivityRequirementUncheckedCreateWithoutImplementationRequirementsInput = {
+  id?: string
+  activityId: string
+  type: $Enums.ActivityRequirementType
+  isRequired?: boolean
+  order: number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  formTemplateId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
+}
+
+export type ActivityRequirementCreateOrConnectWithoutImplementationRequirementsInput = {
+  where: Prisma.ActivityRequirementWhereUniqueInput
+  create: Prisma.XOR<Prisma.ActivityRequirementCreateWithoutImplementationRequirementsInput, Prisma.ActivityRequirementUncheckedCreateWithoutImplementationRequirementsInput>
+}
+
+export type ActivityRequirementUpsertWithoutImplementationRequirementsInput = {
+  update: Prisma.XOR<Prisma.ActivityRequirementUpdateWithoutImplementationRequirementsInput, Prisma.ActivityRequirementUncheckedUpdateWithoutImplementationRequirementsInput>
+  create: Prisma.XOR<Prisma.ActivityRequirementCreateWithoutImplementationRequirementsInput, Prisma.ActivityRequirementUncheckedCreateWithoutImplementationRequirementsInput>
+  where?: Prisma.ActivityRequirementWhereInput
+}
+
+export type ActivityRequirementUpdateToOneWithWhereWithoutImplementationRequirementsInput = {
+  where?: Prisma.ActivityRequirementWhereInput
+  data: Prisma.XOR<Prisma.ActivityRequirementUpdateWithoutImplementationRequirementsInput, Prisma.ActivityRequirementUncheckedUpdateWithoutImplementationRequirementsInput>
+}
+
+export type ActivityRequirementUpdateWithoutImplementationRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumActivityRequirementTypeFieldUpdateOperationsInput | $Enums.ActivityRequirementType
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activity?: Prisma.TemplateActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  formTemplate?: Prisma.FormTemplateUpdateOneWithoutRequirementsNestedInput
+  evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
+}
+
+export type ActivityRequirementUncheckedUpdateWithoutImplementationRequirementsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumActivityRequirementTypeFieldUpdateOperationsInput | $Enums.ActivityRequirementType
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  formTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
+}
+
 export type ActivityRequirementCreateManyActivityInput = {
   id?: string
   type: $Enums.ActivityRequirementType
@@ -765,6 +869,7 @@ export type ActivityRequirementUpdateWithoutActivityInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   formTemplate?: Prisma.FormTemplateUpdateOneWithoutRequirementsNestedInput
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
+  implementationRequirements?: Prisma.ImplementationRequirementUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementUncheckedUpdateWithoutActivityInput = {
@@ -777,6 +882,7 @@ export type ActivityRequirementUncheckedUpdateWithoutActivityInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementUncheckedUpdateManyWithoutActivityInput = {
@@ -811,6 +917,7 @@ export type ActivityRequirementUpdateWithoutFormTemplateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   activity?: Prisma.TemplateActivityUpdateOneRequiredWithoutRequirementsNestedInput
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
+  implementationRequirements?: Prisma.ImplementationRequirementUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementUncheckedUpdateWithoutFormTemplateInput = {
@@ -823,6 +930,7 @@ export type ActivityRequirementUncheckedUpdateWithoutFormTemplateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   evidenceTypes?: Prisma.ActivityRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
+  implementationRequirements?: Prisma.ImplementationRequirementUncheckedUpdateManyWithoutSourceRequirementNestedInput
 }
 
 export type ActivityRequirementUncheckedUpdateManyWithoutFormTemplateInput = {
@@ -843,10 +951,12 @@ export type ActivityRequirementUncheckedUpdateManyWithoutFormTemplateInput = {
 
 export type ActivityRequirementCountOutputType = {
   evidenceTypes: number
+  implementationRequirements: number
 }
 
 export type ActivityRequirementCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   evidenceTypes?: boolean | ActivityRequirementCountOutputTypeCountEvidenceTypesArgs
+  implementationRequirements?: boolean | ActivityRequirementCountOutputTypeCountImplementationRequirementsArgs
 }
 
 /**
@@ -866,6 +976,13 @@ export type ActivityRequirementCountOutputTypeCountEvidenceTypesArgs<ExtArgs ext
   where?: Prisma.ActivityRequirementEvidenceTypeWhereInput
 }
 
+/**
+ * ActivityRequirementCountOutputType without action
+ */
+export type ActivityRequirementCountOutputTypeCountImplementationRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ImplementationRequirementWhereInput
+}
+
 
 export type ActivityRequirementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -880,6 +997,7 @@ export type ActivityRequirementSelect<ExtArgs extends runtime.Types.Extensions.I
   activity?: boolean | Prisma.TemplateActivityDefaultArgs<ExtArgs>
   formTemplate?: boolean | Prisma.ActivityRequirement$formTemplateArgs<ExtArgs>
   evidenceTypes?: boolean | Prisma.ActivityRequirement$evidenceTypesArgs<ExtArgs>
+  implementationRequirements?: boolean | Prisma.ActivityRequirement$implementationRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityRequirementCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["activityRequirement"]>
 
@@ -928,6 +1046,7 @@ export type ActivityRequirementInclude<ExtArgs extends runtime.Types.Extensions.
   activity?: boolean | Prisma.TemplateActivityDefaultArgs<ExtArgs>
   formTemplate?: boolean | Prisma.ActivityRequirement$formTemplateArgs<ExtArgs>
   evidenceTypes?: boolean | Prisma.ActivityRequirement$evidenceTypesArgs<ExtArgs>
+  implementationRequirements?: boolean | Prisma.ActivityRequirement$implementationRequirementsArgs<ExtArgs>
   _count?: boolean | Prisma.ActivityRequirementCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ActivityRequirementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -945,6 +1064,7 @@ export type $ActivityRequirementPayload<ExtArgs extends runtime.Types.Extensions
     activity: Prisma.$TemplateActivityPayload<ExtArgs>
     formTemplate: Prisma.$FormTemplatePayload<ExtArgs> | null
     evidenceTypes: Prisma.$ActivityRequirementEvidenceTypePayload<ExtArgs>[]
+    implementationRequirements: Prisma.$ImplementationRequirementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1353,6 +1473,7 @@ export interface Prisma__ActivityRequirementClient<T, Null = never, ExtArgs exte
   activity<T extends Prisma.TemplateActivityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TemplateActivityDefaultArgs<ExtArgs>>): Prisma.Prisma__TemplateActivityClient<runtime.Types.Result.GetResult<Prisma.$TemplateActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   formTemplate<T extends Prisma.ActivityRequirement$formTemplateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityRequirement$formTemplateArgs<ExtArgs>>): Prisma.Prisma__FormTemplateClient<runtime.Types.Result.GetResult<Prisma.$FormTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   evidenceTypes<T extends Prisma.ActivityRequirement$evidenceTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityRequirement$evidenceTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityRequirementEvidenceTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  implementationRequirements<T extends Prisma.ActivityRequirement$implementationRequirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityRequirement$implementationRequirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1832,6 +1953,30 @@ export type ActivityRequirement$evidenceTypesArgs<ExtArgs extends runtime.Types.
   take?: number
   skip?: number
   distinct?: Prisma.ActivityRequirementEvidenceTypeScalarFieldEnum | Prisma.ActivityRequirementEvidenceTypeScalarFieldEnum[]
+}
+
+/**
+ * ActivityRequirement.implementationRequirements
+ */
+export type ActivityRequirement$implementationRequirementsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ImplementationRequirement
+   */
+  select?: Prisma.ImplementationRequirementSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ImplementationRequirement
+   */
+  omit?: Prisma.ImplementationRequirementOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ImplementationRequirementInclude<ExtArgs> | null
+  where?: Prisma.ImplementationRequirementWhereInput
+  orderBy?: Prisma.ImplementationRequirementOrderByWithRelationInput | Prisma.ImplementationRequirementOrderByWithRelationInput[]
+  cursor?: Prisma.ImplementationRequirementWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ImplementationRequirementScalarFieldEnum | Prisma.ImplementationRequirementScalarFieldEnum[]
 }
 
 /**

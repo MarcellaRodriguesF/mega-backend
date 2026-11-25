@@ -72,7 +72,15 @@ export const ModelName = {
   ActivityRequirement: 'ActivityRequirement',
   ActivityRequirementEvidenceType: 'ActivityRequirementEvidenceType',
   FormTemplate: 'FormTemplate',
-  FormField: 'FormField'
+  FormField: 'FormField',
+  Implementation: 'Implementation',
+  ImplementationStage: 'ImplementationStage',
+  ImplementationActivity: 'ImplementationActivity',
+  ImplementationActivityAssignment: 'ImplementationActivityAssignment',
+  ImplementationRequirement: 'ImplementationRequirement',
+  ImplementationRequirementEvidenceType: 'ImplementationRequirementEvidenceType',
+  ImplementationFormSnapshot: 'ImplementationFormSnapshot',
+  ImplementationFormField: 'ImplementationFormField'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -436,6 +444,142 @@ export const FormFieldScalarFieldEnum = {
 } as const
 
 export type FormFieldScalarFieldEnum = (typeof FormFieldScalarFieldEnum)[keyof typeof FormFieldScalarFieldEnum]
+
+
+export const ImplementationScalarFieldEnum = {
+  id: 'id',
+  unitId: 'unitId',
+  companyId: 'companyId',
+  templateId: 'templateId',
+  status: 'status',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  templateName: 'templateName',
+  templateDescription: 'templateDescription',
+  unitName: 'unitName',
+  companyTradeName: 'companyTradeName',
+  addressZipCode: 'addressZipCode',
+  addressStreet: 'addressStreet',
+  addressNumber: 'addressNumber',
+  addressComplement: 'addressComplement',
+  addressNeighborhood: 'addressNeighborhood',
+  addressCity: 'addressCity',
+  addressState: 'addressState',
+  initialProviderId: 'initialProviderId',
+  initialProviderName: 'initialProviderName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImplementationScalarFieldEnum = (typeof ImplementationScalarFieldEnum)[keyof typeof ImplementationScalarFieldEnum]
+
+
+export const ImplementationStageScalarFieldEnum = {
+  id: 'id',
+  implementationId: 'implementationId',
+  sourceStageId: 'sourceStageId',
+  name: 'name',
+  description: 'description',
+  order: 'order',
+  status: 'status',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImplementationStageScalarFieldEnum = (typeof ImplementationStageScalarFieldEnum)[keyof typeof ImplementationStageScalarFieldEnum]
+
+
+export const ImplementationActivityScalarFieldEnum = {
+  id: 'id',
+  stageId: 'stageId',
+  sourceActivityId: 'sourceActivityId',
+  name: 'name',
+  description: 'description',
+  order: 'order',
+  status: 'status',
+  startedAt: 'startedAt',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImplementationActivityScalarFieldEnum = (typeof ImplementationActivityScalarFieldEnum)[keyof typeof ImplementationActivityScalarFieldEnum]
+
+
+export const ImplementationActivityAssignmentScalarFieldEnum = {
+  id: 'id',
+  activityId: 'activityId',
+  userId: 'userId',
+  userName: 'userName',
+  role: 'role',
+  createdAt: 'createdAt'
+} as const
+
+export type ImplementationActivityAssignmentScalarFieldEnum = (typeof ImplementationActivityAssignmentScalarFieldEnum)[keyof typeof ImplementationActivityAssignmentScalarFieldEnum]
+
+
+export const ImplementationRequirementScalarFieldEnum = {
+  id: 'id',
+  activityId: 'activityId',
+  sourceRequirementId: 'sourceRequirementId',
+  type: 'type',
+  isRequired: 'isRequired',
+  order: 'order',
+  configuration: 'configuration',
+  formSnapshotId: 'formSnapshotId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImplementationRequirementScalarFieldEnum = (typeof ImplementationRequirementScalarFieldEnum)[keyof typeof ImplementationRequirementScalarFieldEnum]
+
+
+export const ImplementationRequirementEvidenceTypeScalarFieldEnum = {
+  id: 'id',
+  requirementId: 'requirementId',
+  type: 'type',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImplementationRequirementEvidenceTypeScalarFieldEnum = (typeof ImplementationRequirementEvidenceTypeScalarFieldEnum)[keyof typeof ImplementationRequirementEvidenceTypeScalarFieldEnum]
+
+
+export const ImplementationFormSnapshotScalarFieldEnum = {
+  id: 'id',
+  implementationId: 'implementationId',
+  sourceFormTemplateId: 'sourceFormTemplateId',
+  name: 'name',
+  description: 'description',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImplementationFormSnapshotScalarFieldEnum = (typeof ImplementationFormSnapshotScalarFieldEnum)[keyof typeof ImplementationFormSnapshotScalarFieldEnum]
+
+
+export const ImplementationFormFieldScalarFieldEnum = {
+  id: 'id',
+  formSnapshotId: 'formSnapshotId',
+  sourceFormFieldId: 'sourceFormFieldId',
+  key: 'key',
+  label: 'label',
+  description: 'description',
+  type: 'type',
+  placeholder: 'placeholder',
+  isRequired: 'isRequired',
+  order: 'order',
+  options: 'options',
+  isSensitive: 'isSensitive',
+  connectivityFieldTarget: 'connectivityFieldTarget',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ImplementationFormFieldScalarFieldEnum = (typeof ImplementationFormFieldScalarFieldEnum)[keyof typeof ImplementationFormFieldScalarFieldEnum]
 
 
 export const SortOrder = {
