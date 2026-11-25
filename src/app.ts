@@ -15,6 +15,7 @@ import { geocodingRoutes } from "./modules/geocoding/geocoding.routes.js";
 import { templatesRoutes } from "./modules/templates/templates.routes.js";
 import { formTemplatesRoutes } from "./modules/form-templates/form-templates.routes.js";
 import { implementationsRoutes } from "./modules/implementations/implementations.routes.js";
+import { activitiesRoutes } from "./modules/activities/activities.routes.js";
 const app = express();
 
 app.use(
@@ -40,6 +41,7 @@ app.use("/api/v1/geocoding", geocodingRoutes);
 app.use("/api/v1/templates", templatesRoutes);
 app.use("/api/v1/form-templates", formTemplatesRoutes);
 app.use("/api/v1/implementations", implementationsRoutes);
+app.use("/api/v1/activities", activitiesRoutes);
 app.use(errorMiddleware);
 
 export { app };

@@ -63,12 +63,12 @@ export const ImplementationWorkStatus = {
 export type ImplementationWorkStatus = (typeof ImplementationWorkStatus)[keyof typeof ImplementationWorkStatus]
 
 
-export const ImplementationAssignmentRole = {
-  EXECUTION: 'EXECUTION',
-  COMPLETION: 'COMPLETION'
+export const ActivityAssignmentRole = {
+  EXECUTOR: 'EXECUTOR',
+  SUPERVISOR: 'SUPERVISOR'
 } as const
 
-export type ImplementationAssignmentRole = (typeof ImplementationAssignmentRole)[keyof typeof ImplementationAssignmentRole]
+export type ActivityAssignmentRole = (typeof ActivityAssignmentRole)[keyof typeof ActivityAssignmentRole]
 
 
 export const ConnectivityFieldTarget = {

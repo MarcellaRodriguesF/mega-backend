@@ -113,13 +113,14 @@ describe("criação a partir de template publicado", () => {
   it("copia etapas, atividades, requisitos e um único snapshot do formulário", () => {
     const snapshot = buildImplementationSnapshot(sourceTemplate(), [sourceForm()]);
 
+    const forms = snapshot.stages[0]?.activities[0]?.forms ?? [];
     assert.equal(snapshot.templateName, "Implantação padrão");
     assert.equal(snapshot.stages.length, 1);
     assert.equal(snapshot.stages[0]?.activities[0]?.requirements.length, 3);
-    assert.equal(snapshot.forms.length, 1);
-    assert.equal(snapshot.forms[0]?.fields[0]?.label, "Tecnologia");
-    assert.equal(snapshot.forms[0]?.fields[0]?.isSensitive, false);
-    assert.equal(snapshot.forms[0]?.fields[0]?.connectivityFieldTarget, null);
+    assert.equal(forms.length, 1);
+    assert.equal(forms[0]?.fields[0]?.label, "Tecnologia");
+    assert.equal(forms[0]?.fields[0]?.isSensitive, false);
+    assert.equal(forms[0]?.fields[0]?.connectivityFieldTarget, null);
     assert.deepEqual(snapshot.stages[0]?.activities[0]?.requirements[1]?.evidenceTypes, [
       "PHOTO",
     ]);
@@ -138,7 +139,7 @@ describe("criação a partir de template publicado", () => {
 
     assert.equal(snapshot.templateName, "Implantação padrão");
     assert.equal(snapshot.stages[0]?.name, "Instalação");
-    assert.equal(snapshot.forms[0]?.fields[0]?.label, "Tecnologia");
+    assert.equal(snapshot.stages[0]?.activities[0]?.forms[0]?.fields[0]?.label, "Tecnologia");
     assert.deepEqual(snapshot.stages[0]?.activities[0]?.requirements[1]?.evidenceTypes, [
       "PHOTO",
     ]);

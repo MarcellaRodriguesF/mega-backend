@@ -26,6 +26,8 @@ export type AggregateImplementation = {
 
 export type ImplementationMinAggregateOutputType = {
   id: string | null
+  name: string | null
+  description: string | null
   unitId: string | null
   companyId: string | null
   templateId: string | null
@@ -51,6 +53,8 @@ export type ImplementationMinAggregateOutputType = {
 
 export type ImplementationMaxAggregateOutputType = {
   id: string | null
+  name: string | null
+  description: string | null
   unitId: string | null
   companyId: string | null
   templateId: string | null
@@ -76,6 +80,8 @@ export type ImplementationMaxAggregateOutputType = {
 
 export type ImplementationCountAggregateOutputType = {
   id: number
+  name: number
+  description: number
   unitId: number
   companyId: number
   templateId: number
@@ -103,6 +109,8 @@ export type ImplementationCountAggregateOutputType = {
 
 export type ImplementationMinAggregateInputType = {
   id?: true
+  name?: true
+  description?: true
   unitId?: true
   companyId?: true
   templateId?: true
@@ -128,6 +136,8 @@ export type ImplementationMinAggregateInputType = {
 
 export type ImplementationMaxAggregateInputType = {
   id?: true
+  name?: true
+  description?: true
   unitId?: true
   companyId?: true
   templateId?: true
@@ -153,6 +163,8 @@ export type ImplementationMaxAggregateInputType = {
 
 export type ImplementationCountAggregateInputType = {
   id?: true
+  name?: true
+  description?: true
   unitId?: true
   companyId?: true
   templateId?: true
@@ -251,16 +263,18 @@ export type ImplementationGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 
 export type ImplementationGroupByOutputType = {
   id: string
-  unitId: string
-  companyId: string
+  name: string
+  description: string | null
+  unitId: string | null
+  companyId: string | null
   templateId: string | null
   status: $Enums.ImplementationStatus
   startedAt: Date
   completedAt: Date | null
-  templateName: string
+  templateName: string | null
   templateDescription: string | null
-  unitName: string
-  companyTradeName: string
+  unitName: string | null
+  companyTradeName: string | null
   addressZipCode: string | null
   addressStreet: string | null
   addressNumber: string | null
@@ -297,16 +311,18 @@ export type ImplementationWhereInput = {
   OR?: Prisma.ImplementationWhereInput[]
   NOT?: Prisma.ImplementationWhereInput | Prisma.ImplementationWhereInput[]
   id?: Prisma.UuidFilter<"Implementation"> | string
-  unitId?: Prisma.UuidFilter<"Implementation"> | string
-  companyId?: Prisma.UuidFilter<"Implementation"> | string
+  name?: Prisma.StringFilter<"Implementation"> | string
+  description?: Prisma.StringNullableFilter<"Implementation"> | string | null
+  unitId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
+  companyId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
   templateId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
   status?: Prisma.EnumImplementationStatusFilter<"Implementation"> | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFilter<"Implementation"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"Implementation"> | Date | string | null
-  templateName?: Prisma.StringFilter<"Implementation"> | string
+  templateName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   templateDescription?: Prisma.StringNullableFilter<"Implementation"> | string | null
-  unitName?: Prisma.StringFilter<"Implementation"> | string
-  companyTradeName?: Prisma.StringFilter<"Implementation"> | string
+  unitName?: Prisma.StringNullableFilter<"Implementation"> | string | null
+  companyTradeName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressZipCode?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressStreet?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressNumber?: Prisma.StringNullableFilter<"Implementation"> | string | null
@@ -318,26 +334,28 @@ export type ImplementationWhereInput = {
   initialProviderName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Implementation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Implementation"> | Date | string
-  unit?: Prisma.XOR<Prisma.UnitScalarRelationFilter, Prisma.UnitWhereInput>
-  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  unit?: Prisma.XOR<Prisma.UnitNullableScalarRelationFilter, Prisma.UnitWhereInput> | null
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
   template?: Prisma.XOR<Prisma.TemplateNullableScalarRelationFilter, Prisma.TemplateWhereInput> | null
   initialProvider?: Prisma.XOR<Prisma.ProviderNullableScalarRelationFilter, Prisma.ProviderWhereInput> | null
   stages?: Prisma.ImplementationStageListRelationFilter
-  formSnapshots?: Prisma.ImplementationFormSnapshotListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
 }
 
 export type ImplementationOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  unitId?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitId?: Prisma.SortOrderInput | Prisma.SortOrder
+  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
   templateId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  templateName?: Prisma.SortOrder
+  templateName?: Prisma.SortOrderInput | Prisma.SortOrder
   templateDescription?: Prisma.SortOrderInput | Prisma.SortOrder
-  unitName?: Prisma.SortOrder
-  companyTradeName?: Prisma.SortOrder
+  unitName?: Prisma.SortOrderInput | Prisma.SortOrder
+  companyTradeName?: Prisma.SortOrderInput | Prisma.SortOrder
   addressZipCode?: Prisma.SortOrderInput | Prisma.SortOrder
   addressStreet?: Prisma.SortOrderInput | Prisma.SortOrder
   addressNumber?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -354,7 +372,7 @@ export type ImplementationOrderByWithRelationInput = {
   template?: Prisma.TemplateOrderByWithRelationInput
   initialProvider?: Prisma.ProviderOrderByWithRelationInput
   stages?: Prisma.ImplementationStageOrderByRelationAggregateInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotOrderByRelationAggregateInput
+  activities?: Prisma.ActivityOrderByRelationAggregateInput
 }
 
 export type ImplementationWhereUniqueInput = Prisma.AtLeast<{
@@ -362,16 +380,18 @@ export type ImplementationWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ImplementationWhereInput | Prisma.ImplementationWhereInput[]
   OR?: Prisma.ImplementationWhereInput[]
   NOT?: Prisma.ImplementationWhereInput | Prisma.ImplementationWhereInput[]
-  unitId?: Prisma.UuidFilter<"Implementation"> | string
-  companyId?: Prisma.UuidFilter<"Implementation"> | string
+  name?: Prisma.StringFilter<"Implementation"> | string
+  description?: Prisma.StringNullableFilter<"Implementation"> | string | null
+  unitId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
+  companyId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
   templateId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
   status?: Prisma.EnumImplementationStatusFilter<"Implementation"> | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFilter<"Implementation"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"Implementation"> | Date | string | null
-  templateName?: Prisma.StringFilter<"Implementation"> | string
+  templateName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   templateDescription?: Prisma.StringNullableFilter<"Implementation"> | string | null
-  unitName?: Prisma.StringFilter<"Implementation"> | string
-  companyTradeName?: Prisma.StringFilter<"Implementation"> | string
+  unitName?: Prisma.StringNullableFilter<"Implementation"> | string | null
+  companyTradeName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressZipCode?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressStreet?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressNumber?: Prisma.StringNullableFilter<"Implementation"> | string | null
@@ -383,26 +403,28 @@ export type ImplementationWhereUniqueInput = Prisma.AtLeast<{
   initialProviderName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Implementation"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Implementation"> | Date | string
-  unit?: Prisma.XOR<Prisma.UnitScalarRelationFilter, Prisma.UnitWhereInput>
-  company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
+  unit?: Prisma.XOR<Prisma.UnitNullableScalarRelationFilter, Prisma.UnitWhereInput> | null
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
   template?: Prisma.XOR<Prisma.TemplateNullableScalarRelationFilter, Prisma.TemplateWhereInput> | null
   initialProvider?: Prisma.XOR<Prisma.ProviderNullableScalarRelationFilter, Prisma.ProviderWhereInput> | null
   stages?: Prisma.ImplementationStageListRelationFilter
-  formSnapshots?: Prisma.ImplementationFormSnapshotListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
 }, "id">
 
 export type ImplementationOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  unitId?: Prisma.SortOrder
-  companyId?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitId?: Prisma.SortOrderInput | Prisma.SortOrder
+  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
   templateId?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   startedAt?: Prisma.SortOrder
   completedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  templateName?: Prisma.SortOrder
+  templateName?: Prisma.SortOrderInput | Prisma.SortOrder
   templateDescription?: Prisma.SortOrderInput | Prisma.SortOrder
-  unitName?: Prisma.SortOrder
-  companyTradeName?: Prisma.SortOrder
+  unitName?: Prisma.SortOrderInput | Prisma.SortOrder
+  companyTradeName?: Prisma.SortOrderInput | Prisma.SortOrder
   addressZipCode?: Prisma.SortOrderInput | Prisma.SortOrder
   addressStreet?: Prisma.SortOrderInput | Prisma.SortOrder
   addressNumber?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -424,16 +446,18 @@ export type ImplementationScalarWhereWithAggregatesInput = {
   OR?: Prisma.ImplementationScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ImplementationScalarWhereWithAggregatesInput | Prisma.ImplementationScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"Implementation"> | string
-  unitId?: Prisma.UuidWithAggregatesFilter<"Implementation"> | string
-  companyId?: Prisma.UuidWithAggregatesFilter<"Implementation"> | string
+  name?: Prisma.StringWithAggregatesFilter<"Implementation"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
+  unitId?: Prisma.UuidNullableWithAggregatesFilter<"Implementation"> | string | null
+  companyId?: Prisma.UuidNullableWithAggregatesFilter<"Implementation"> | string | null
   templateId?: Prisma.UuidNullableWithAggregatesFilter<"Implementation"> | string | null
   status?: Prisma.EnumImplementationStatusWithAggregatesFilter<"Implementation"> | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeWithAggregatesFilter<"Implementation"> | Date | string
   completedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Implementation"> | Date | string | null
-  templateName?: Prisma.StringWithAggregatesFilter<"Implementation"> | string
+  templateName?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
   templateDescription?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
-  unitName?: Prisma.StringWithAggregatesFilter<"Implementation"> | string
-  companyTradeName?: Prisma.StringWithAggregatesFilter<"Implementation"> | string
+  unitName?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
+  companyTradeName?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
   addressZipCode?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
   addressStreet?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
   addressNumber?: Prisma.StringNullableWithAggregatesFilter<"Implementation"> | string | null
@@ -449,13 +473,15 @@ export type ImplementationScalarWhereWithAggregatesInput = {
 
 export type ImplementationCreateInput = {
   id?: string
+  name: string
+  description?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -466,26 +492,28 @@ export type ImplementationCreateInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  unit: Prisma.UnitCreateNestedOneWithoutImplementationsInput
-  company: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutImplementationsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
   template?: Prisma.TemplateCreateNestedOneWithoutImplementationsInput
   initialProvider?: Prisma.ProviderCreateNestedOneWithoutInitialImplementationsInput
   stages?: Prisma.ImplementationStageCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationUncheckedCreateInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -498,18 +526,20 @@ export type ImplementationUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stages?: Prisma.ImplementationStageUncheckedCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -520,26 +550,28 @@ export type ImplementationUpdateInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  unit?: Prisma.UnitUpdateOneRequiredWithoutImplementationsNestedInput
-  company?: Prisma.CompanyUpdateOneRequiredWithoutImplementationsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutImplementationsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutImplementationsNestedInput
   template?: Prisma.TemplateUpdateOneWithoutImplementationsNestedInput
   initialProvider?: Prisma.ProviderUpdateOneWithoutInitialImplementationsNestedInput
   stages?: Prisma.ImplementationStageUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -552,21 +584,23 @@ export type ImplementationUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stages?: Prisma.ImplementationStageUncheckedUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationCreateManyInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -582,13 +616,15 @@ export type ImplementationCreateManyInput = {
 
 export type ImplementationUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -603,16 +639,18 @@ export type ImplementationUpdateManyMutationInput = {
 
 export type ImplementationUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -638,6 +676,8 @@ export type ImplementationOrderByRelationAggregateInput = {
 
 export type ImplementationCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   unitId?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
@@ -663,6 +703,8 @@ export type ImplementationCountOrderByAggregateInput = {
 
 export type ImplementationMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   unitId?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
@@ -688,6 +730,8 @@ export type ImplementationMaxOrderByAggregateInput = {
 
 export type ImplementationMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
+  description?: Prisma.SortOrder
   unitId?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
@@ -714,6 +758,11 @@ export type ImplementationMinOrderByAggregateInput = {
 export type ImplementationScalarRelationFilter = {
   is?: Prisma.ImplementationWhereInput
   isNot?: Prisma.ImplementationWhereInput
+}
+
+export type ImplementationNullableScalarRelationFilter = {
+  is?: Prisma.ImplementationWhereInput | null
+  isNot?: Prisma.ImplementationWhereInput | null
 }
 
 export type ImplementationCreateNestedManyWithoutCompanyInput = {
@@ -902,29 +951,33 @@ export type ImplementationUpdateOneRequiredWithoutStagesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ImplementationUpdateToOneWithWhereWithoutStagesInput, Prisma.ImplementationUpdateWithoutStagesInput>, Prisma.ImplementationUncheckedUpdateWithoutStagesInput>
 }
 
-export type ImplementationCreateNestedOneWithoutFormSnapshotsInput = {
-  create?: Prisma.XOR<Prisma.ImplementationCreateWithoutFormSnapshotsInput, Prisma.ImplementationUncheckedCreateWithoutFormSnapshotsInput>
-  connectOrCreate?: Prisma.ImplementationCreateOrConnectWithoutFormSnapshotsInput
+export type ImplementationCreateNestedOneWithoutActivitiesInput = {
+  create?: Prisma.XOR<Prisma.ImplementationCreateWithoutActivitiesInput, Prisma.ImplementationUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.ImplementationCreateOrConnectWithoutActivitiesInput
   connect?: Prisma.ImplementationWhereUniqueInput
 }
 
-export type ImplementationUpdateOneRequiredWithoutFormSnapshotsNestedInput = {
-  create?: Prisma.XOR<Prisma.ImplementationCreateWithoutFormSnapshotsInput, Prisma.ImplementationUncheckedCreateWithoutFormSnapshotsInput>
-  connectOrCreate?: Prisma.ImplementationCreateOrConnectWithoutFormSnapshotsInput
-  upsert?: Prisma.ImplementationUpsertWithoutFormSnapshotsInput
+export type ImplementationUpdateOneWithoutActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.ImplementationCreateWithoutActivitiesInput, Prisma.ImplementationUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.ImplementationCreateOrConnectWithoutActivitiesInput
+  upsert?: Prisma.ImplementationUpsertWithoutActivitiesInput
+  disconnect?: Prisma.ImplementationWhereInput | boolean
+  delete?: Prisma.ImplementationWhereInput | boolean
   connect?: Prisma.ImplementationWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ImplementationUpdateToOneWithWhereWithoutFormSnapshotsInput, Prisma.ImplementationUpdateWithoutFormSnapshotsInput>, Prisma.ImplementationUncheckedUpdateWithoutFormSnapshotsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ImplementationUpdateToOneWithWhereWithoutActivitiesInput, Prisma.ImplementationUpdateWithoutActivitiesInput>, Prisma.ImplementationUncheckedUpdateWithoutActivitiesInput>
 }
 
 export type ImplementationCreateWithoutCompanyInput = {
   id?: string
+  name: string
+  description?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -935,24 +988,26 @@ export type ImplementationCreateWithoutCompanyInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  unit: Prisma.UnitCreateNestedOneWithoutImplementationsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutImplementationsInput
   template?: Prisma.TemplateCreateNestedOneWithoutImplementationsInput
   initialProvider?: Prisma.ProviderCreateNestedOneWithoutInitialImplementationsInput
   stages?: Prisma.ImplementationStageCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationUncheckedCreateWithoutCompanyInput = {
   id?: string
-  unitId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -965,7 +1020,7 @@ export type ImplementationUncheckedCreateWithoutCompanyInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stages?: Prisma.ImplementationStageUncheckedCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationCreateOrConnectWithoutCompanyInput = {
@@ -999,16 +1054,18 @@ export type ImplementationScalarWhereInput = {
   OR?: Prisma.ImplementationScalarWhereInput[]
   NOT?: Prisma.ImplementationScalarWhereInput | Prisma.ImplementationScalarWhereInput[]
   id?: Prisma.UuidFilter<"Implementation"> | string
-  unitId?: Prisma.UuidFilter<"Implementation"> | string
-  companyId?: Prisma.UuidFilter<"Implementation"> | string
+  name?: Prisma.StringFilter<"Implementation"> | string
+  description?: Prisma.StringNullableFilter<"Implementation"> | string | null
+  unitId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
+  companyId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
   templateId?: Prisma.UuidNullableFilter<"Implementation"> | string | null
   status?: Prisma.EnumImplementationStatusFilter<"Implementation"> | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFilter<"Implementation"> | Date | string
   completedAt?: Prisma.DateTimeNullableFilter<"Implementation"> | Date | string | null
-  templateName?: Prisma.StringFilter<"Implementation"> | string
+  templateName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   templateDescription?: Prisma.StringNullableFilter<"Implementation"> | string | null
-  unitName?: Prisma.StringFilter<"Implementation"> | string
-  companyTradeName?: Prisma.StringFilter<"Implementation"> | string
+  unitName?: Prisma.StringNullableFilter<"Implementation"> | string | null
+  companyTradeName?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressZipCode?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressStreet?: Prisma.StringNullableFilter<"Implementation"> | string | null
   addressNumber?: Prisma.StringNullableFilter<"Implementation"> | string | null
@@ -1024,13 +1081,15 @@ export type ImplementationScalarWhereInput = {
 
 export type ImplementationCreateWithoutInitialProviderInput = {
   id?: string
+  name: string
+  description?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1041,25 +1100,27 @@ export type ImplementationCreateWithoutInitialProviderInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  unit: Prisma.UnitCreateNestedOneWithoutImplementationsInput
-  company: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutImplementationsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
   template?: Prisma.TemplateCreateNestedOneWithoutImplementationsInput
   stages?: Prisma.ImplementationStageCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationUncheckedCreateWithoutInitialProviderInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1071,7 +1132,7 @@ export type ImplementationUncheckedCreateWithoutInitialProviderInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stages?: Prisma.ImplementationStageUncheckedCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationCreateOrConnectWithoutInitialProviderInput = {
@@ -1102,13 +1163,15 @@ export type ImplementationUpdateManyWithWhereWithoutInitialProviderInput = {
 
 export type ImplementationCreateWithoutUnitInput = {
   id?: string
+  name: string
+  description?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1119,24 +1182,26 @@ export type ImplementationCreateWithoutUnitInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  company: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
   template?: Prisma.TemplateCreateNestedOneWithoutImplementationsInput
   initialProvider?: Prisma.ProviderCreateNestedOneWithoutInitialImplementationsInput
   stages?: Prisma.ImplementationStageCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationUncheckedCreateWithoutUnitInput = {
   id?: string
-  companyId: string
+  name: string
+  description?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1149,7 +1214,7 @@ export type ImplementationUncheckedCreateWithoutUnitInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stages?: Prisma.ImplementationStageUncheckedCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationCreateOrConnectWithoutUnitInput = {
@@ -1180,13 +1245,15 @@ export type ImplementationUpdateManyWithWhereWithoutUnitInput = {
 
 export type ImplementationCreateWithoutTemplateInput = {
   id?: string
+  name: string
+  description?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1197,24 +1264,26 @@ export type ImplementationCreateWithoutTemplateInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  unit: Prisma.UnitCreateNestedOneWithoutImplementationsInput
-  company: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutImplementationsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
   initialProvider?: Prisma.ProviderCreateNestedOneWithoutInitialImplementationsInput
   stages?: Prisma.ImplementationStageCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationUncheckedCreateWithoutTemplateInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1227,7 +1296,7 @@ export type ImplementationUncheckedCreateWithoutTemplateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stages?: Prisma.ImplementationStageUncheckedCreateNestedManyWithoutImplementationInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationCreateOrConnectWithoutTemplateInput = {
@@ -1258,13 +1327,15 @@ export type ImplementationUpdateManyWithWhereWithoutTemplateInput = {
 
 export type ImplementationCreateWithoutStagesInput = {
   id?: string
+  name: string
+  description?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1275,25 +1346,27 @@ export type ImplementationCreateWithoutStagesInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  unit: Prisma.UnitCreateNestedOneWithoutImplementationsInput
-  company: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutImplementationsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
   template?: Prisma.TemplateCreateNestedOneWithoutImplementationsInput
   initialProvider?: Prisma.ProviderCreateNestedOneWithoutInitialImplementationsInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationUncheckedCreateWithoutStagesInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1305,7 +1378,7 @@ export type ImplementationUncheckedCreateWithoutStagesInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedCreateNestedManyWithoutImplementationInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutImplementationInput
 }
 
 export type ImplementationCreateOrConnectWithoutStagesInput = {
@@ -1326,13 +1399,15 @@ export type ImplementationUpdateToOneWithWhereWithoutStagesInput = {
 
 export type ImplementationUpdateWithoutStagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1343,25 +1418,27 @@ export type ImplementationUpdateWithoutStagesInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  unit?: Prisma.UnitUpdateOneRequiredWithoutImplementationsNestedInput
-  company?: Prisma.CompanyUpdateOneRequiredWithoutImplementationsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutImplementationsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutImplementationsNestedInput
   template?: Prisma.TemplateUpdateOneWithoutImplementationsNestedInput
   initialProvider?: Prisma.ProviderUpdateOneWithoutInitialImplementationsNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateWithoutStagesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1373,18 +1450,20 @@ export type ImplementationUncheckedUpdateWithoutStagesInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutImplementationNestedInput
 }
 
-export type ImplementationCreateWithoutFormSnapshotsInput = {
+export type ImplementationCreateWithoutActivitiesInput = {
   id?: string
+  name: string
+  description?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1395,25 +1474,27 @@ export type ImplementationCreateWithoutFormSnapshotsInput = {
   initialProviderName?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  unit: Prisma.UnitCreateNestedOneWithoutImplementationsInput
-  company: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutImplementationsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutImplementationsInput
   template?: Prisma.TemplateCreateNestedOneWithoutImplementationsInput
   initialProvider?: Prisma.ProviderCreateNestedOneWithoutInitialImplementationsInput
   stages?: Prisma.ImplementationStageCreateNestedManyWithoutImplementationInput
 }
 
-export type ImplementationUncheckedCreateWithoutFormSnapshotsInput = {
+export type ImplementationUncheckedCreateWithoutActivitiesInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1428,31 +1509,33 @@ export type ImplementationUncheckedCreateWithoutFormSnapshotsInput = {
   stages?: Prisma.ImplementationStageUncheckedCreateNestedManyWithoutImplementationInput
 }
 
-export type ImplementationCreateOrConnectWithoutFormSnapshotsInput = {
+export type ImplementationCreateOrConnectWithoutActivitiesInput = {
   where: Prisma.ImplementationWhereUniqueInput
-  create: Prisma.XOR<Prisma.ImplementationCreateWithoutFormSnapshotsInput, Prisma.ImplementationUncheckedCreateWithoutFormSnapshotsInput>
+  create: Prisma.XOR<Prisma.ImplementationCreateWithoutActivitiesInput, Prisma.ImplementationUncheckedCreateWithoutActivitiesInput>
 }
 
-export type ImplementationUpsertWithoutFormSnapshotsInput = {
-  update: Prisma.XOR<Prisma.ImplementationUpdateWithoutFormSnapshotsInput, Prisma.ImplementationUncheckedUpdateWithoutFormSnapshotsInput>
-  create: Prisma.XOR<Prisma.ImplementationCreateWithoutFormSnapshotsInput, Prisma.ImplementationUncheckedCreateWithoutFormSnapshotsInput>
+export type ImplementationUpsertWithoutActivitiesInput = {
+  update: Prisma.XOR<Prisma.ImplementationUpdateWithoutActivitiesInput, Prisma.ImplementationUncheckedUpdateWithoutActivitiesInput>
+  create: Prisma.XOR<Prisma.ImplementationCreateWithoutActivitiesInput, Prisma.ImplementationUncheckedCreateWithoutActivitiesInput>
   where?: Prisma.ImplementationWhereInput
 }
 
-export type ImplementationUpdateToOneWithWhereWithoutFormSnapshotsInput = {
+export type ImplementationUpdateToOneWithWhereWithoutActivitiesInput = {
   where?: Prisma.ImplementationWhereInput
-  data: Prisma.XOR<Prisma.ImplementationUpdateWithoutFormSnapshotsInput, Prisma.ImplementationUncheckedUpdateWithoutFormSnapshotsInput>
+  data: Prisma.XOR<Prisma.ImplementationUpdateWithoutActivitiesInput, Prisma.ImplementationUncheckedUpdateWithoutActivitiesInput>
 }
 
-export type ImplementationUpdateWithoutFormSnapshotsInput = {
+export type ImplementationUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1463,25 +1546,27 @@ export type ImplementationUpdateWithoutFormSnapshotsInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  unit?: Prisma.UnitUpdateOneRequiredWithoutImplementationsNestedInput
-  company?: Prisma.CompanyUpdateOneRequiredWithoutImplementationsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutImplementationsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutImplementationsNestedInput
   template?: Prisma.TemplateUpdateOneWithoutImplementationsNestedInput
   initialProvider?: Prisma.ProviderUpdateOneWithoutInitialImplementationsNestedInput
   stages?: Prisma.ImplementationStageUpdateManyWithoutImplementationNestedInput
 }
 
-export type ImplementationUncheckedUpdateWithoutFormSnapshotsInput = {
+export type ImplementationUncheckedUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1498,15 +1583,17 @@ export type ImplementationUncheckedUpdateWithoutFormSnapshotsInput = {
 
 export type ImplementationCreateManyCompanyInput = {
   id?: string
-  unitId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1522,13 +1609,15 @@ export type ImplementationCreateManyCompanyInput = {
 
 export type ImplementationUpdateWithoutCompanyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1539,24 +1628,26 @@ export type ImplementationUpdateWithoutCompanyInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  unit?: Prisma.UnitUpdateOneRequiredWithoutImplementationsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutImplementationsNestedInput
   template?: Prisma.TemplateUpdateOneWithoutImplementationsNestedInput
   initialProvider?: Prisma.ProviderUpdateOneWithoutInitialImplementationsNestedInput
   stages?: Prisma.ImplementationStageUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateWithoutCompanyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1569,20 +1660,22 @@ export type ImplementationUncheckedUpdateWithoutCompanyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stages?: Prisma.ImplementationStageUncheckedUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateManyWithoutCompanyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1598,16 +1691,18 @@ export type ImplementationUncheckedUpdateManyWithoutCompanyInput = {
 
 export type ImplementationCreateManyInitialProviderInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1622,13 +1717,15 @@ export type ImplementationCreateManyInitialProviderInput = {
 
 export type ImplementationUpdateWithoutInitialProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1639,25 +1736,27 @@ export type ImplementationUpdateWithoutInitialProviderInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  unit?: Prisma.UnitUpdateOneRequiredWithoutImplementationsNestedInput
-  company?: Prisma.CompanyUpdateOneRequiredWithoutImplementationsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutImplementationsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutImplementationsNestedInput
   template?: Prisma.TemplateUpdateOneWithoutImplementationsNestedInput
   stages?: Prisma.ImplementationStageUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateWithoutInitialProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1669,21 +1768,23 @@ export type ImplementationUncheckedUpdateWithoutInitialProviderInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stages?: Prisma.ImplementationStageUncheckedUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateManyWithoutInitialProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1698,15 +1799,17 @@ export type ImplementationUncheckedUpdateManyWithoutInitialProviderInput = {
 
 export type ImplementationCreateManyUnitInput = {
   id?: string
-  companyId: string
+  name: string
+  description?: string | null
+  companyId?: string | null
   templateId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1722,13 +1825,15 @@ export type ImplementationCreateManyUnitInput = {
 
 export type ImplementationUpdateWithoutUnitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1739,24 +1844,26 @@ export type ImplementationUpdateWithoutUnitInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  company?: Prisma.CompanyUpdateOneRequiredWithoutImplementationsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutImplementationsNestedInput
   template?: Prisma.TemplateUpdateOneWithoutImplementationsNestedInput
   initialProvider?: Prisma.ProviderUpdateOneWithoutInitialImplementationsNestedInput
   stages?: Prisma.ImplementationStageUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateWithoutUnitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1769,20 +1876,22 @@ export type ImplementationUncheckedUpdateWithoutUnitInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stages?: Prisma.ImplementationStageUncheckedUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateManyWithoutUnitInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1798,15 +1907,17 @@ export type ImplementationUncheckedUpdateManyWithoutUnitInput = {
 
 export type ImplementationCreateManyTemplateInput = {
   id?: string
-  unitId: string
-  companyId: string
+  name: string
+  description?: string | null
+  unitId?: string | null
+  companyId?: string | null
   status?: $Enums.ImplementationStatus
   startedAt?: Date | string
   completedAt?: Date | string | null
-  templateName: string
+  templateName?: string | null
   templateDescription?: string | null
-  unitName: string
-  companyTradeName: string
+  unitName?: string | null
+  companyTradeName?: string | null
   addressZipCode?: string | null
   addressStreet?: string | null
   addressNumber?: string | null
@@ -1822,13 +1933,15 @@ export type ImplementationCreateManyTemplateInput = {
 
 export type ImplementationUpdateWithoutTemplateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1839,24 +1952,26 @@ export type ImplementationUpdateWithoutTemplateInput = {
   initialProviderName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  unit?: Prisma.UnitUpdateOneRequiredWithoutImplementationsNestedInput
-  company?: Prisma.CompanyUpdateOneRequiredWithoutImplementationsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutImplementationsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutImplementationsNestedInput
   initialProvider?: Prisma.ProviderUpdateOneWithoutInitialImplementationsNestedInput
   stages?: Prisma.ImplementationStageUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateWithoutTemplateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1869,20 +1984,22 @@ export type ImplementationUncheckedUpdateWithoutTemplateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stages?: Prisma.ImplementationStageUncheckedUpdateManyWithoutImplementationNestedInput
-  formSnapshots?: Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutImplementationNestedInput
 }
 
 export type ImplementationUncheckedUpdateManyWithoutTemplateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  unitId?: Prisma.StringFieldUpdateOperationsInput | string
-  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumImplementationStatusFieldUpdateOperationsInput | $Enums.ImplementationStatus
   startedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   completedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  templateName?: Prisma.StringFieldUpdateOperationsInput | string
+  templateName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   templateDescription?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  unitName?: Prisma.StringFieldUpdateOperationsInput | string
-  companyTradeName?: Prisma.StringFieldUpdateOperationsInput | string
+  unitName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyTradeName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressZipCode?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressStreet?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   addressNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1903,12 +2020,12 @@ export type ImplementationUncheckedUpdateManyWithoutTemplateInput = {
 
 export type ImplementationCountOutputType = {
   stages: number
-  formSnapshots: number
+  activities: number
 }
 
 export type ImplementationCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stages?: boolean | ImplementationCountOutputTypeCountStagesArgs
-  formSnapshots?: boolean | ImplementationCountOutputTypeCountFormSnapshotsArgs
+  activities?: boolean | ImplementationCountOutputTypeCountActivitiesArgs
 }
 
 /**
@@ -1931,13 +2048,15 @@ export type ImplementationCountOutputTypeCountStagesArgs<ExtArgs extends runtime
 /**
  * ImplementationCountOutputType without action
  */
-export type ImplementationCountOutputTypeCountFormSnapshotsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ImplementationFormSnapshotWhereInput
+export type ImplementationCountOutputTypeCountActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
 }
 
 
 export type ImplementationSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
+  description?: boolean
   unitId?: boolean
   companyId?: boolean
   templateId?: boolean
@@ -1959,17 +2078,19 @@ export type ImplementationSelect<ExtArgs extends runtime.Types.Extensions.Intern
   initialProviderName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.Implementation$unitArgs<ExtArgs>
+  company?: boolean | Prisma.Implementation$companyArgs<ExtArgs>
   template?: boolean | Prisma.Implementation$templateArgs<ExtArgs>
   initialProvider?: boolean | Prisma.Implementation$initialProviderArgs<ExtArgs>
   stages?: boolean | Prisma.Implementation$stagesArgs<ExtArgs>
-  formSnapshots?: boolean | Prisma.Implementation$formSnapshotsArgs<ExtArgs>
+  activities?: boolean | Prisma.Implementation$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.ImplementationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["implementation"]>
 
 export type ImplementationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
+  description?: boolean
   unitId?: boolean
   companyId?: boolean
   templateId?: boolean
@@ -1991,14 +2112,16 @@ export type ImplementationSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   initialProviderName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.Implementation$unitArgs<ExtArgs>
+  company?: boolean | Prisma.Implementation$companyArgs<ExtArgs>
   template?: boolean | Prisma.Implementation$templateArgs<ExtArgs>
   initialProvider?: boolean | Prisma.Implementation$initialProviderArgs<ExtArgs>
 }, ExtArgs["result"]["implementation"]>
 
 export type ImplementationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
+  description?: boolean
   unitId?: boolean
   companyId?: boolean
   templateId?: boolean
@@ -2020,14 +2143,16 @@ export type ImplementationSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   initialProviderName?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.Implementation$unitArgs<ExtArgs>
+  company?: boolean | Prisma.Implementation$companyArgs<ExtArgs>
   template?: boolean | Prisma.Implementation$templateArgs<ExtArgs>
   initialProvider?: boolean | Prisma.Implementation$initialProviderArgs<ExtArgs>
 }, ExtArgs["result"]["implementation"]>
 
 export type ImplementationSelectScalar = {
   id?: boolean
+  name?: boolean
+  description?: boolean
   unitId?: boolean
   companyId?: boolean
   templateId?: boolean
@@ -2051,25 +2176,25 @@ export type ImplementationSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ImplementationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "unitId" | "companyId" | "templateId" | "status" | "startedAt" | "completedAt" | "templateName" | "templateDescription" | "unitName" | "companyTradeName" | "addressZipCode" | "addressStreet" | "addressNumber" | "addressComplement" | "addressNeighborhood" | "addressCity" | "addressState" | "initialProviderId" | "initialProviderName" | "createdAt" | "updatedAt", ExtArgs["result"]["implementation"]>
+export type ImplementationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "unitId" | "companyId" | "templateId" | "status" | "startedAt" | "completedAt" | "templateName" | "templateDescription" | "unitName" | "companyTradeName" | "addressZipCode" | "addressStreet" | "addressNumber" | "addressComplement" | "addressNeighborhood" | "addressCity" | "addressState" | "initialProviderId" | "initialProviderName" | "createdAt" | "updatedAt", ExtArgs["result"]["implementation"]>
 export type ImplementationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.Implementation$unitArgs<ExtArgs>
+  company?: boolean | Prisma.Implementation$companyArgs<ExtArgs>
   template?: boolean | Prisma.Implementation$templateArgs<ExtArgs>
   initialProvider?: boolean | Prisma.Implementation$initialProviderArgs<ExtArgs>
   stages?: boolean | Prisma.Implementation$stagesArgs<ExtArgs>
-  formSnapshots?: boolean | Prisma.Implementation$formSnapshotsArgs<ExtArgs>
+  activities?: boolean | Prisma.Implementation$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.ImplementationCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ImplementationIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.Implementation$unitArgs<ExtArgs>
+  company?: boolean | Prisma.Implementation$companyArgs<ExtArgs>
   template?: boolean | Prisma.Implementation$templateArgs<ExtArgs>
   initialProvider?: boolean | Prisma.Implementation$initialProviderArgs<ExtArgs>
 }
 export type ImplementationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  unit?: boolean | Prisma.UnitDefaultArgs<ExtArgs>
-  company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
+  unit?: boolean | Prisma.Implementation$unitArgs<ExtArgs>
+  company?: boolean | Prisma.Implementation$companyArgs<ExtArgs>
   template?: boolean | Prisma.Implementation$templateArgs<ExtArgs>
   initialProvider?: boolean | Prisma.Implementation$initialProviderArgs<ExtArgs>
 }
@@ -2077,25 +2202,27 @@ export type ImplementationIncludeUpdateManyAndReturn<ExtArgs extends runtime.Typ
 export type $ImplementationPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Implementation"
   objects: {
-    unit: Prisma.$UnitPayload<ExtArgs>
-    company: Prisma.$CompanyPayload<ExtArgs>
+    unit: Prisma.$UnitPayload<ExtArgs> | null
+    company: Prisma.$CompanyPayload<ExtArgs> | null
     template: Prisma.$TemplatePayload<ExtArgs> | null
     initialProvider: Prisma.$ProviderPayload<ExtArgs> | null
     stages: Prisma.$ImplementationStagePayload<ExtArgs>[]
-    formSnapshots: Prisma.$ImplementationFormSnapshotPayload<ExtArgs>[]
+    activities: Prisma.$ActivityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    unitId: string
-    companyId: string
+    name: string
+    description: string | null
+    unitId: string | null
+    companyId: string | null
     templateId: string | null
     status: $Enums.ImplementationStatus
     startedAt: Date
     completedAt: Date | null
-    templateName: string
+    templateName: string | null
     templateDescription: string | null
-    unitName: string
-    companyTradeName: string
+    unitName: string | null
+    companyTradeName: string | null
     addressZipCode: string | null
     addressStreet: string | null
     addressNumber: string | null
@@ -2501,12 +2628,12 @@ readonly fields: ImplementationFieldRefs;
  */
 export interface Prisma__ImplementationClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  unit<T extends Prisma.UnitDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UnitDefaultArgs<ExtArgs>>): Prisma.Prisma__UnitClient<runtime.Types.Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  unit<T extends Prisma.Implementation$unitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Implementation$unitArgs<ExtArgs>>): Prisma.Prisma__UnitClient<runtime.Types.Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  company<T extends Prisma.Implementation$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Implementation$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   template<T extends Prisma.Implementation$templateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Implementation$templateArgs<ExtArgs>>): Prisma.Prisma__TemplateClient<runtime.Types.Result.GetResult<Prisma.$TemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   initialProvider<T extends Prisma.Implementation$initialProviderArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Implementation$initialProviderArgs<ExtArgs>>): Prisma.Prisma__ProviderClient<runtime.Types.Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   stages<T extends Prisma.Implementation$stagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Implementation$stagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationStagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  formSnapshots<T extends Prisma.Implementation$formSnapshotsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Implementation$formSnapshotsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationFormSnapshotPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activities<T extends Prisma.Implementation$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Implementation$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2537,6 +2664,8 @@ export interface Prisma__ImplementationClient<T, Null = never, ExtArgs extends r
  */
 export interface ImplementationFieldRefs {
   readonly id: Prisma.FieldRef<"Implementation", 'String'>
+  readonly name: Prisma.FieldRef<"Implementation", 'String'>
+  readonly description: Prisma.FieldRef<"Implementation", 'String'>
   readonly unitId: Prisma.FieldRef<"Implementation", 'String'>
   readonly companyId: Prisma.FieldRef<"Implementation", 'String'>
   readonly templateId: Prisma.FieldRef<"Implementation", 'String'>
@@ -2959,6 +3088,44 @@ export type ImplementationDeleteManyArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
+ * Implementation.unit
+ */
+export type Implementation$unitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Unit
+   */
+  select?: Prisma.UnitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Unit
+   */
+  omit?: Prisma.UnitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UnitInclude<ExtArgs> | null
+  where?: Prisma.UnitWhereInput
+}
+
+/**
+ * Implementation.company
+ */
+export type Implementation$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Company
+   */
+  select?: Prisma.CompanySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Company
+   */
+  omit?: Prisma.CompanyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyInclude<ExtArgs> | null
+  where?: Prisma.CompanyWhereInput
+}
+
+/**
  * Implementation.template
  */
 export type Implementation$templateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3021,27 +3188,27 @@ export type Implementation$stagesArgs<ExtArgs extends runtime.Types.Extensions.I
 }
 
 /**
- * Implementation.formSnapshots
+ * Implementation.activities
  */
-export type Implementation$formSnapshotsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Implementation$activitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ImplementationFormSnapshot
+   * Select specific fields to fetch from the Activity
    */
-  select?: Prisma.ImplementationFormSnapshotSelect<ExtArgs> | null
+  select?: Prisma.ActivitySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ImplementationFormSnapshot
+   * Omit specific fields from the Activity
    */
-  omit?: Prisma.ImplementationFormSnapshotOmit<ExtArgs> | null
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ImplementationFormSnapshotInclude<ExtArgs> | null
-  where?: Prisma.ImplementationFormSnapshotWhereInput
-  orderBy?: Prisma.ImplementationFormSnapshotOrderByWithRelationInput | Prisma.ImplementationFormSnapshotOrderByWithRelationInput[]
-  cursor?: Prisma.ImplementationFormSnapshotWhereUniqueInput
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ImplementationFormSnapshotScalarFieldEnum | Prisma.ImplementationFormSnapshotScalarFieldEnum[]
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
 }
 
 /**

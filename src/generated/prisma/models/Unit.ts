@@ -211,6 +211,7 @@ export type UnitWhereInput = {
   documents?: Prisma.UnitDocumentListRelationFilter
   connectivities?: Prisma.UnitConnectivityListRelationFilter
   implementations?: Prisma.ImplementationListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
 }
 
 export type UnitOrderByWithRelationInput = {
@@ -227,6 +228,7 @@ export type UnitOrderByWithRelationInput = {
   documents?: Prisma.UnitDocumentOrderByRelationAggregateInput
   connectivities?: Prisma.UnitConnectivityOrderByRelationAggregateInput
   implementations?: Prisma.ImplementationOrderByRelationAggregateInput
+  activities?: Prisma.ActivityOrderByRelationAggregateInput
 }
 
 export type UnitWhereUniqueInput = Prisma.AtLeast<{
@@ -246,6 +248,7 @@ export type UnitWhereUniqueInput = Prisma.AtLeast<{
   documents?: Prisma.UnitDocumentListRelationFilter
   connectivities?: Prisma.UnitConnectivityListRelationFilter
   implementations?: Prisma.ImplementationListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
 }, "id">
 
 export type UnitOrderByWithAggregationInput = {
@@ -289,6 +292,7 @@ export type UnitCreateInput = {
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
 
 export type UnitUncheckedCreateInput = {
@@ -304,6 +308,7 @@ export type UnitUncheckedCreateInput = {
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
 
 export type UnitUpdateInput = {
@@ -319,6 +324,7 @@ export type UnitUpdateInput = {
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitUncheckedUpdateInput = {
@@ -334,6 +340,7 @@ export type UnitUncheckedUpdateInput = {
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitCreateManyInput = {
@@ -414,6 +421,11 @@ export type UnitMinOrderByAggregateInput = {
 export type UnitScalarRelationFilter = {
   is?: Prisma.UnitWhereInput
   isNot?: Prisma.UnitWhereInput
+}
+
+export type UnitNullableScalarRelationFilter = {
+  is?: Prisma.UnitWhereInput | null
+  isNot?: Prisma.UnitWhereInput | null
 }
 
 export type UnitCreateNestedManyWithoutCompanyInput = {
@@ -506,12 +518,30 @@ export type UnitCreateNestedOneWithoutImplementationsInput = {
   connect?: Prisma.UnitWhereUniqueInput
 }
 
-export type UnitUpdateOneRequiredWithoutImplementationsNestedInput = {
+export type UnitUpdateOneWithoutImplementationsNestedInput = {
   create?: Prisma.XOR<Prisma.UnitCreateWithoutImplementationsInput, Prisma.UnitUncheckedCreateWithoutImplementationsInput>
   connectOrCreate?: Prisma.UnitCreateOrConnectWithoutImplementationsInput
   upsert?: Prisma.UnitUpsertWithoutImplementationsInput
+  disconnect?: Prisma.UnitWhereInput | boolean
+  delete?: Prisma.UnitWhereInput | boolean
   connect?: Prisma.UnitWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UnitUpdateToOneWithWhereWithoutImplementationsInput, Prisma.UnitUpdateWithoutImplementationsInput>, Prisma.UnitUncheckedUpdateWithoutImplementationsInput>
+}
+
+export type UnitCreateNestedOneWithoutActivitiesInput = {
+  create?: Prisma.XOR<Prisma.UnitCreateWithoutActivitiesInput, Prisma.UnitUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.UnitCreateOrConnectWithoutActivitiesInput
+  connect?: Prisma.UnitWhereUniqueInput
+}
+
+export type UnitUpdateOneWithoutActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.UnitCreateWithoutActivitiesInput, Prisma.UnitUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.UnitCreateOrConnectWithoutActivitiesInput
+  upsert?: Prisma.UnitUpsertWithoutActivitiesInput
+  disconnect?: Prisma.UnitWhereInput | boolean
+  delete?: Prisma.UnitWhereInput | boolean
+  connect?: Prisma.UnitWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UnitUpdateToOneWithWhereWithoutActivitiesInput, Prisma.UnitUpdateWithoutActivitiesInput>, Prisma.UnitUncheckedUpdateWithoutActivitiesInput>
 }
 
 export type UnitCreateWithoutCompanyInput = {
@@ -526,6 +556,7 @@ export type UnitCreateWithoutCompanyInput = {
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
 
 export type UnitUncheckedCreateWithoutCompanyInput = {
@@ -540,6 +571,7 @@ export type UnitUncheckedCreateWithoutCompanyInput = {
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
 
 export type UnitCreateOrConnectWithoutCompanyInput = {
@@ -594,6 +626,7 @@ export type UnitCreateWithoutAddressInput = {
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
 
 export type UnitUncheckedCreateWithoutAddressInput = {
@@ -608,6 +641,7 @@ export type UnitUncheckedCreateWithoutAddressInput = {
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
 
 export type UnitCreateOrConnectWithoutAddressInput = {
@@ -638,6 +672,7 @@ export type UnitUpdateWithoutAddressInput = {
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitUncheckedUpdateWithoutAddressInput = {
@@ -652,6 +687,7 @@ export type UnitUncheckedUpdateWithoutAddressInput = {
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitCreateWithoutDocumentsInput = {
@@ -666,6 +702,7 @@ export type UnitCreateWithoutDocumentsInput = {
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
 
 export type UnitUncheckedCreateWithoutDocumentsInput = {
@@ -680,6 +717,7 @@ export type UnitUncheckedCreateWithoutDocumentsInput = {
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
 
 export type UnitCreateOrConnectWithoutDocumentsInput = {
@@ -710,6 +748,7 @@ export type UnitUpdateWithoutDocumentsInput = {
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitUncheckedUpdateWithoutDocumentsInput = {
@@ -724,6 +763,7 @@ export type UnitUncheckedUpdateWithoutDocumentsInput = {
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitCreateWithoutConnectivitiesInput = {
@@ -738,6 +778,7 @@ export type UnitCreateWithoutConnectivitiesInput = {
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
 
 export type UnitUncheckedCreateWithoutConnectivitiesInput = {
@@ -752,6 +793,7 @@ export type UnitUncheckedCreateWithoutConnectivitiesInput = {
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
 
 export type UnitCreateOrConnectWithoutConnectivitiesInput = {
@@ -782,6 +824,7 @@ export type UnitUpdateWithoutConnectivitiesInput = {
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitUncheckedUpdateWithoutConnectivitiesInput = {
@@ -796,6 +839,7 @@ export type UnitUncheckedUpdateWithoutConnectivitiesInput = {
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitCreateWithoutImplementationsInput = {
@@ -810,6 +854,7 @@ export type UnitCreateWithoutImplementationsInput = {
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
 
 export type UnitUncheckedCreateWithoutImplementationsInput = {
@@ -824,6 +869,7 @@ export type UnitUncheckedCreateWithoutImplementationsInput = {
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
 
 export type UnitCreateOrConnectWithoutImplementationsInput = {
@@ -854,6 +900,7 @@ export type UnitUpdateWithoutImplementationsInput = {
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitUncheckedUpdateWithoutImplementationsInput = {
@@ -868,6 +915,83 @@ export type UnitUncheckedUpdateWithoutImplementationsInput = {
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
+}
+
+export type UnitCreateWithoutActivitiesInput = {
+  id?: string
+  name: string
+  type: string
+  status?: string
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
+  address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
+  documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
+  implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
+}
+
+export type UnitUncheckedCreateWithoutActivitiesInput = {
+  id?: string
+  companyId: string
+  name: string
+  type: string
+  status?: string
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
+  documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
+  implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
+}
+
+export type UnitCreateOrConnectWithoutActivitiesInput = {
+  where: Prisma.UnitWhereUniqueInput
+  create: Prisma.XOR<Prisma.UnitCreateWithoutActivitiesInput, Prisma.UnitUncheckedCreateWithoutActivitiesInput>
+}
+
+export type UnitUpsertWithoutActivitiesInput = {
+  update: Prisma.XOR<Prisma.UnitUpdateWithoutActivitiesInput, Prisma.UnitUncheckedUpdateWithoutActivitiesInput>
+  create: Prisma.XOR<Prisma.UnitCreateWithoutActivitiesInput, Prisma.UnitUncheckedCreateWithoutActivitiesInput>
+  where?: Prisma.UnitWhereInput
+}
+
+export type UnitUpdateToOneWithWhereWithoutActivitiesInput = {
+  where?: Prisma.UnitWhereInput
+  data: Prisma.XOR<Prisma.UnitUpdateWithoutActivitiesInput, Prisma.UnitUncheckedUpdateWithoutActivitiesInput>
+}
+
+export type UnitUpdateWithoutActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
+  address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
+  documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
+  implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
+}
+
+export type UnitUncheckedUpdateWithoutActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
+  documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
+  implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitCreateManyCompanyInput = {
@@ -892,6 +1016,7 @@ export type UnitUpdateWithoutCompanyInput = {
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitUncheckedUpdateWithoutCompanyInput = {
@@ -906,6 +1031,7 @@ export type UnitUncheckedUpdateWithoutCompanyInput = {
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
 }
 
 export type UnitUncheckedUpdateManyWithoutCompanyInput = {
@@ -927,12 +1053,14 @@ export type UnitCountOutputType = {
   documents: number
   connectivities: number
   implementations: number
+  activities: number
 }
 
 export type UnitCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   documents?: boolean | UnitCountOutputTypeCountDocumentsArgs
   connectivities?: boolean | UnitCountOutputTypeCountConnectivitiesArgs
   implementations?: boolean | UnitCountOutputTypeCountImplementationsArgs
+  activities?: boolean | UnitCountOutputTypeCountActivitiesArgs
 }
 
 /**
@@ -966,6 +1094,13 @@ export type UnitCountOutputTypeCountImplementationsArgs<ExtArgs extends runtime.
   where?: Prisma.ImplementationWhereInput
 }
 
+/**
+ * UnitCountOutputType without action
+ */
+export type UnitCountOutputTypeCountActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
+}
+
 
 export type UnitSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -981,6 +1116,7 @@ export type UnitSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   documents?: boolean | Prisma.Unit$documentsArgs<ExtArgs>
   connectivities?: boolean | Prisma.Unit$connectivitiesArgs<ExtArgs>
   implementations?: boolean | Prisma.Unit$implementationsArgs<ExtArgs>
+  activities?: boolean | Prisma.Unit$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.UnitCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["unit"]>
 
@@ -1026,6 +1162,7 @@ export type UnitInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   documents?: boolean | Prisma.Unit$documentsArgs<ExtArgs>
   connectivities?: boolean | Prisma.Unit$connectivitiesArgs<ExtArgs>
   implementations?: boolean | Prisma.Unit$implementationsArgs<ExtArgs>
+  activities?: boolean | Prisma.Unit$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.UnitCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UnitIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1043,6 +1180,7 @@ export type $UnitPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     documents: Prisma.$UnitDocumentPayload<ExtArgs>[]
     connectivities: Prisma.$UnitConnectivityPayload<ExtArgs>[]
     implementations: Prisma.$ImplementationPayload<ExtArgs>[]
+    activities: Prisma.$ActivityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1452,6 +1590,7 @@ export interface Prisma__UnitClient<T, Null = never, ExtArgs extends runtime.Typ
   documents<T extends Prisma.Unit$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnitDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   connectivities<T extends Prisma.Unit$connectivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$connectivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnitConnectivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   implementations<T extends Prisma.Unit$implementationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$implementationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activities<T extends Prisma.Unit$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1978,6 +2117,30 @@ export type Unit$implementationsArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.ImplementationScalarFieldEnum | Prisma.ImplementationScalarFieldEnum[]
+}
+
+/**
+ * Unit.activities
+ */
+export type Unit$activitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Activity
+   */
+  select?: Prisma.ActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Activity
+   */
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
 }
 
 /**

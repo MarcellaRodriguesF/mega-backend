@@ -19,7 +19,7 @@ model User {
   updatedAt       DateTime  @updatedAt @map("updated_at")
 
   assignedOpportunities     Opportunity[]                      @relation("OpportunityOwner")
-  implementationAssignments ImplementationActivityAssignment[]
+  activityAssignments       ActivityAssignment[]
   accessProfile             AccessProfile                      @relation(fields: [accessProfileId], references: [id])
 
   @@index([accessProfileId])
@@ -84,6 +84,7 @@ model Company {
   opportunities   Opportunity[]
   units           Unit[]
   implementations Implementation[]
+  activities      Activity[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -189,7 +190,8 @@ model Provider {
   contacts                ProviderContact[]
   documents               ProviderDocument[]
   connectivities          UnitConnectivity[]
-  initialImplementations  Implementation[]       @relation("ImplementationInitialProvider")
+  initialImplementations  Implementation[] @relation("ImplementationInitialProvider")
+  initialActivities       Activity[]       @relation("ActivityInitialProvider")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -257,6 +259,7 @@ model Unit {
   documents       UnitDocument[]
   connectivities  UnitConnectivity[]
   implementations Implementation[]
+  activities      Activity[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -447,7 +450,7 @@ model TemplateActivity {
 
   stage                    TemplateStage              @relation(fields: [stageId], references: [id], onDelete: Cascade)
   requirements             ActivityRequirement[]
-  implementationActivities ImplementationActivity[]
+  activities               Activity[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -556,9 +559,9 @@ enum ImplementationWorkStatus {
 
 // Distingue quem pode preencher a atividade de quem pode concluí-la.
 // A validação dessa autorização entra na conclusão da atividade.
-enum ImplementationAssignmentRole {
-  EXECUTION
-  COMPLETION
+enum ActivityAssignmentRole {
+  EXECUTOR
+  SUPERVISOR
 
   @@map("implementation_assignment_role")
 }
@@ -590,18 +593,20 @@ enum ConnectivityFieldTarget {
 
 model Implementation {
   id          String               @id @default(uuid()) @db.Uuid
-  unitId      String               @map("unit_id") @db.Uuid
-  companyId   String               @map("company_id") @db.Uuid
+  name        String               @db.VarChar(255)
+  description String?              @db.Text
+  unitId      String?              @map("unit_id") @db.Uuid
+  companyId   String?              @map("company_id") @db.Uuid
   templateId  String?              @map("template_id") @db.Uuid
   status      ImplementationStatus @default(IN_PROGRESS)
   startedAt   DateTime             @default(now()) @map("started_at")
   completedAt DateTime?            @map("completed_at")
 
-  templateName        String  @map("template_name") @db.VarChar(255)
+  templateName        String? @map("template_name") @db.VarChar(255)
   templateDescription String? @map("template_description") @db.Text
 
-  unitName         String @map("unit_name") @db.VarChar(255)
-  companyTradeName String @map("company_trade_name") @db.VarChar(255)
+  unitName         String? @map("unit_name") @db.VarChar(255)
+  companyTradeName String? @map("company_trade_name") @db.VarChar(255)
 
   addressZipCode      String? @map("address_zip_code") @db.VarChar(8)
   addressStreet       String? @map("address_street") @db.VarChar(255)
@@ -614,13 +619,13 @@ model Implementation {
   initialProviderId   String? @map("initial_provider_id") @db.Uuid
   initialProviderName String? @map("initial_provider_name") @db.VarChar(255)
 
-  unit            Unit      @relation(fields: [unitId], references: [id], onDelete: Restrict)
-  company         Company   @relation(fields: [companyId], references: [id], onDelete: Restrict)
+  unit            Unit?     @relation(fields: [unitId], references: [id], onDelete: Restrict)
+  company         Company?  @relation(fields: [companyId], references: [id], onDelete: Restrict)
   template        Template? @relation(fields: [templateId], references: [id], onDelete: SetNull)
   initialProvider Provider? @relation("ImplementationInitialProvider", fields: [initialProviderId], references: [id], onDelete: SetNull)
 
-  stages        ImplementationStage[]
-  formSnapshots ImplementationFormSnapshot[]
+  stages     ImplementationStage[]
+  activities Activity[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -629,6 +634,7 @@ model Implementation {
   @@index([companyId])
   @@index([templateId])
   @@index([status])
+  @@index([name])
   @@index([initialProviderId])
   @@index([startedAt])
   @@map("implementations")
@@ -646,8 +652,8 @@ model ImplementationStage {
   completedAt      DateTime?                @map("completed_at")
 
   implementation Implementation    @relation(fields: [implementationId], references: [id], onDelete: Cascade)
-  sourceStage    TemplateStage?    @relation(fields: [sourceStageId], references: [id], onDelete: SetNull)
-  activities     ImplementationActivity[]
+  sourceStage    TemplateStage? @relation(fields: [sourceStageId], references: [id], onDelete: SetNull)
+  activities     Activity[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -658,46 +664,132 @@ model ImplementationStage {
   @@map("implementation_stages")
 }
 
-model ImplementationActivity {
-  id            String                   @id @default(uuid()) @db.Uuid
-  stageId       String                   @map("stage_id") @db.Uuid
-  sourceActivityId String?               @map("source_activity_id") @db.Uuid
-  name          String                   @db.VarChar(255)
-  description   String?                  @db.Text
-  order         Int
-  status        ImplementationWorkStatus @default(NOT_STARTED)
-  startedAt     DateTime?                @map("started_at")
-  completedAt   DateTime?                @map("completed_at")
+model Activity {
+  id               String                   @id @default(uuid()) @db.Uuid
+  implementationId String?                  @map("implementation_id") @db.Uuid
+  stageId          String?                  @map("stage_id") @db.Uuid
+  sourceActivityId String?                  @map("source_activity_id") @db.Uuid
+  companyId        String?                  @map("company_id") @db.Uuid
+  unitId           String?                  @map("unit_id") @db.Uuid
+  name             String                   @db.VarChar(255)
+  description      String?                  @db.Text
+  order            Int                      @default(0)
+  status           ImplementationWorkStatus @default(NOT_STARTED)
+  startedAt        DateTime?                @map("started_at")
+  completedAt      DateTime?                @map("completed_at")
 
-  stage        ImplementationStage              @relation(fields: [stageId], references: [id], onDelete: Cascade)
-  sourceActivity TemplateActivity?              @relation(fields: [sourceActivityId], references: [id], onDelete: SetNull)
-  requirements ImplementationRequirement[]
-  assignments  ImplementationActivityAssignment[]
+  unitName         String? @map("unit_name") @db.VarChar(255)
+  companyTradeName String? @map("company_trade_name") @db.VarChar(255)
+
+  addressZipCode      String? @map("address_zip_code") @db.VarChar(8)
+  addressStreet       String? @map("address_street") @db.VarChar(255)
+  addressNumber       String? @map("address_number") @db.VarChar(20)
+  addressComplement   String? @map("address_complement") @db.VarChar(150)
+  addressNeighborhood String? @map("address_neighborhood") @db.VarChar(100)
+  addressCity         String? @map("address_city") @db.VarChar(100)
+  addressState        String? @map("address_state") @db.VarChar(2)
+
+  initialProviderId   String? @map("initial_provider_id") @db.Uuid
+  initialProviderName String? @map("initial_provider_name") @db.VarChar(255)
+
+  implementation  Implementation?     @relation(fields: [implementationId], references: [id], onDelete: SetNull)
+  stage           ImplementationStage? @relation(fields: [stageId], references: [id], onDelete: SetNull)
+  sourceActivity  TemplateActivity?   @relation(fields: [sourceActivityId], references: [id], onDelete: SetNull)
+  company         Company?            @relation(fields: [companyId], references: [id], onDelete: SetNull)
+  unit            Unit?               @relation(fields: [unitId], references: [id], onDelete: SetNull)
+  initialProvider Provider?           @relation("ActivityInitialProvider", fields: [initialProviderId], references: [id], onDelete: SetNull)
+  requirements    ImplementationRequirement[]
+  assignments     ActivityAssignment[]
+  formSnapshots   ImplementationFormSnapshot[]
+  placements      ActivityPlacement[]
+  evidences       ActivityEvidence[]
+  responses       ActivityFieldResponse[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@unique([stageId, order])
+  @@index([implementationId])
   @@index([stageId])
+  @@index([companyId])
+  @@index([unitId])
   @@index([sourceActivityId])
-  @@map("implementation_activities")
+  @@index([initialProviderId])
+  @@index([status])
+  @@map("activities")
 }
 
-model ImplementationActivityAssignment {
-  id           String                       @id @default(uuid()) @db.Uuid
-  activityId   String                       @map("activity_id") @db.Uuid
-  userId       String                       @map("user_id") @db.Uuid
-  userName     String                       @map("user_name") @db.VarChar(150)
-  role         ImplementationAssignmentRole
-  createdAt    DateTime                     @default(now()) @map("created_at")
+model ActivityAssignment {
+  id         String                 @id @default(uuid()) @db.Uuid
+  activityId String                 @map("activity_id") @db.Uuid
+  userId     String                 @map("user_id") @db.Uuid
+  userName   String                 @map("user_name") @db.VarChar(150)
+  role       ActivityAssignmentRole
+  createdAt  DateTime               @default(now()) @map("created_at")
 
-  activity ImplementationActivity @relation(fields: [activityId], references: [id], onDelete: Cascade)
-  user     User                   @relation(fields: [userId], references: [id], onDelete: Restrict)
+  activity Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Restrict)
 
   @@unique([activityId, userId, role])
   @@index([activityId])
   @@index([userId])
-  @@map("implementation_activity_assignments")
+  @@map("activity_assignments")
+}
+
+model ActivityPlacement {
+  id                   String   @id @default(uuid()) @db.Uuid
+  activityId           String   @map("activity_id") @db.Uuid
+  fromImplementationId String?  @map("from_implementation_id") @db.Uuid
+  toImplementationId   String?  @map("to_implementation_id") @db.Uuid
+  fromStageId          String?  @map("from_stage_id") @db.Uuid
+  toStageId            String?  @map("to_stage_id") @db.Uuid
+  fromImplementationName String? @map("from_implementation_name") @db.VarChar(255)
+  toImplementationName   String? @map("to_implementation_name") @db.VarChar(255)
+  fromStageName        String?  @map("from_stage_name") @db.VarChar(255)
+  toStageName          String?  @map("to_stage_name") @db.VarChar(255)
+  userId               String   @map("user_id") @db.Uuid
+  userName             String   @map("user_name") @db.VarChar(150)
+  reason               String?  @db.Text
+  explicitConfirmation Boolean  @default(false) @map("explicit_confirmation")
+  createdAt            DateTime @default(now()) @map("created_at")
+
+  activity Activity @relation(fields: [activityId], references: [id], onDelete: Cascade)
+
+  @@index([activityId])
+  @@index([userId])
+  @@map("activity_placements")
+}
+
+model ActivityEvidence {
+  id            String  @id @default(uuid()) @db.Uuid
+  activityId    String  @map("activity_id") @db.Uuid
+  requirementId String? @map("requirement_id") @db.Uuid
+  evidenceType  String  @map("evidence_type") @db.VarChar(50)
+  fileName      String  @map("file_name") @db.VarChar(255)
+  storageKey    String  @map("storage_key") @db.VarChar(500)
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  activity    Activity                   @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  requirement ImplementationRequirement? @relation(fields: [requirementId], references: [id], onDelete: SetNull)
+
+  @@index([activityId])
+  @@index([requirementId])
+  @@map("activity_evidences")
+}
+
+model ActivityFieldResponse {
+  id         String   @id @default(uuid()) @db.Uuid
+  activityId String   @map("activity_id") @db.Uuid
+  fieldId    String   @map("field_id") @db.Uuid
+  valueText  String?  @map("value_text") @db.Text
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  activity Activity                @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  field    ImplementationFormField @relation(fields: [fieldId], references: [id], onDelete: Cascade)
+
+  @@unique([fieldId])
+  @@index([activityId])
+  @@map("activity_field_responses")
 }
 
 model ImplementationRequirement {
@@ -710,7 +802,8 @@ model ImplementationRequirement {
   configuration       Json?
   formSnapshotId      String?                 @map("form_snapshot_id") @db.Uuid
 
-  activity          ImplementationActivity                @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  activity          Activity                              @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  evidences         ActivityEvidence[]
   sourceRequirement ActivityRequirement?                  @relation(fields: [sourceRequirementId], references: [id], onDelete: SetNull)
   formSnapshot      ImplementationFormSnapshot?           @relation(fields: [formSnapshotId], references: [id], onDelete: SetNull)
   evidenceTypes     ImplementationRequirementEvidenceType[]
@@ -743,13 +836,13 @@ model ImplementationRequirementEvidenceType {
 
 model ImplementationFormSnapshot {
   id                   String  @id @default(uuid()) @db.Uuid
-  implementationId     String  @map("implementation_id") @db.Uuid
+  activityId           String  @map("activity_id") @db.Uuid
   sourceFormTemplateId String? @map("source_form_template_id") @db.Uuid
   name                 String  @db.VarChar(255)
   description          String? @db.Text
   status               String  @db.VarChar(20)
 
-  implementation     Implementation             @relation(fields: [implementationId], references: [id], onDelete: Cascade)
+  activity           Activity                   @relation(fields: [activityId], references: [id], onDelete: Cascade)
   sourceFormTemplate FormTemplate?              @relation(fields: [sourceFormTemplateId], references: [id], onDelete: SetNull)
   fields             ImplementationFormField[]
   requirements       ImplementationRequirement[]
@@ -757,8 +850,8 @@ model ImplementationFormSnapshot {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@unique([implementationId, sourceFormTemplateId])
-  @@index([implementationId])
+  @@unique([activityId, sourceFormTemplateId])
+  @@index([activityId])
   @@index([sourceFormTemplateId])
   @@map("implementation_form_snapshots")
 }
@@ -780,6 +873,7 @@ model ImplementationFormField {
 
   formSnapshot    ImplementationFormSnapshot @relation(fields: [formSnapshotId], references: [id], onDelete: Cascade)
   sourceFormField FormField?                 @relation(fields: [sourceFormFieldId], references: [id], onDelete: SetNull)
+  responses       ActivityFieldResponse[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")

@@ -202,6 +202,7 @@ export type ProviderWhereInput = {
   documents?: Prisma.ProviderDocumentListRelationFilter
   connectivities?: Prisma.UnitConnectivityListRelationFilter
   initialImplementations?: Prisma.ImplementationListRelationFilter
+  initialActivities?: Prisma.ActivityListRelationFilter
 }
 
 export type ProviderOrderByWithRelationInput = {
@@ -216,6 +217,7 @@ export type ProviderOrderByWithRelationInput = {
   documents?: Prisma.ProviderDocumentOrderByRelationAggregateInput
   connectivities?: Prisma.UnitConnectivityOrderByRelationAggregateInput
   initialImplementations?: Prisma.ImplementationOrderByRelationAggregateInput
+  initialActivities?: Prisma.ActivityOrderByRelationAggregateInput
 }
 
 export type ProviderWhereUniqueInput = Prisma.AtLeast<{
@@ -233,6 +235,7 @@ export type ProviderWhereUniqueInput = Prisma.AtLeast<{
   documents?: Prisma.ProviderDocumentListRelationFilter
   connectivities?: Prisma.UnitConnectivityListRelationFilter
   initialImplementations?: Prisma.ImplementationListRelationFilter
+  initialActivities?: Prisma.ActivityListRelationFilter
 }, "id">
 
 export type ProviderOrderByWithAggregationInput = {
@@ -273,6 +276,7 @@ export type ProviderCreateInput = {
   documents?: Prisma.ProviderDocumentCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderUncheckedCreateInput = {
@@ -287,6 +291,7 @@ export type ProviderUncheckedCreateInput = {
   documents?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderUpdateInput = {
@@ -301,6 +306,7 @@ export type ProviderUpdateInput = {
   documents?: Prisma.ProviderDocumentUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderUncheckedUpdateInput = {
@@ -315,6 +321,7 @@ export type ProviderUncheckedUpdateInput = {
   documents?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUncheckedUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUncheckedUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderCreateManyInput = {
@@ -447,6 +454,22 @@ export type ProviderUpdateOneWithoutInitialImplementationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderUpdateToOneWithWhereWithoutInitialImplementationsInput, Prisma.ProviderUpdateWithoutInitialImplementationsInput>, Prisma.ProviderUncheckedUpdateWithoutInitialImplementationsInput>
 }
 
+export type ProviderCreateNestedOneWithoutInitialActivitiesInput = {
+  create?: Prisma.XOR<Prisma.ProviderCreateWithoutInitialActivitiesInput, Prisma.ProviderUncheckedCreateWithoutInitialActivitiesInput>
+  connectOrCreate?: Prisma.ProviderCreateOrConnectWithoutInitialActivitiesInput
+  connect?: Prisma.ProviderWhereUniqueInput
+}
+
+export type ProviderUpdateOneWithoutInitialActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProviderCreateWithoutInitialActivitiesInput, Prisma.ProviderUncheckedCreateWithoutInitialActivitiesInput>
+  connectOrCreate?: Prisma.ProviderCreateOrConnectWithoutInitialActivitiesInput
+  upsert?: Prisma.ProviderUpsertWithoutInitialActivitiesInput
+  disconnect?: Prisma.ProviderWhereInput | boolean
+  delete?: Prisma.ProviderWhereInput | boolean
+  connect?: Prisma.ProviderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderUpdateToOneWithWhereWithoutInitialActivitiesInput, Prisma.ProviderUpdateWithoutInitialActivitiesInput>, Prisma.ProviderUncheckedUpdateWithoutInitialActivitiesInput>
+}
+
 export type ProviderCreateWithoutContactsInput = {
   id?: string
   name: string
@@ -458,6 +481,7 @@ export type ProviderCreateWithoutContactsInput = {
   documents?: Prisma.ProviderDocumentCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderUncheckedCreateWithoutContactsInput = {
@@ -471,6 +495,7 @@ export type ProviderUncheckedCreateWithoutContactsInput = {
   documents?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderCreateOrConnectWithoutContactsInput = {
@@ -500,6 +525,7 @@ export type ProviderUpdateWithoutContactsInput = {
   documents?: Prisma.ProviderDocumentUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderUncheckedUpdateWithoutContactsInput = {
@@ -513,6 +539,7 @@ export type ProviderUncheckedUpdateWithoutContactsInput = {
   documents?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUncheckedUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUncheckedUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderCreateWithoutDocumentsInput = {
@@ -526,6 +553,7 @@ export type ProviderCreateWithoutDocumentsInput = {
   contacts?: Prisma.ProviderContactCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderUncheckedCreateWithoutDocumentsInput = {
@@ -539,6 +567,7 @@ export type ProviderUncheckedCreateWithoutDocumentsInput = {
   contacts?: Prisma.ProviderContactUncheckedCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderCreateOrConnectWithoutDocumentsInput = {
@@ -568,6 +597,7 @@ export type ProviderUpdateWithoutDocumentsInput = {
   contacts?: Prisma.ProviderContactUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderUncheckedUpdateWithoutDocumentsInput = {
@@ -581,6 +611,7 @@ export type ProviderUncheckedUpdateWithoutDocumentsInput = {
   contacts?: Prisma.ProviderContactUncheckedUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUncheckedUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUncheckedUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderCreateWithoutConnectivitiesInput = {
@@ -594,6 +625,7 @@ export type ProviderCreateWithoutConnectivitiesInput = {
   contacts?: Prisma.ProviderContactCreateNestedManyWithoutProviderInput
   documents?: Prisma.ProviderDocumentCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderUncheckedCreateWithoutConnectivitiesInput = {
@@ -607,6 +639,7 @@ export type ProviderUncheckedCreateWithoutConnectivitiesInput = {
   contacts?: Prisma.ProviderContactUncheckedCreateNestedManyWithoutProviderInput
   documents?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutProviderInput
   initialImplementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutInitialProviderInput
+  initialActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderCreateOrConnectWithoutConnectivitiesInput = {
@@ -636,6 +669,7 @@ export type ProviderUpdateWithoutConnectivitiesInput = {
   contacts?: Prisma.ProviderContactUpdateManyWithoutProviderNestedInput
   documents?: Prisma.ProviderDocumentUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderUncheckedUpdateWithoutConnectivitiesInput = {
@@ -649,6 +683,7 @@ export type ProviderUncheckedUpdateWithoutConnectivitiesInput = {
   contacts?: Prisma.ProviderContactUncheckedUpdateManyWithoutProviderNestedInput
   documents?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutProviderNestedInput
   initialImplementations?: Prisma.ImplementationUncheckedUpdateManyWithoutInitialProviderNestedInput
+  initialActivities?: Prisma.ActivityUncheckedUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderCreateWithoutInitialImplementationsInput = {
@@ -662,6 +697,7 @@ export type ProviderCreateWithoutInitialImplementationsInput = {
   contacts?: Prisma.ProviderContactCreateNestedManyWithoutProviderInput
   documents?: Prisma.ProviderDocumentCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutProviderInput
+  initialActivities?: Prisma.ActivityCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderUncheckedCreateWithoutInitialImplementationsInput = {
@@ -675,6 +711,7 @@ export type ProviderUncheckedCreateWithoutInitialImplementationsInput = {
   contacts?: Prisma.ProviderContactUncheckedCreateNestedManyWithoutProviderInput
   documents?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutProviderInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutProviderInput
+  initialActivities?: Prisma.ActivityUncheckedCreateNestedManyWithoutInitialProviderInput
 }
 
 export type ProviderCreateOrConnectWithoutInitialImplementationsInput = {
@@ -704,6 +741,7 @@ export type ProviderUpdateWithoutInitialImplementationsInput = {
   contacts?: Prisma.ProviderContactUpdateManyWithoutProviderNestedInput
   documents?: Prisma.ProviderDocumentUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutProviderNestedInput
+  initialActivities?: Prisma.ActivityUpdateManyWithoutInitialProviderNestedInput
 }
 
 export type ProviderUncheckedUpdateWithoutInitialImplementationsInput = {
@@ -717,6 +755,79 @@ export type ProviderUncheckedUpdateWithoutInitialImplementationsInput = {
   contacts?: Prisma.ProviderContactUncheckedUpdateManyWithoutProviderNestedInput
   documents?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutProviderNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutProviderNestedInput
+  initialActivities?: Prisma.ActivityUncheckedUpdateManyWithoutInitialProviderNestedInput
+}
+
+export type ProviderCreateWithoutInitialActivitiesInput = {
+  id?: string
+  name: string
+  phone?: string | null
+  status?: string
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  contacts?: Prisma.ProviderContactCreateNestedManyWithoutProviderInput
+  documents?: Prisma.ProviderDocumentCreateNestedManyWithoutProviderInput
+  connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutProviderInput
+  initialImplementations?: Prisma.ImplementationCreateNestedManyWithoutInitialProviderInput
+}
+
+export type ProviderUncheckedCreateWithoutInitialActivitiesInput = {
+  id?: string
+  name: string
+  phone?: string | null
+  status?: string
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  contacts?: Prisma.ProviderContactUncheckedCreateNestedManyWithoutProviderInput
+  documents?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutProviderInput
+  connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutProviderInput
+  initialImplementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutInitialProviderInput
+}
+
+export type ProviderCreateOrConnectWithoutInitialActivitiesInput = {
+  where: Prisma.ProviderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProviderCreateWithoutInitialActivitiesInput, Prisma.ProviderUncheckedCreateWithoutInitialActivitiesInput>
+}
+
+export type ProviderUpsertWithoutInitialActivitiesInput = {
+  update: Prisma.XOR<Prisma.ProviderUpdateWithoutInitialActivitiesInput, Prisma.ProviderUncheckedUpdateWithoutInitialActivitiesInput>
+  create: Prisma.XOR<Prisma.ProviderCreateWithoutInitialActivitiesInput, Prisma.ProviderUncheckedCreateWithoutInitialActivitiesInput>
+  where?: Prisma.ProviderWhereInput
+}
+
+export type ProviderUpdateToOneWithWhereWithoutInitialActivitiesInput = {
+  where?: Prisma.ProviderWhereInput
+  data: Prisma.XOR<Prisma.ProviderUpdateWithoutInitialActivitiesInput, Prisma.ProviderUncheckedUpdateWithoutInitialActivitiesInput>
+}
+
+export type ProviderUpdateWithoutInitialActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contacts?: Prisma.ProviderContactUpdateManyWithoutProviderNestedInput
+  documents?: Prisma.ProviderDocumentUpdateManyWithoutProviderNestedInput
+  connectivities?: Prisma.UnitConnectivityUpdateManyWithoutProviderNestedInput
+  initialImplementations?: Prisma.ImplementationUpdateManyWithoutInitialProviderNestedInput
+}
+
+export type ProviderUncheckedUpdateWithoutInitialActivitiesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contacts?: Prisma.ProviderContactUncheckedUpdateManyWithoutProviderNestedInput
+  documents?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutProviderNestedInput
+  connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutProviderNestedInput
+  initialImplementations?: Prisma.ImplementationUncheckedUpdateManyWithoutInitialProviderNestedInput
 }
 
 
@@ -729,6 +840,7 @@ export type ProviderCountOutputType = {
   documents: number
   connectivities: number
   initialImplementations: number
+  initialActivities: number
 }
 
 export type ProviderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -736,6 +848,7 @@ export type ProviderCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensio
   documents?: boolean | ProviderCountOutputTypeCountDocumentsArgs
   connectivities?: boolean | ProviderCountOutputTypeCountConnectivitiesArgs
   initialImplementations?: boolean | ProviderCountOutputTypeCountInitialImplementationsArgs
+  initialActivities?: boolean | ProviderCountOutputTypeCountInitialActivitiesArgs
 }
 
 /**
@@ -776,6 +889,13 @@ export type ProviderCountOutputTypeCountInitialImplementationsArgs<ExtArgs exten
   where?: Prisma.ImplementationWhereInput
 }
 
+/**
+ * ProviderCountOutputType without action
+ */
+export type ProviderCountOutputTypeCountInitialActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
+}
+
 
 export type ProviderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -789,6 +909,7 @@ export type ProviderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   documents?: boolean | Prisma.Provider$documentsArgs<ExtArgs>
   connectivities?: boolean | Prisma.Provider$connectivitiesArgs<ExtArgs>
   initialImplementations?: boolean | Prisma.Provider$initialImplementationsArgs<ExtArgs>
+  initialActivities?: boolean | Prisma.Provider$initialActivitiesArgs<ExtArgs>
   _count?: boolean | Prisma.ProviderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["provider"]>
 
@@ -828,6 +949,7 @@ export type ProviderInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
   documents?: boolean | Prisma.Provider$documentsArgs<ExtArgs>
   connectivities?: boolean | Prisma.Provider$connectivitiesArgs<ExtArgs>
   initialImplementations?: boolean | Prisma.Provider$initialImplementationsArgs<ExtArgs>
+  initialActivities?: boolean | Prisma.Provider$initialActivitiesArgs<ExtArgs>
   _count?: boolean | Prisma.ProviderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProviderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -840,6 +962,7 @@ export type $ProviderPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     documents: Prisma.$ProviderDocumentPayload<ExtArgs>[]
     connectivities: Prisma.$UnitConnectivityPayload<ExtArgs>[]
     initialImplementations: Prisma.$ImplementationPayload<ExtArgs>[]
+    initialActivities: Prisma.$ActivityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1247,6 +1370,7 @@ export interface Prisma__ProviderClient<T, Null = never, ExtArgs extends runtime
   documents<T extends Prisma.Provider$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Provider$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProviderDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   connectivities<T extends Prisma.Provider$connectivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Provider$connectivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnitConnectivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   initialImplementations<T extends Prisma.Provider$initialImplementationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Provider$initialImplementationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  initialActivities<T extends Prisma.Provider$initialActivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Provider$initialActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1769,6 +1893,30 @@ export type Provider$initialImplementationsArgs<ExtArgs extends runtime.Types.Ex
   take?: number
   skip?: number
   distinct?: Prisma.ImplementationScalarFieldEnum | Prisma.ImplementationScalarFieldEnum[]
+}
+
+/**
+ * Provider.initialActivities
+ */
+export type Provider$initialActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Activity
+   */
+  select?: Prisma.ActivitySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Activity
+   */
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
 }
 
 /**

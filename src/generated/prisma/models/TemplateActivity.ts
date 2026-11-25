@@ -234,7 +234,7 @@ export type TemplateActivityWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"TemplateActivity"> | Date | string
   stage?: Prisma.XOR<Prisma.TemplateStageScalarRelationFilter, Prisma.TemplateStageWhereInput>
   requirements?: Prisma.ActivityRequirementListRelationFilter
-  implementationActivities?: Prisma.ImplementationActivityListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
 }
 
 export type TemplateActivityOrderByWithRelationInput = {
@@ -247,7 +247,7 @@ export type TemplateActivityOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   stage?: Prisma.TemplateStageOrderByWithRelationInput
   requirements?: Prisma.ActivityRequirementOrderByRelationAggregateInput
-  implementationActivities?: Prisma.ImplementationActivityOrderByRelationAggregateInput
+  activities?: Prisma.ActivityOrderByRelationAggregateInput
 }
 
 export type TemplateActivityWhereUniqueInput = Prisma.AtLeast<{
@@ -264,7 +264,7 @@ export type TemplateActivityWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"TemplateActivity"> | Date | string
   stage?: Prisma.XOR<Prisma.TemplateStageScalarRelationFilter, Prisma.TemplateStageWhereInput>
   requirements?: Prisma.ActivityRequirementListRelationFilter
-  implementationActivities?: Prisma.ImplementationActivityListRelationFilter
+  activities?: Prisma.ActivityListRelationFilter
 }, "id" | "stageId_order">
 
 export type TemplateActivityOrderByWithAggregationInput = {
@@ -304,7 +304,7 @@ export type TemplateActivityCreateInput = {
   updatedAt?: Date | string
   stage: Prisma.TemplateStageCreateNestedOneWithoutActivitiesInput
   requirements?: Prisma.ActivityRequirementCreateNestedManyWithoutActivityInput
-  implementationActivities?: Prisma.ImplementationActivityCreateNestedManyWithoutSourceActivityInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutSourceActivityInput
 }
 
 export type TemplateActivityUncheckedCreateInput = {
@@ -316,7 +316,7 @@ export type TemplateActivityUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requirements?: Prisma.ActivityRequirementUncheckedCreateNestedManyWithoutActivityInput
-  implementationActivities?: Prisma.ImplementationActivityUncheckedCreateNestedManyWithoutSourceActivityInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutSourceActivityInput
 }
 
 export type TemplateActivityUpdateInput = {
@@ -328,7 +328,7 @@ export type TemplateActivityUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stage?: Prisma.TemplateStageUpdateOneRequiredWithoutActivitiesNestedInput
   requirements?: Prisma.ActivityRequirementUpdateManyWithoutActivityNestedInput
-  implementationActivities?: Prisma.ImplementationActivityUpdateManyWithoutSourceActivityNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutSourceActivityNestedInput
 }
 
 export type TemplateActivityUncheckedUpdateInput = {
@@ -340,7 +340,7 @@ export type TemplateActivityUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requirements?: Prisma.ActivityRequirementUncheckedUpdateManyWithoutActivityNestedInput
-  implementationActivities?: Prisma.ImplementationActivityUncheckedUpdateManyWithoutSourceActivityNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutSourceActivityNestedInput
 }
 
 export type TemplateActivityCreateManyInput = {
@@ -491,20 +491,20 @@ export type TemplateActivityUpdateOneRequiredWithoutRequirementsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TemplateActivityUpdateToOneWithWhereWithoutRequirementsInput, Prisma.TemplateActivityUpdateWithoutRequirementsInput>, Prisma.TemplateActivityUncheckedUpdateWithoutRequirementsInput>
 }
 
-export type TemplateActivityCreateNestedOneWithoutImplementationActivitiesInput = {
-  create?: Prisma.XOR<Prisma.TemplateActivityCreateWithoutImplementationActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutImplementationActivitiesInput>
-  connectOrCreate?: Prisma.TemplateActivityCreateOrConnectWithoutImplementationActivitiesInput
+export type TemplateActivityCreateNestedOneWithoutActivitiesInput = {
+  create?: Prisma.XOR<Prisma.TemplateActivityCreateWithoutActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.TemplateActivityCreateOrConnectWithoutActivitiesInput
   connect?: Prisma.TemplateActivityWhereUniqueInput
 }
 
-export type TemplateActivityUpdateOneWithoutImplementationActivitiesNestedInput = {
-  create?: Prisma.XOR<Prisma.TemplateActivityCreateWithoutImplementationActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutImplementationActivitiesInput>
-  connectOrCreate?: Prisma.TemplateActivityCreateOrConnectWithoutImplementationActivitiesInput
-  upsert?: Prisma.TemplateActivityUpsertWithoutImplementationActivitiesInput
+export type TemplateActivityUpdateOneWithoutActivitiesNestedInput = {
+  create?: Prisma.XOR<Prisma.TemplateActivityCreateWithoutActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutActivitiesInput>
+  connectOrCreate?: Prisma.TemplateActivityCreateOrConnectWithoutActivitiesInput
+  upsert?: Prisma.TemplateActivityUpsertWithoutActivitiesInput
   disconnect?: Prisma.TemplateActivityWhereInput | boolean
   delete?: Prisma.TemplateActivityWhereInput | boolean
   connect?: Prisma.TemplateActivityWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TemplateActivityUpdateToOneWithWhereWithoutImplementationActivitiesInput, Prisma.TemplateActivityUpdateWithoutImplementationActivitiesInput>, Prisma.TemplateActivityUncheckedUpdateWithoutImplementationActivitiesInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TemplateActivityUpdateToOneWithWhereWithoutActivitiesInput, Prisma.TemplateActivityUpdateWithoutActivitiesInput>, Prisma.TemplateActivityUncheckedUpdateWithoutActivitiesInput>
 }
 
 export type TemplateActivityCreateWithoutStageInput = {
@@ -515,7 +515,7 @@ export type TemplateActivityCreateWithoutStageInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requirements?: Prisma.ActivityRequirementCreateNestedManyWithoutActivityInput
-  implementationActivities?: Prisma.ImplementationActivityCreateNestedManyWithoutSourceActivityInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutSourceActivityInput
 }
 
 export type TemplateActivityUncheckedCreateWithoutStageInput = {
@@ -526,7 +526,7 @@ export type TemplateActivityUncheckedCreateWithoutStageInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   requirements?: Prisma.ActivityRequirementUncheckedCreateNestedManyWithoutActivityInput
-  implementationActivities?: Prisma.ImplementationActivityUncheckedCreateNestedManyWithoutSourceActivityInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutSourceActivityInput
 }
 
 export type TemplateActivityCreateOrConnectWithoutStageInput = {
@@ -576,7 +576,7 @@ export type TemplateActivityCreateWithoutRequirementsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   stage: Prisma.TemplateStageCreateNestedOneWithoutActivitiesInput
-  implementationActivities?: Prisma.ImplementationActivityCreateNestedManyWithoutSourceActivityInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutSourceActivityInput
 }
 
 export type TemplateActivityUncheckedCreateWithoutRequirementsInput = {
@@ -587,7 +587,7 @@ export type TemplateActivityUncheckedCreateWithoutRequirementsInput = {
   order: number
   createdAt?: Date | string
   updatedAt?: Date | string
-  implementationActivities?: Prisma.ImplementationActivityUncheckedCreateNestedManyWithoutSourceActivityInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutSourceActivityInput
 }
 
 export type TemplateActivityCreateOrConnectWithoutRequirementsInput = {
@@ -614,7 +614,7 @@ export type TemplateActivityUpdateWithoutRequirementsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   stage?: Prisma.TemplateStageUpdateOneRequiredWithoutActivitiesNestedInput
-  implementationActivities?: Prisma.ImplementationActivityUpdateManyWithoutSourceActivityNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutSourceActivityNestedInput
 }
 
 export type TemplateActivityUncheckedUpdateWithoutRequirementsInput = {
@@ -625,10 +625,10 @@ export type TemplateActivityUncheckedUpdateWithoutRequirementsInput = {
   order?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  implementationActivities?: Prisma.ImplementationActivityUncheckedUpdateManyWithoutSourceActivityNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutSourceActivityNestedInput
 }
 
-export type TemplateActivityCreateWithoutImplementationActivitiesInput = {
+export type TemplateActivityCreateWithoutActivitiesInput = {
   id?: string
   name: string
   description?: string | null
@@ -639,7 +639,7 @@ export type TemplateActivityCreateWithoutImplementationActivitiesInput = {
   requirements?: Prisma.ActivityRequirementCreateNestedManyWithoutActivityInput
 }
 
-export type TemplateActivityUncheckedCreateWithoutImplementationActivitiesInput = {
+export type TemplateActivityUncheckedCreateWithoutActivitiesInput = {
   id?: string
   stageId: string
   name: string
@@ -650,23 +650,23 @@ export type TemplateActivityUncheckedCreateWithoutImplementationActivitiesInput 
   requirements?: Prisma.ActivityRequirementUncheckedCreateNestedManyWithoutActivityInput
 }
 
-export type TemplateActivityCreateOrConnectWithoutImplementationActivitiesInput = {
+export type TemplateActivityCreateOrConnectWithoutActivitiesInput = {
   where: Prisma.TemplateActivityWhereUniqueInput
-  create: Prisma.XOR<Prisma.TemplateActivityCreateWithoutImplementationActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutImplementationActivitiesInput>
+  create: Prisma.XOR<Prisma.TemplateActivityCreateWithoutActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutActivitiesInput>
 }
 
-export type TemplateActivityUpsertWithoutImplementationActivitiesInput = {
-  update: Prisma.XOR<Prisma.TemplateActivityUpdateWithoutImplementationActivitiesInput, Prisma.TemplateActivityUncheckedUpdateWithoutImplementationActivitiesInput>
-  create: Prisma.XOR<Prisma.TemplateActivityCreateWithoutImplementationActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutImplementationActivitiesInput>
+export type TemplateActivityUpsertWithoutActivitiesInput = {
+  update: Prisma.XOR<Prisma.TemplateActivityUpdateWithoutActivitiesInput, Prisma.TemplateActivityUncheckedUpdateWithoutActivitiesInput>
+  create: Prisma.XOR<Prisma.TemplateActivityCreateWithoutActivitiesInput, Prisma.TemplateActivityUncheckedCreateWithoutActivitiesInput>
   where?: Prisma.TemplateActivityWhereInput
 }
 
-export type TemplateActivityUpdateToOneWithWhereWithoutImplementationActivitiesInput = {
+export type TemplateActivityUpdateToOneWithWhereWithoutActivitiesInput = {
   where?: Prisma.TemplateActivityWhereInput
-  data: Prisma.XOR<Prisma.TemplateActivityUpdateWithoutImplementationActivitiesInput, Prisma.TemplateActivityUncheckedUpdateWithoutImplementationActivitiesInput>
+  data: Prisma.XOR<Prisma.TemplateActivityUpdateWithoutActivitiesInput, Prisma.TemplateActivityUncheckedUpdateWithoutActivitiesInput>
 }
 
-export type TemplateActivityUpdateWithoutImplementationActivitiesInput = {
+export type TemplateActivityUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -677,7 +677,7 @@ export type TemplateActivityUpdateWithoutImplementationActivitiesInput = {
   requirements?: Prisma.ActivityRequirementUpdateManyWithoutActivityNestedInput
 }
 
-export type TemplateActivityUncheckedUpdateWithoutImplementationActivitiesInput = {
+export type TemplateActivityUncheckedUpdateWithoutActivitiesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   stageId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -705,7 +705,7 @@ export type TemplateActivityUpdateWithoutStageInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requirements?: Prisma.ActivityRequirementUpdateManyWithoutActivityNestedInput
-  implementationActivities?: Prisma.ImplementationActivityUpdateManyWithoutSourceActivityNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutSourceActivityNestedInput
 }
 
 export type TemplateActivityUncheckedUpdateWithoutStageInput = {
@@ -716,7 +716,7 @@ export type TemplateActivityUncheckedUpdateWithoutStageInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requirements?: Prisma.ActivityRequirementUncheckedUpdateManyWithoutActivityNestedInput
-  implementationActivities?: Prisma.ImplementationActivityUncheckedUpdateManyWithoutSourceActivityNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutSourceActivityNestedInput
 }
 
 export type TemplateActivityUncheckedUpdateManyWithoutStageInput = {
@@ -735,12 +735,12 @@ export type TemplateActivityUncheckedUpdateManyWithoutStageInput = {
 
 export type TemplateActivityCountOutputType = {
   requirements: number
-  implementationActivities: number
+  activities: number
 }
 
 export type TemplateActivityCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   requirements?: boolean | TemplateActivityCountOutputTypeCountRequirementsArgs
-  implementationActivities?: boolean | TemplateActivityCountOutputTypeCountImplementationActivitiesArgs
+  activities?: boolean | TemplateActivityCountOutputTypeCountActivitiesArgs
 }
 
 /**
@@ -763,8 +763,8 @@ export type TemplateActivityCountOutputTypeCountRequirementsArgs<ExtArgs extends
 /**
  * TemplateActivityCountOutputType without action
  */
-export type TemplateActivityCountOutputTypeCountImplementationActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ImplementationActivityWhereInput
+export type TemplateActivityCountOutputTypeCountActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityWhereInput
 }
 
 
@@ -778,7 +778,7 @@ export type TemplateActivitySelect<ExtArgs extends runtime.Types.Extensions.Inte
   updatedAt?: boolean
   stage?: boolean | Prisma.TemplateStageDefaultArgs<ExtArgs>
   requirements?: boolean | Prisma.TemplateActivity$requirementsArgs<ExtArgs>
-  implementationActivities?: boolean | Prisma.TemplateActivity$implementationActivitiesArgs<ExtArgs>
+  activities?: boolean | Prisma.TemplateActivity$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.TemplateActivityCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["templateActivity"]>
 
@@ -818,7 +818,7 @@ export type TemplateActivityOmit<ExtArgs extends runtime.Types.Extensions.Intern
 export type TemplateActivityInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   stage?: boolean | Prisma.TemplateStageDefaultArgs<ExtArgs>
   requirements?: boolean | Prisma.TemplateActivity$requirementsArgs<ExtArgs>
-  implementationActivities?: boolean | Prisma.TemplateActivity$implementationActivitiesArgs<ExtArgs>
+  activities?: boolean | Prisma.TemplateActivity$activitiesArgs<ExtArgs>
   _count?: boolean | Prisma.TemplateActivityCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type TemplateActivityIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -833,7 +833,7 @@ export type $TemplateActivityPayload<ExtArgs extends runtime.Types.Extensions.In
   objects: {
     stage: Prisma.$TemplateStagePayload<ExtArgs>
     requirements: Prisma.$ActivityRequirementPayload<ExtArgs>[]
-    implementationActivities: Prisma.$ImplementationActivityPayload<ExtArgs>[]
+    activities: Prisma.$ActivityPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1239,7 +1239,7 @@ export interface Prisma__TemplateActivityClient<T, Null = never, ExtArgs extends
   readonly [Symbol.toStringTag]: "PrismaPromise"
   stage<T extends Prisma.TemplateStageDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TemplateStageDefaultArgs<ExtArgs>>): Prisma.Prisma__TemplateStageClient<runtime.Types.Result.GetResult<Prisma.$TemplateStagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   requirements<T extends Prisma.TemplateActivity$requirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TemplateActivity$requirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  implementationActivities<T extends Prisma.TemplateActivity$implementationActivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TemplateActivity$implementationActivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  activities<T extends Prisma.TemplateActivity$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TemplateActivity$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1701,27 +1701,27 @@ export type TemplateActivity$requirementsArgs<ExtArgs extends runtime.Types.Exte
 }
 
 /**
- * TemplateActivity.implementationActivities
+ * TemplateActivity.activities
  */
-export type TemplateActivity$implementationActivitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type TemplateActivity$activitiesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the ImplementationActivity
+   * Select specific fields to fetch from the Activity
    */
-  select?: Prisma.ImplementationActivitySelect<ExtArgs> | null
+  select?: Prisma.ActivitySelect<ExtArgs> | null
   /**
-   * Omit specific fields from the ImplementationActivity
+   * Omit specific fields from the Activity
    */
-  omit?: Prisma.ImplementationActivityOmit<ExtArgs> | null
+  omit?: Prisma.ActivityOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ImplementationActivityInclude<ExtArgs> | null
-  where?: Prisma.ImplementationActivityWhereInput
-  orderBy?: Prisma.ImplementationActivityOrderByWithRelationInput | Prisma.ImplementationActivityOrderByWithRelationInput[]
-  cursor?: Prisma.ImplementationActivityWhereUniqueInput
+  include?: Prisma.ActivityInclude<ExtArgs> | null
+  where?: Prisma.ActivityWhereInput
+  orderBy?: Prisma.ActivityOrderByWithRelationInput | Prisma.ActivityOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ImplementationActivityScalarFieldEnum | Prisma.ImplementationActivityScalarFieldEnum[]
+  distinct?: Prisma.ActivityScalarFieldEnum | Prisma.ActivityScalarFieldEnum[]
 }
 
 /**

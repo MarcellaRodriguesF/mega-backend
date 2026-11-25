@@ -252,7 +252,8 @@ export type ImplementationRequirementWhereInput = {
   formSnapshotId?: Prisma.UuidNullableFilter<"ImplementationRequirement"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ImplementationRequirement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ImplementationRequirement"> | Date | string
-  activity?: Prisma.XOR<Prisma.ImplementationActivityScalarRelationFilter, Prisma.ImplementationActivityWhereInput>
+  activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
+  evidences?: Prisma.ActivityEvidenceListRelationFilter
   sourceRequirement?: Prisma.XOR<Prisma.ActivityRequirementNullableScalarRelationFilter, Prisma.ActivityRequirementWhereInput> | null
   formSnapshot?: Prisma.XOR<Prisma.ImplementationFormSnapshotNullableScalarRelationFilter, Prisma.ImplementationFormSnapshotWhereInput> | null
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeListRelationFilter
@@ -269,7 +270,8 @@ export type ImplementationRequirementOrderByWithRelationInput = {
   formSnapshotId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  activity?: Prisma.ImplementationActivityOrderByWithRelationInput
+  activity?: Prisma.ActivityOrderByWithRelationInput
+  evidences?: Prisma.ActivityEvidenceOrderByRelationAggregateInput
   sourceRequirement?: Prisma.ActivityRequirementOrderByWithRelationInput
   formSnapshot?: Prisma.ImplementationFormSnapshotOrderByWithRelationInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeOrderByRelationAggregateInput
@@ -290,7 +292,8 @@ export type ImplementationRequirementWhereUniqueInput = Prisma.AtLeast<{
   formSnapshotId?: Prisma.UuidNullableFilter<"ImplementationRequirement"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ImplementationRequirement"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ImplementationRequirement"> | Date | string
-  activity?: Prisma.XOR<Prisma.ImplementationActivityScalarRelationFilter, Prisma.ImplementationActivityWhereInput>
+  activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
+  evidences?: Prisma.ActivityEvidenceListRelationFilter
   sourceRequirement?: Prisma.XOR<Prisma.ActivityRequirementNullableScalarRelationFilter, Prisma.ActivityRequirementWhereInput> | null
   formSnapshot?: Prisma.XOR<Prisma.ImplementationFormSnapshotNullableScalarRelationFilter, Prisma.ImplementationFormSnapshotWhereInput> | null
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeListRelationFilter
@@ -338,7 +341,8 @@ export type ImplementationRequirementCreateInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  activity: Prisma.ImplementationActivityCreateNestedOneWithoutRequirementsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutRequirementsInput
+  evidences?: Prisma.ActivityEvidenceCreateNestedManyWithoutRequirementInput
   sourceRequirement?: Prisma.ActivityRequirementCreateNestedOneWithoutImplementationRequirementsInput
   formSnapshot?: Prisma.ImplementationFormSnapshotCreateNestedOneWithoutRequirementsInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
@@ -355,6 +359,7 @@ export type ImplementationRequirementUncheckedCreateInput = {
   formSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedCreateNestedManyWithoutRequirementInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
 }
 
@@ -366,7 +371,8 @@ export type ImplementationRequirementUpdateInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  activity?: Prisma.ImplementationActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  evidences?: Prisma.ActivityEvidenceUpdateManyWithoutRequirementNestedInput
   sourceRequirement?: Prisma.ActivityRequirementUpdateOneWithoutImplementationRequirementsNestedInput
   formSnapshot?: Prisma.ImplementationFormSnapshotUpdateOneWithoutRequirementsNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
@@ -383,6 +389,7 @@ export type ImplementationRequirementUncheckedUpdateInput = {
   formSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedUpdateManyWithoutRequirementNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
 }
 
@@ -430,6 +437,11 @@ export type ImplementationRequirementListRelationFilter = {
 
 export type ImplementationRequirementOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type ImplementationRequirementNullableScalarRelationFilter = {
+  is?: Prisma.ImplementationRequirementWhereInput | null
+  isNot?: Prisma.ImplementationRequirementWhereInput | null
 }
 
 export type ImplementationRequirementActivityIdOrderCompoundUniqueInput = {
@@ -571,6 +583,22 @@ export type ImplementationRequirementUncheckedUpdateManyWithoutActivityNestedInp
   deleteMany?: Prisma.ImplementationRequirementScalarWhereInput | Prisma.ImplementationRequirementScalarWhereInput[]
 }
 
+export type ImplementationRequirementCreateNestedOneWithoutEvidencesInput = {
+  create?: Prisma.XOR<Prisma.ImplementationRequirementCreateWithoutEvidencesInput, Prisma.ImplementationRequirementUncheckedCreateWithoutEvidencesInput>
+  connectOrCreate?: Prisma.ImplementationRequirementCreateOrConnectWithoutEvidencesInput
+  connect?: Prisma.ImplementationRequirementWhereUniqueInput
+}
+
+export type ImplementationRequirementUpdateOneWithoutEvidencesNestedInput = {
+  create?: Prisma.XOR<Prisma.ImplementationRequirementCreateWithoutEvidencesInput, Prisma.ImplementationRequirementUncheckedCreateWithoutEvidencesInput>
+  connectOrCreate?: Prisma.ImplementationRequirementCreateOrConnectWithoutEvidencesInput
+  upsert?: Prisma.ImplementationRequirementUpsertWithoutEvidencesInput
+  disconnect?: Prisma.ImplementationRequirementWhereInput | boolean
+  delete?: Prisma.ImplementationRequirementWhereInput | boolean
+  connect?: Prisma.ImplementationRequirementWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ImplementationRequirementUpdateToOneWithWhereWithoutEvidencesInput, Prisma.ImplementationRequirementUpdateWithoutEvidencesInput>, Prisma.ImplementationRequirementUncheckedUpdateWithoutEvidencesInput>
+}
+
 export type ImplementationRequirementCreateNestedOneWithoutEvidenceTypesInput = {
   create?: Prisma.XOR<Prisma.ImplementationRequirementCreateWithoutEvidenceTypesInput, Prisma.ImplementationRequirementUncheckedCreateWithoutEvidenceTypesInput>
   connectOrCreate?: Prisma.ImplementationRequirementCreateOrConnectWithoutEvidenceTypesInput
@@ -635,7 +663,8 @@ export type ImplementationRequirementCreateWithoutSourceRequirementInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  activity: Prisma.ImplementationActivityCreateNestedOneWithoutRequirementsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutRequirementsInput
+  evidences?: Prisma.ActivityEvidenceCreateNestedManyWithoutRequirementInput
   formSnapshot?: Prisma.ImplementationFormSnapshotCreateNestedOneWithoutRequirementsInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
 }
@@ -650,6 +679,7 @@ export type ImplementationRequirementUncheckedCreateWithoutSourceRequirementInpu
   formSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedCreateNestedManyWithoutRequirementInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
 }
 
@@ -703,6 +733,7 @@ export type ImplementationRequirementCreateWithoutActivityInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  evidences?: Prisma.ActivityEvidenceCreateNestedManyWithoutRequirementInput
   sourceRequirement?: Prisma.ActivityRequirementCreateNestedOneWithoutImplementationRequirementsInput
   formSnapshot?: Prisma.ImplementationFormSnapshotCreateNestedOneWithoutRequirementsInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
@@ -718,6 +749,7 @@ export type ImplementationRequirementUncheckedCreateWithoutActivityInput = {
   formSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedCreateNestedManyWithoutRequirementInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
 }
 
@@ -747,6 +779,78 @@ export type ImplementationRequirementUpdateManyWithWhereWithoutActivityInput = {
   data: Prisma.XOR<Prisma.ImplementationRequirementUpdateManyMutationInput, Prisma.ImplementationRequirementUncheckedUpdateManyWithoutActivityInput>
 }
 
+export type ImplementationRequirementCreateWithoutEvidencesInput = {
+  id?: string
+  type: $Enums.ActivityRequirementType
+  isRequired?: boolean
+  order: number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  activity: Prisma.ActivityCreateNestedOneWithoutRequirementsInput
+  sourceRequirement?: Prisma.ActivityRequirementCreateNestedOneWithoutImplementationRequirementsInput
+  formSnapshot?: Prisma.ImplementationFormSnapshotCreateNestedOneWithoutRequirementsInput
+  evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
+}
+
+export type ImplementationRequirementUncheckedCreateWithoutEvidencesInput = {
+  id?: string
+  activityId: string
+  sourceRequirementId?: string | null
+  type: $Enums.ActivityRequirementType
+  isRequired?: boolean
+  order: number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  formSnapshotId?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
+}
+
+export type ImplementationRequirementCreateOrConnectWithoutEvidencesInput = {
+  where: Prisma.ImplementationRequirementWhereUniqueInput
+  create: Prisma.XOR<Prisma.ImplementationRequirementCreateWithoutEvidencesInput, Prisma.ImplementationRequirementUncheckedCreateWithoutEvidencesInput>
+}
+
+export type ImplementationRequirementUpsertWithoutEvidencesInput = {
+  update: Prisma.XOR<Prisma.ImplementationRequirementUpdateWithoutEvidencesInput, Prisma.ImplementationRequirementUncheckedUpdateWithoutEvidencesInput>
+  create: Prisma.XOR<Prisma.ImplementationRequirementCreateWithoutEvidencesInput, Prisma.ImplementationRequirementUncheckedCreateWithoutEvidencesInput>
+  where?: Prisma.ImplementationRequirementWhereInput
+}
+
+export type ImplementationRequirementUpdateToOneWithWhereWithoutEvidencesInput = {
+  where?: Prisma.ImplementationRequirementWhereInput
+  data: Prisma.XOR<Prisma.ImplementationRequirementUpdateWithoutEvidencesInput, Prisma.ImplementationRequirementUncheckedUpdateWithoutEvidencesInput>
+}
+
+export type ImplementationRequirementUpdateWithoutEvidencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumActivityRequirementTypeFieldUpdateOperationsInput | $Enums.ActivityRequirementType
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  sourceRequirement?: Prisma.ActivityRequirementUpdateOneWithoutImplementationRequirementsNestedInput
+  formSnapshot?: Prisma.ImplementationFormSnapshotUpdateOneWithoutRequirementsNestedInput
+  evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
+}
+
+export type ImplementationRequirementUncheckedUpdateWithoutEvidencesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
+  sourceRequirementId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  type?: Prisma.EnumActivityRequirementTypeFieldUpdateOperationsInput | $Enums.ActivityRequirementType
+  isRequired?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  order?: Prisma.IntFieldUpdateOperationsInput | number
+  configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  formSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
+}
+
 export type ImplementationRequirementCreateWithoutEvidenceTypesInput = {
   id?: string
   type: $Enums.ActivityRequirementType
@@ -755,7 +859,8 @@ export type ImplementationRequirementCreateWithoutEvidenceTypesInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  activity: Prisma.ImplementationActivityCreateNestedOneWithoutRequirementsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutRequirementsInput
+  evidences?: Prisma.ActivityEvidenceCreateNestedManyWithoutRequirementInput
   sourceRequirement?: Prisma.ActivityRequirementCreateNestedOneWithoutImplementationRequirementsInput
   formSnapshot?: Prisma.ImplementationFormSnapshotCreateNestedOneWithoutRequirementsInput
 }
@@ -771,6 +876,7 @@ export type ImplementationRequirementUncheckedCreateWithoutEvidenceTypesInput = 
   formSnapshotId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedCreateNestedManyWithoutRequirementInput
 }
 
 export type ImplementationRequirementCreateOrConnectWithoutEvidenceTypesInput = {
@@ -797,7 +903,8 @@ export type ImplementationRequirementUpdateWithoutEvidenceTypesInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  activity?: Prisma.ImplementationActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  evidences?: Prisma.ActivityEvidenceUpdateManyWithoutRequirementNestedInput
   sourceRequirement?: Prisma.ActivityRequirementUpdateOneWithoutImplementationRequirementsNestedInput
   formSnapshot?: Prisma.ImplementationFormSnapshotUpdateOneWithoutRequirementsNestedInput
 }
@@ -813,6 +920,7 @@ export type ImplementationRequirementUncheckedUpdateWithoutEvidenceTypesInput = 
   formSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedUpdateManyWithoutRequirementNestedInput
 }
 
 export type ImplementationRequirementCreateWithoutFormSnapshotInput = {
@@ -823,7 +931,8 @@ export type ImplementationRequirementCreateWithoutFormSnapshotInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  activity: Prisma.ImplementationActivityCreateNestedOneWithoutRequirementsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutRequirementsInput
+  evidences?: Prisma.ActivityEvidenceCreateNestedManyWithoutRequirementInput
   sourceRequirement?: Prisma.ActivityRequirementCreateNestedOneWithoutImplementationRequirementsInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeCreateNestedManyWithoutRequirementInput
 }
@@ -838,6 +947,7 @@ export type ImplementationRequirementUncheckedCreateWithoutFormSnapshotInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedCreateNestedManyWithoutRequirementInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedCreateNestedManyWithoutRequirementInput
 }
 
@@ -887,7 +997,8 @@ export type ImplementationRequirementUpdateWithoutSourceRequirementInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  activity?: Prisma.ImplementationActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  evidences?: Prisma.ActivityEvidenceUpdateManyWithoutRequirementNestedInput
   formSnapshot?: Prisma.ImplementationFormSnapshotUpdateOneWithoutRequirementsNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
 }
@@ -902,6 +1013,7 @@ export type ImplementationRequirementUncheckedUpdateWithoutSourceRequirementInpu
   formSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedUpdateManyWithoutRequirementNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
 }
 
@@ -937,6 +1049,7 @@ export type ImplementationRequirementUpdateWithoutActivityInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidences?: Prisma.ActivityEvidenceUpdateManyWithoutRequirementNestedInput
   sourceRequirement?: Prisma.ActivityRequirementUpdateOneWithoutImplementationRequirementsNestedInput
   formSnapshot?: Prisma.ImplementationFormSnapshotUpdateOneWithoutRequirementsNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
@@ -952,6 +1065,7 @@ export type ImplementationRequirementUncheckedUpdateWithoutActivityInput = {
   formSnapshotId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedUpdateManyWithoutRequirementNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
 }
 
@@ -987,7 +1101,8 @@ export type ImplementationRequirementUpdateWithoutFormSnapshotInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  activity?: Prisma.ImplementationActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutRequirementsNestedInput
+  evidences?: Prisma.ActivityEvidenceUpdateManyWithoutRequirementNestedInput
   sourceRequirement?: Prisma.ActivityRequirementUpdateOneWithoutImplementationRequirementsNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUpdateManyWithoutRequirementNestedInput
 }
@@ -1002,6 +1117,7 @@ export type ImplementationRequirementUncheckedUpdateWithoutFormSnapshotInput = {
   configuration?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  evidences?: Prisma.ActivityEvidenceUncheckedUpdateManyWithoutRequirementNestedInput
   evidenceTypes?: Prisma.ImplementationRequirementEvidenceTypeUncheckedUpdateManyWithoutRequirementNestedInput
 }
 
@@ -1023,10 +1139,12 @@ export type ImplementationRequirementUncheckedUpdateManyWithoutFormSnapshotInput
  */
 
 export type ImplementationRequirementCountOutputType = {
+  evidences: number
   evidenceTypes: number
 }
 
 export type ImplementationRequirementCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  evidences?: boolean | ImplementationRequirementCountOutputTypeCountEvidencesArgs
   evidenceTypes?: boolean | ImplementationRequirementCountOutputTypeCountEvidenceTypesArgs
 }
 
@@ -1038,6 +1156,13 @@ export type ImplementationRequirementCountOutputTypeDefaultArgs<ExtArgs extends 
    * Select specific fields to fetch from the ImplementationRequirementCountOutputType
    */
   select?: Prisma.ImplementationRequirementCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ImplementationRequirementCountOutputType without action
+ */
+export type ImplementationRequirementCountOutputTypeCountEvidencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ActivityEvidenceWhereInput
 }
 
 /**
@@ -1059,7 +1184,8 @@ export type ImplementationRequirementSelect<ExtArgs extends runtime.Types.Extens
   formSnapshotId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  activity?: boolean | Prisma.ImplementationActivityDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  evidences?: boolean | Prisma.ImplementationRequirement$evidencesArgs<ExtArgs>
   sourceRequirement?: boolean | Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs>
   formSnapshot?: boolean | Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs>
   evidenceTypes?: boolean | Prisma.ImplementationRequirement$evidenceTypesArgs<ExtArgs>
@@ -1077,7 +1203,7 @@ export type ImplementationRequirementSelectCreateManyAndReturn<ExtArgs extends r
   formSnapshotId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  activity?: boolean | Prisma.ImplementationActivityDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceRequirement?: boolean | Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs>
   formSnapshot?: boolean | Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs>
 }, ExtArgs["result"]["implementationRequirement"]>
@@ -1093,7 +1219,7 @@ export type ImplementationRequirementSelectUpdateManyAndReturn<ExtArgs extends r
   formSnapshotId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  activity?: boolean | Prisma.ImplementationActivityDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceRequirement?: boolean | Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs>
   formSnapshot?: boolean | Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs>
 }, ExtArgs["result"]["implementationRequirement"]>
@@ -1113,19 +1239,20 @@ export type ImplementationRequirementSelectScalar = {
 
 export type ImplementationRequirementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "activityId" | "sourceRequirementId" | "type" | "isRequired" | "order" | "configuration" | "formSnapshotId" | "createdAt" | "updatedAt", ExtArgs["result"]["implementationRequirement"]>
 export type ImplementationRequirementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  activity?: boolean | Prisma.ImplementationActivityDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
+  evidences?: boolean | Prisma.ImplementationRequirement$evidencesArgs<ExtArgs>
   sourceRequirement?: boolean | Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs>
   formSnapshot?: boolean | Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs>
   evidenceTypes?: boolean | Prisma.ImplementationRequirement$evidenceTypesArgs<ExtArgs>
   _count?: boolean | Prisma.ImplementationRequirementCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ImplementationRequirementIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  activity?: boolean | Prisma.ImplementationActivityDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceRequirement?: boolean | Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs>
   formSnapshot?: boolean | Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs>
 }
 export type ImplementationRequirementIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  activity?: boolean | Prisma.ImplementationActivityDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceRequirement?: boolean | Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs>
   formSnapshot?: boolean | Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs>
 }
@@ -1133,7 +1260,8 @@ export type ImplementationRequirementIncludeUpdateManyAndReturn<ExtArgs extends 
 export type $ImplementationRequirementPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ImplementationRequirement"
   objects: {
-    activity: Prisma.$ImplementationActivityPayload<ExtArgs>
+    activity: Prisma.$ActivityPayload<ExtArgs>
+    evidences: Prisma.$ActivityEvidencePayload<ExtArgs>[]
     sourceRequirement: Prisma.$ActivityRequirementPayload<ExtArgs> | null
     formSnapshot: Prisma.$ImplementationFormSnapshotPayload<ExtArgs> | null
     evidenceTypes: Prisma.$ImplementationRequirementEvidenceTypePayload<ExtArgs>[]
@@ -1543,7 +1671,8 @@ readonly fields: ImplementationRequirementFieldRefs;
  */
 export interface Prisma__ImplementationRequirementClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  activity<T extends Prisma.ImplementationActivityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationActivityDefaultArgs<ExtArgs>>): Prisma.Prisma__ImplementationActivityClient<runtime.Types.Result.GetResult<Prisma.$ImplementationActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  activity<T extends Prisma.ActivityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityDefaultArgs<ExtArgs>>): Prisma.Prisma__ActivityClient<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  evidences<T extends Prisma.ImplementationRequirement$evidencesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationRequirement$evidencesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityEvidencePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   sourceRequirement<T extends Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationRequirement$sourceRequirementArgs<ExtArgs>>): Prisma.Prisma__ActivityRequirementClient<runtime.Types.Result.GetResult<Prisma.$ActivityRequirementPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   formSnapshot<T extends Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationRequirement$formSnapshotArgs<ExtArgs>>): Prisma.Prisma__ImplementationFormSnapshotClient<runtime.Types.Result.GetResult<Prisma.$ImplementationFormSnapshotPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   evidenceTypes<T extends Prisma.ImplementationRequirement$evidenceTypesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationRequirement$evidenceTypesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationRequirementEvidenceTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1984,6 +2113,30 @@ export type ImplementationRequirementDeleteManyArgs<ExtArgs extends runtime.Type
    * Limit how many ImplementationRequirements to delete.
    */
   limit?: number
+}
+
+/**
+ * ImplementationRequirement.evidences
+ */
+export type ImplementationRequirement$evidencesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ActivityEvidence
+   */
+  select?: Prisma.ActivityEvidenceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ActivityEvidence
+   */
+  omit?: Prisma.ActivityEvidenceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ActivityEvidenceInclude<ExtArgs> | null
+  where?: Prisma.ActivityEvidenceWhereInput
+  orderBy?: Prisma.ActivityEvidenceOrderByWithRelationInput | Prisma.ActivityEvidenceOrderByWithRelationInput[]
+  cursor?: Prisma.ActivityEvidenceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ActivityEvidenceScalarFieldEnum | Prisma.ActivityEvidenceScalarFieldEnum[]
 }
 
 /**

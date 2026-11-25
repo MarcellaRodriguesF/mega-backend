@@ -96,6 +96,7 @@ export interface SnapshotActivity {
   description: string | null;
   order: number;
   requirements: SnapshotRequirement[];
+  forms: SnapshotForm[];
 }
 
 export interface SnapshotStage {
@@ -109,7 +110,6 @@ export interface SnapshotStage {
 export interface ImplementationSnapshot {
   templateName: string;
   templateDescription: string | null;
-  forms: SnapshotForm[];
   stages: SnapshotStage[];
 }
 
@@ -142,6 +142,44 @@ export function listReferencedFormTemplateIds(template: SourceTemplate) {
   return [...ids];
 }
 
+function copyForm(form: SourceFormTemplate): SnapshotForm {
+  return {
+    sourceFormTemplateId: form.id,
+    name: form.name,
+    description: form.description,
+    status: form.status,
+    fields: [...form.fields]
+      .sort((left, right) => left.order - right.order)
+      .map((field) => ({
+        sourceFormFieldId: field.id,
+        key: field.key,
+        label: field.label,
+        description: field.description,
+        type: field.type,
+        placeholder: field.placeholder,
+        isRequired: field.isRequired,
+        order: field.order,
+        options: cloneJson(field.options),
+        isSensitive: false,
+        connectivityFieldTarget: null,
+      })),
+  };
+}
+
+function formsForActivity(
+  activity: SourceActivity,
+  formsById: Map<string, SourceFormTemplate>,
+) {
+  const ids: string[] = [];
+
+  for (const requirement of activity.requirements) {
+    if (requirement.type !== "FORM" || !requirement.formTemplateId) continue;
+    if (!ids.includes(requirement.formTemplateId)) ids.push(requirement.formTemplateId);
+  }
+
+  return ids.map((id) => copyForm(formsById.get(id)!));
+}
+
 export function buildImplementationSnapshot(
   template: SourceTemplate,
   forms: SourceFormTemplate[],
@@ -161,31 +199,6 @@ export function buildImplementationSnapshot(
   return {
     templateName: template.name,
     templateDescription: template.description,
-    forms: requiredIds.map((id) => {
-      const form = formsById.get(id)!;
-
-      return {
-        sourceFormTemplateId: form.id,
-        name: form.name,
-        description: form.description,
-        status: form.status,
-        fields: [...form.fields]
-          .sort((left, right) => left.order - right.order)
-          .map((field) => ({
-            sourceFormFieldId: field.id,
-            key: field.key,
-            label: field.label,
-            description: field.description,
-            type: field.type,
-            placeholder: field.placeholder,
-            isRequired: field.isRequired,
-            order: field.order,
-            options: cloneJson(field.options),
-            isSensitive: false,
-            connectivityFieldTarget: null,
-          })),
-      };
-    }),
     stages: [...template.stages]
       .sort((left, right) => left.order - right.order)
       .map((stage) => ({
@@ -200,6 +213,7 @@ export function buildImplementationSnapshot(
             name: activity.name,
             description: activity.description,
             order: activity.order,
+            forms: formsForActivity(activity, formsById),
             requirements: [...activity.requirements]
               .sort((left, right) => left.order - right.order)
               .map((requirement) => ({

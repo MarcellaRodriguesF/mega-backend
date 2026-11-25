@@ -162,15 +162,30 @@ export type Implementation = Prisma.ImplementationModel
  */
 export type ImplementationStage = Prisma.ImplementationStageModel
 /**
- * Model ImplementationActivity
+ * Model Activity
  * 
  */
-export type ImplementationActivity = Prisma.ImplementationActivityModel
+export type Activity = Prisma.ActivityModel
 /**
- * Model ImplementationActivityAssignment
+ * Model ActivityAssignment
  * 
  */
-export type ImplementationActivityAssignment = Prisma.ImplementationActivityAssignmentModel
+export type ActivityAssignment = Prisma.ActivityAssignmentModel
+/**
+ * Model ActivityPlacement
+ * 
+ */
+export type ActivityPlacement = Prisma.ActivityPlacementModel
+/**
+ * Model ActivityEvidence
+ * 
+ */
+export type ActivityEvidence = Prisma.ActivityEvidenceModel
+/**
+ * Model ActivityFieldResponse
+ * 
+ */
+export type ActivityFieldResponse = Prisma.ActivityFieldResponseModel
 /**
  * Model ImplementationRequirement
  * 

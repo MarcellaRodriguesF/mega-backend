@@ -446,21 +446,21 @@ export type EnumImplementationWorkStatusWithAggregatesFilter<$PrismaModel = neve
   _max?: Prisma.NestedEnumImplementationWorkStatusFilter<$PrismaModel>
 }
 
-export type EnumImplementationAssignmentRoleFilter<$PrismaModel = never> = {
-  equals?: $Enums.ImplementationAssignmentRole | Prisma.EnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  in?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumImplementationAssignmentRoleFilter<$PrismaModel> | $Enums.ImplementationAssignmentRole
+export type EnumActivityAssignmentRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityAssignmentRole | Prisma.EnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActivityAssignmentRoleFilter<$PrismaModel> | $Enums.ActivityAssignmentRole
 }
 
-export type EnumImplementationAssignmentRoleWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ImplementationAssignmentRole | Prisma.EnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  in?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumImplementationAssignmentRoleWithAggregatesFilter<$PrismaModel> | $Enums.ImplementationAssignmentRole
+export type EnumActivityAssignmentRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityAssignmentRole | Prisma.EnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActivityAssignmentRoleWithAggregatesFilter<$PrismaModel> | $Enums.ActivityAssignmentRole
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumImplementationAssignmentRoleFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumImplementationAssignmentRoleFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumActivityAssignmentRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumActivityAssignmentRoleFilter<$PrismaModel>
 }
 
 export type EnumConnectivityFieldTargetNullableFilter<$PrismaModel = never> = {
@@ -883,21 +883,21 @@ export type NestedEnumImplementationWorkStatusWithAggregatesFilter<$PrismaModel 
   _max?: Prisma.NestedEnumImplementationWorkStatusFilter<$PrismaModel>
 }
 
-export type NestedEnumImplementationAssignmentRoleFilter<$PrismaModel = never> = {
-  equals?: $Enums.ImplementationAssignmentRole | Prisma.EnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  in?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumImplementationAssignmentRoleFilter<$PrismaModel> | $Enums.ImplementationAssignmentRole
+export type NestedEnumActivityAssignmentRoleFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityAssignmentRole | Prisma.EnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActivityAssignmentRoleFilter<$PrismaModel> | $Enums.ActivityAssignmentRole
 }
 
-export type NestedEnumImplementationAssignmentRoleWithAggregatesFilter<$PrismaModel = never> = {
-  equals?: $Enums.ImplementationAssignmentRole | Prisma.EnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  in?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  notIn?: $Enums.ImplementationAssignmentRole[] | Prisma.ListEnumImplementationAssignmentRoleFieldRefInput<$PrismaModel>
-  not?: Prisma.NestedEnumImplementationAssignmentRoleWithAggregatesFilter<$PrismaModel> | $Enums.ImplementationAssignmentRole
+export type NestedEnumActivityAssignmentRoleWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityAssignmentRole | Prisma.EnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  in?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ActivityAssignmentRole[] | Prisma.ListEnumActivityAssignmentRoleFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumActivityAssignmentRoleWithAggregatesFilter<$PrismaModel> | $Enums.ActivityAssignmentRole
   _count?: Prisma.NestedIntFilter<$PrismaModel>
-  _min?: Prisma.NestedEnumImplementationAssignmentRoleFilter<$PrismaModel>
-  _max?: Prisma.NestedEnumImplementationAssignmentRoleFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumActivityAssignmentRoleFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumActivityAssignmentRoleFilter<$PrismaModel>
 }
 
 export type NestedEnumConnectivityFieldTargetNullableFilter<$PrismaModel = never> = {

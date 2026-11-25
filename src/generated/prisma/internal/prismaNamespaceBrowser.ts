@@ -75,8 +75,11 @@ export const ModelName = {
   FormField: 'FormField',
   Implementation: 'Implementation',
   ImplementationStage: 'ImplementationStage',
-  ImplementationActivity: 'ImplementationActivity',
-  ImplementationActivityAssignment: 'ImplementationActivityAssignment',
+  Activity: 'Activity',
+  ActivityAssignment: 'ActivityAssignment',
+  ActivityPlacement: 'ActivityPlacement',
+  ActivityEvidence: 'ActivityEvidence',
+  ActivityFieldResponse: 'ActivityFieldResponse',
   ImplementationRequirement: 'ImplementationRequirement',
   ImplementationRequirementEvidenceType: 'ImplementationRequirementEvidenceType',
   ImplementationFormSnapshot: 'ImplementationFormSnapshot',
@@ -448,6 +451,8 @@ export type FormFieldScalarFieldEnum = (typeof FormFieldScalarFieldEnum)[keyof t
 
 export const ImplementationScalarFieldEnum = {
   id: 'id',
+  name: 'name',
+  description: 'description',
   unitId: 'unitId',
   companyId: 'companyId',
   templateId: 'templateId',
@@ -491,24 +496,38 @@ export const ImplementationStageScalarFieldEnum = {
 export type ImplementationStageScalarFieldEnum = (typeof ImplementationStageScalarFieldEnum)[keyof typeof ImplementationStageScalarFieldEnum]
 
 
-export const ImplementationActivityScalarFieldEnum = {
+export const ActivityScalarFieldEnum = {
   id: 'id',
+  implementationId: 'implementationId',
   stageId: 'stageId',
   sourceActivityId: 'sourceActivityId',
+  companyId: 'companyId',
+  unitId: 'unitId',
   name: 'name',
   description: 'description',
   order: 'order',
   status: 'status',
   startedAt: 'startedAt',
   completedAt: 'completedAt',
+  unitName: 'unitName',
+  companyTradeName: 'companyTradeName',
+  addressZipCode: 'addressZipCode',
+  addressStreet: 'addressStreet',
+  addressNumber: 'addressNumber',
+  addressComplement: 'addressComplement',
+  addressNeighborhood: 'addressNeighborhood',
+  addressCity: 'addressCity',
+  addressState: 'addressState',
+  initialProviderId: 'initialProviderId',
+  initialProviderName: 'initialProviderName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type ImplementationActivityScalarFieldEnum = (typeof ImplementationActivityScalarFieldEnum)[keyof typeof ImplementationActivityScalarFieldEnum]
+export type ActivityScalarFieldEnum = (typeof ActivityScalarFieldEnum)[keyof typeof ActivityScalarFieldEnum]
 
 
-export const ImplementationActivityAssignmentScalarFieldEnum = {
+export const ActivityAssignmentScalarFieldEnum = {
   id: 'id',
   activityId: 'activityId',
   userId: 'userId',
@@ -517,7 +536,53 @@ export const ImplementationActivityAssignmentScalarFieldEnum = {
   createdAt: 'createdAt'
 } as const
 
-export type ImplementationActivityAssignmentScalarFieldEnum = (typeof ImplementationActivityAssignmentScalarFieldEnum)[keyof typeof ImplementationActivityAssignmentScalarFieldEnum]
+export type ActivityAssignmentScalarFieldEnum = (typeof ActivityAssignmentScalarFieldEnum)[keyof typeof ActivityAssignmentScalarFieldEnum]
+
+
+export const ActivityPlacementScalarFieldEnum = {
+  id: 'id',
+  activityId: 'activityId',
+  fromImplementationId: 'fromImplementationId',
+  toImplementationId: 'toImplementationId',
+  fromStageId: 'fromStageId',
+  toStageId: 'toStageId',
+  fromImplementationName: 'fromImplementationName',
+  toImplementationName: 'toImplementationName',
+  fromStageName: 'fromStageName',
+  toStageName: 'toStageName',
+  userId: 'userId',
+  userName: 'userName',
+  reason: 'reason',
+  explicitConfirmation: 'explicitConfirmation',
+  createdAt: 'createdAt'
+} as const
+
+export type ActivityPlacementScalarFieldEnum = (typeof ActivityPlacementScalarFieldEnum)[keyof typeof ActivityPlacementScalarFieldEnum]
+
+
+export const ActivityEvidenceScalarFieldEnum = {
+  id: 'id',
+  activityId: 'activityId',
+  requirementId: 'requirementId',
+  evidenceType: 'evidenceType',
+  fileName: 'fileName',
+  storageKey: 'storageKey',
+  createdAt: 'createdAt'
+} as const
+
+export type ActivityEvidenceScalarFieldEnum = (typeof ActivityEvidenceScalarFieldEnum)[keyof typeof ActivityEvidenceScalarFieldEnum]
+
+
+export const ActivityFieldResponseScalarFieldEnum = {
+  id: 'id',
+  activityId: 'activityId',
+  fieldId: 'fieldId',
+  valueText: 'valueText',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ActivityFieldResponseScalarFieldEnum = (typeof ActivityFieldResponseScalarFieldEnum)[keyof typeof ActivityFieldResponseScalarFieldEnum]
 
 
 export const ImplementationRequirementScalarFieldEnum = {
@@ -549,7 +614,7 @@ export type ImplementationRequirementEvidenceTypeScalarFieldEnum = (typeof Imple
 
 export const ImplementationFormSnapshotScalarFieldEnum = {
   id: 'id',
-  implementationId: 'implementationId',
+  activityId: 'activityId',
   sourceFormTemplateId: 'sourceFormTemplateId',
   name: 'name',
   description: 'description',

@@ -156,21 +156,23 @@ export function toCatalogTemplate(template: {
 
 export function toImplementationSummary(item: {
   id: string;
+  name: string;
   status: string;
   startedAt: Date;
   completedAt: Date | null;
-  unitId: string;
-  unitName: string;
-  companyId: string;
-  companyTradeName: string;
+  unitId: string | null;
+  unitName: string | null;
+  companyId: string | null;
+  companyTradeName: string | null;
   templateId: string | null;
-  templateName: string;
+  templateName: string | null;
   initialProviderId: string | null;
   initialProviderName: string | null;
-  stages: { _count: { activities: number } }[];
+  _count: { stages: number; activities: number };
 }) {
   return {
     id: item.id,
+    name: item.name,
     status: item.status,
     startedAt: item.startedAt,
     completedAt: item.completedAt,
@@ -183,78 +185,43 @@ export function toImplementationSummary(item: {
     initialProvider: item.initialProviderId
       ? { id: item.initialProviderId, name: item.initialProviderName }
       : null,
-    stageCount: item.stages.length,
-    activityCount: item.stages.reduce(
-      (total, stage) => total + stage._count.activities,
-      0,
-    ),
+    stageCount: item._count.stages,
+    activityCount: item._count.activities,
   };
 }
 
-export interface StoredImplementation {
+interface StoredActivity {
   id: string;
+  name: string;
+  description: string | null;
+  order: number;
   status: string;
-  startedAt: Date;
+  startedAt: Date | null;
   completedAt: Date | null;
-  unitId: string;
-  companyId: string;
-  templateId: string | null;
-  templateName: string;
-  templateDescription: string | null;
-  unitName: string;
-  companyTradeName: string;
-  addressZipCode: string | null;
-  addressStreet: string | null;
-  addressNumber: string | null;
-  addressComplement: string | null;
-  addressNeighborhood: string | null;
-  addressCity: string | null;
-  addressState: string | null;
-  initialProviderId: string | null;
-  initialProviderName: string | null;
-  createdAt: Date;
-  updatedAt: Date;
-  stages: {
+  sourceActivityId: string | null;
+  implementationId: string | null;
+  stageId: string | null;
+  companyId: string | null;
+  unitId: string | null;
+  unitName: string | null;
+  companyTradeName: string | null;
+  assignments: {
     id: string;
-    name: string;
-    description: string | null;
+    userId: string;
+    userName: string;
+    role: string;
+    createdAt: Date;
+  }[];
+  requirements: {
+    id: string;
+    type: string;
+    isRequired: boolean;
     order: number;
-    status: string;
-    startedAt: Date | null;
-    completedAt: Date | null;
-    sourceStageId: string | null;
-    activities: {
-      id: string;
-      name: string;
-      description: string | null;
-      order: number;
-      status: string;
-      startedAt: Date | null;
-      completedAt: Date | null;
-      sourceActivityId: string | null;
-      assignments: {
-        id: string;
-        userId: string;
-        userName: string;
-        role: string;
-        createdAt: Date;
-      }[];
-      requirements: {
-        id: string;
-        type: string;
-        isRequired: boolean;
-        order: number;
-        configuration: unknown;
-        formSnapshotId: string | null;
-        sourceRequirementId: string | null;
-        formSnapshot: {
-          id: string;
-          name: string;
-          sourceFormTemplateId: string | null;
-        } | null;
-        evidenceTypes: { id: string; type: string }[];
-      }[];
-    }[];
+    configuration: unknown;
+    formSnapshotId: string | null;
+    sourceRequirementId: string | null;
+    formSnapshot: { id: string; name: string; sourceFormTemplateId: string | null } | null;
+    evidenceTypes: { id: string; type: string }[];
   }[];
   formSnapshots: {
     id: string;
@@ -279,29 +246,92 @@ export interface StoredImplementation {
   }[];
 }
 
+function mapActivity(activity: StoredActivity) {
+  return {
+    id: activity.id,
+    implementationId: activity.implementationId,
+    stageId: activity.stageId,
+    sourceActivityId: activity.sourceActivityId,
+    name: activity.name,
+    description: activity.description,
+    order: activity.order,
+    status: activity.status,
+    startedAt: activity.startedAt,
+    completedAt: activity.completedAt,
+    companyId: activity.companyId,
+    unitId: activity.unitId,
+    unitName: activity.unitName,
+    companyTradeName: activity.companyTradeName,
+    assignments: activity.assignments,
+    requirements: activity.requirements,
+    formSnapshots: activity.formSnapshots,
+  };
+}
+
+export interface StoredImplementation {
+  id: string;
+  name: string;
+  description: string | null;
+  status: string;
+  startedAt: Date;
+  completedAt: Date | null;
+  unitId: string | null;
+  companyId: string | null;
+  templateId: string | null;
+  templateName: string | null;
+  templateDescription: string | null;
+  unitName: string | null;
+  companyTradeName: string | null;
+  addressZipCode: string | null;
+  addressStreet: string | null;
+  addressNumber: string | null;
+  addressComplement: string | null;
+  addressNeighborhood: string | null;
+  addressCity: string | null;
+  addressState: string | null;
+  initialProviderId: string | null;
+  initialProviderName: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+  activities: StoredActivity[];
+  stages: {
+    id: string;
+    name: string;
+    description: string | null;
+    order: number;
+    status: string;
+    startedAt: Date | null;
+    completedAt: Date | null;
+    sourceStageId: string | null;
+    activities: StoredActivity[];
+  }[];
+}
+
 export function toImplementationDetail(
   implementation: StoredImplementation,
   liveUnit: UnitContextSource | null,
 ) {
   return {
     id: implementation.id,
+    name: implementation.name,
+    description: implementation.description,
     status: implementation.status,
     startedAt: implementation.startedAt,
     completedAt: implementation.completedAt,
     createdAt: implementation.createdAt,
     updatedAt: implementation.updatedAt,
-    template: {
-      id: implementation.templateId,
-      name: implementation.templateName,
-      description: implementation.templateDescription,
-    },
-    capturedUnit: {
-      id: implementation.unitId,
-      name: implementation.unitName,
-      company: {
-        id: implementation.companyId,
-        tradeName: implementation.companyTradeName,
-      },
+    template: implementation.templateId || implementation.templateName
+      ? {
+          id: implementation.templateId,
+          name: implementation.templateName,
+          description: implementation.templateDescription,
+        }
+      : null,
+    captured: {
+      companyId: implementation.companyId,
+      companyTradeName: implementation.companyTradeName,
+      unitId: implementation.unitId,
+      unitName: implementation.unitName,
       address: {
         zipCode: implementation.addressZipCode,
         street: implementation.addressStreet,
@@ -319,6 +349,7 @@ export function toImplementationDetail(
         : null,
     },
     unit: liveUnit ? toUnitContext(liveUnit) : null,
+    directActivities: implementation.activities.map(mapActivity),
     stages: implementation.stages.map((stage) => ({
       id: stage.id,
       sourceStageId: stage.sourceStageId,
@@ -328,30 +359,8 @@ export function toImplementationDetail(
       status: stage.status,
       startedAt: stage.startedAt,
       completedAt: stage.completedAt,
-      activities: stage.activities.map((activity) => ({
-        id: activity.id,
-        sourceActivityId: activity.sourceActivityId,
-        name: activity.name,
-        description: activity.description,
-        order: activity.order,
-        status: activity.status,
-        startedAt: activity.startedAt,
-        completedAt: activity.completedAt,
-        assignments: activity.assignments,
-        requirements: activity.requirements.map((requirement) => ({
-          id: requirement.id,
-          sourceRequirementId: requirement.sourceRequirementId,
-          type: requirement.type,
-          isRequired: requirement.isRequired,
-          order: requirement.order,
-          configuration: requirement.configuration,
-          formSnapshotId: requirement.formSnapshotId,
-          formSnapshot: requirement.formSnapshot,
-          evidenceTypes: requirement.evidenceTypes,
-        })),
-      })),
+      activities: stage.activities.map(mapActivity),
     })),
-    formSnapshots: implementation.formSnapshots,
     connectivityEditable: false as const,
   };
 }

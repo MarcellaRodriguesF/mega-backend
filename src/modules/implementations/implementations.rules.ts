@@ -13,8 +13,8 @@ export const IMPLEMENTATION_WORK_STATUSES = [
 ] as const;
 
 export const IMPLEMENTATION_ASSIGNMENT_ROLES = [
-  "EXECUTION",
-  "COMPLETION",
+  "EXECUTOR",
+  "SUPERVISOR",
 ] as const;
 
 /**
@@ -93,6 +93,98 @@ export function assertConnectivityFieldTarget(
 
 export interface InitialProviderSource {
   provider: { id: string; name: string } | null;
+}
+
+export function resolveOrganization(input: {
+  companyId: string | null;
+  unit: { id: string; companyId: string } | null;
+}) {
+  if (input.unit) {
+    if (input.companyId && input.companyId !== input.unit.companyId) {
+      throw new ApiError(
+        "A unidade não pertence ao cliente informado.",
+        422,
+        "UNIT_COMPANY_MISMATCH",
+      );
+    }
+
+    return {
+      companyId: input.unit.companyId,
+      unitId: input.unit.id,
+    };
+  }
+
+  return {
+    companyId: input.companyId,
+    unitId: null,
+  };
+}
+
+export function assertActivityContext(input: {
+  implementationId: string | null;
+  stageId: string | null;
+  stageImplementationId: string | null;
+}) {
+  if (input.stageId && !input.implementationId) {
+    throw new ApiError(
+      "Uma atividade dentro de etapa precisa pertencer à implantação dessa etapa.",
+      422,
+      "ACTIVITY_STAGE_WITHOUT_IMPLEMENTATION",
+    );
+  }
+
+  if (
+    input.stageId &&
+    input.stageImplementationId !== input.implementationId
+  ) {
+    throw new ApiError(
+      "A etapa não pertence à implantação informada.",
+      422,
+      "STAGE_IMPLEMENTATION_MISMATCH",
+    );
+  }
+}
+
+export function assertRelocation(input: {
+  status: string;
+  currentImplementationId: string | null;
+  targetImplementationId: string | null;
+  acknowledgeCompleted: boolean;
+}) {
+  if (input.status === "COMPLETED" && !input.acknowledgeCompleted) {
+    throw new ApiError(
+      "Confirme explicitamente a movimentação de uma atividade concluída.",
+      422,
+      "ACTIVITY_COMPLETED_MOVE_REQUIRES_CONFIRMATION",
+    );
+  }
+
+  if (
+    input.currentImplementationId &&
+    input.targetImplementationId &&
+    input.currentImplementationId !== input.targetImplementationId
+  ) {
+    throw new ApiError(
+      "A atividade já está vinculada a outra implantação.",
+      409,
+      "ACTIVITY_ALREADY_LINKED",
+    );
+  }
+}
+
+export function assertSupervisorAvailable(
+  assignments: { role: string; userId: string }[],
+  userId: string,
+) {
+  const supervisor = assignments.find((item) => item.role === "SUPERVISOR");
+
+  if (supervisor && supervisor.userId !== userId) {
+    throw new ApiError(
+      "A atividade já possui um supervisor.",
+      409,
+      "SUPERVISOR_ALREADY_ASSIGNED",
+    );
+  }
 }
 
 export function resolveInitialProvider(connectivity: InitialProviderSource | null) {

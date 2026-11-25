@@ -26,7 +26,7 @@ export type AggregateImplementationFormSnapshot = {
 
 export type ImplementationFormSnapshotMinAggregateOutputType = {
   id: string | null
-  implementationId: string | null
+  activityId: string | null
   sourceFormTemplateId: string | null
   name: string | null
   description: string | null
@@ -37,7 +37,7 @@ export type ImplementationFormSnapshotMinAggregateOutputType = {
 
 export type ImplementationFormSnapshotMaxAggregateOutputType = {
   id: string | null
-  implementationId: string | null
+  activityId: string | null
   sourceFormTemplateId: string | null
   name: string | null
   description: string | null
@@ -48,7 +48,7 @@ export type ImplementationFormSnapshotMaxAggregateOutputType = {
 
 export type ImplementationFormSnapshotCountAggregateOutputType = {
   id: number
-  implementationId: number
+  activityId: number
   sourceFormTemplateId: number
   name: number
   description: number
@@ -61,7 +61,7 @@ export type ImplementationFormSnapshotCountAggregateOutputType = {
 
 export type ImplementationFormSnapshotMinAggregateInputType = {
   id?: true
-  implementationId?: true
+  activityId?: true
   sourceFormTemplateId?: true
   name?: true
   description?: true
@@ -72,7 +72,7 @@ export type ImplementationFormSnapshotMinAggregateInputType = {
 
 export type ImplementationFormSnapshotMaxAggregateInputType = {
   id?: true
-  implementationId?: true
+  activityId?: true
   sourceFormTemplateId?: true
   name?: true
   description?: true
@@ -83,7 +83,7 @@ export type ImplementationFormSnapshotMaxAggregateInputType = {
 
 export type ImplementationFormSnapshotCountAggregateInputType = {
   id?: true
-  implementationId?: true
+  activityId?: true
   sourceFormTemplateId?: true
   name?: true
   description?: true
@@ -167,7 +167,7 @@ export type ImplementationFormSnapshotGroupByArgs<ExtArgs extends runtime.Types.
 
 export type ImplementationFormSnapshotGroupByOutputType = {
   id: string
-  implementationId: string
+  activityId: string
   sourceFormTemplateId: string | null
   name: string
   description: string | null
@@ -199,14 +199,14 @@ export type ImplementationFormSnapshotWhereInput = {
   OR?: Prisma.ImplementationFormSnapshotWhereInput[]
   NOT?: Prisma.ImplementationFormSnapshotWhereInput | Prisma.ImplementationFormSnapshotWhereInput[]
   id?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
-  implementationId?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
+  activityId?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
   sourceFormTemplateId?: Prisma.UuidNullableFilter<"ImplementationFormSnapshot"> | string | null
   name?: Prisma.StringFilter<"ImplementationFormSnapshot"> | string
   description?: Prisma.StringNullableFilter<"ImplementationFormSnapshot"> | string | null
   status?: Prisma.StringFilter<"ImplementationFormSnapshot"> | string
   createdAt?: Prisma.DateTimeFilter<"ImplementationFormSnapshot"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ImplementationFormSnapshot"> | Date | string
-  implementation?: Prisma.XOR<Prisma.ImplementationScalarRelationFilter, Prisma.ImplementationWhereInput>
+  activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
   sourceFormTemplate?: Prisma.XOR<Prisma.FormTemplateNullableScalarRelationFilter, Prisma.FormTemplateWhereInput> | null
   fields?: Prisma.ImplementationFormFieldListRelationFilter
   requirements?: Prisma.ImplementationRequirementListRelationFilter
@@ -214,14 +214,14 @@ export type ImplementationFormSnapshotWhereInput = {
 
 export type ImplementationFormSnapshotOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  implementationId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   sourceFormTemplateId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  implementation?: Prisma.ImplementationOrderByWithRelationInput
+  activity?: Prisma.ActivityOrderByWithRelationInput
   sourceFormTemplate?: Prisma.FormTemplateOrderByWithRelationInput
   fields?: Prisma.ImplementationFormFieldOrderByRelationAggregateInput
   requirements?: Prisma.ImplementationRequirementOrderByRelationAggregateInput
@@ -229,26 +229,26 @@ export type ImplementationFormSnapshotOrderByWithRelationInput = {
 
 export type ImplementationFormSnapshotWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  implementationId_sourceFormTemplateId?: Prisma.ImplementationFormSnapshotImplementationIdSourceFormTemplateIdCompoundUniqueInput
+  activityId_sourceFormTemplateId?: Prisma.ImplementationFormSnapshotActivityIdSourceFormTemplateIdCompoundUniqueInput
   AND?: Prisma.ImplementationFormSnapshotWhereInput | Prisma.ImplementationFormSnapshotWhereInput[]
   OR?: Prisma.ImplementationFormSnapshotWhereInput[]
   NOT?: Prisma.ImplementationFormSnapshotWhereInput | Prisma.ImplementationFormSnapshotWhereInput[]
-  implementationId?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
+  activityId?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
   sourceFormTemplateId?: Prisma.UuidNullableFilter<"ImplementationFormSnapshot"> | string | null
   name?: Prisma.StringFilter<"ImplementationFormSnapshot"> | string
   description?: Prisma.StringNullableFilter<"ImplementationFormSnapshot"> | string | null
   status?: Prisma.StringFilter<"ImplementationFormSnapshot"> | string
   createdAt?: Prisma.DateTimeFilter<"ImplementationFormSnapshot"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ImplementationFormSnapshot"> | Date | string
-  implementation?: Prisma.XOR<Prisma.ImplementationScalarRelationFilter, Prisma.ImplementationWhereInput>
+  activity?: Prisma.XOR<Prisma.ActivityScalarRelationFilter, Prisma.ActivityWhereInput>
   sourceFormTemplate?: Prisma.XOR<Prisma.FormTemplateNullableScalarRelationFilter, Prisma.FormTemplateWhereInput> | null
   fields?: Prisma.ImplementationFormFieldListRelationFilter
   requirements?: Prisma.ImplementationRequirementListRelationFilter
-}, "id" | "implementationId_sourceFormTemplateId">
+}, "id" | "activityId_sourceFormTemplateId">
 
 export type ImplementationFormSnapshotOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  implementationId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   sourceFormTemplateId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -265,7 +265,7 @@ export type ImplementationFormSnapshotScalarWhereWithAggregatesInput = {
   OR?: Prisma.ImplementationFormSnapshotScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ImplementationFormSnapshotScalarWhereWithAggregatesInput | Prisma.ImplementationFormSnapshotScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"ImplementationFormSnapshot"> | string
-  implementationId?: Prisma.UuidWithAggregatesFilter<"ImplementationFormSnapshot"> | string
+  activityId?: Prisma.UuidWithAggregatesFilter<"ImplementationFormSnapshot"> | string
   sourceFormTemplateId?: Prisma.UuidNullableWithAggregatesFilter<"ImplementationFormSnapshot"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"ImplementationFormSnapshot"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"ImplementationFormSnapshot"> | string | null
@@ -281,7 +281,7 @@ export type ImplementationFormSnapshotCreateInput = {
   status: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  implementation: Prisma.ImplementationCreateNestedOneWithoutFormSnapshotsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutFormSnapshotsInput
   sourceFormTemplate?: Prisma.FormTemplateCreateNestedOneWithoutImplementationFormSnapshotsInput
   fields?: Prisma.ImplementationFormFieldCreateNestedManyWithoutFormSnapshotInput
   requirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutFormSnapshotInput
@@ -289,7 +289,7 @@ export type ImplementationFormSnapshotCreateInput = {
 
 export type ImplementationFormSnapshotUncheckedCreateInput = {
   id?: string
-  implementationId: string
+  activityId: string
   sourceFormTemplateId?: string | null
   name: string
   description?: string | null
@@ -307,7 +307,7 @@ export type ImplementationFormSnapshotUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  implementation?: Prisma.ImplementationUpdateOneRequiredWithoutFormSnapshotsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutFormSnapshotsNestedInput
   sourceFormTemplate?: Prisma.FormTemplateUpdateOneWithoutImplementationFormSnapshotsNestedInput
   fields?: Prisma.ImplementationFormFieldUpdateManyWithoutFormSnapshotNestedInput
   requirements?: Prisma.ImplementationRequirementUpdateManyWithoutFormSnapshotNestedInput
@@ -315,7 +315,7 @@ export type ImplementationFormSnapshotUpdateInput = {
 
 export type ImplementationFormSnapshotUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  implementationId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceFormTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -328,7 +328,7 @@ export type ImplementationFormSnapshotUncheckedUpdateInput = {
 
 export type ImplementationFormSnapshotCreateManyInput = {
   id?: string
-  implementationId: string
+  activityId: string
   sourceFormTemplateId?: string | null
   name: string
   description?: string | null
@@ -348,7 +348,7 @@ export type ImplementationFormSnapshotUpdateManyMutationInput = {
 
 export type ImplementationFormSnapshotUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  implementationId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceFormTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -372,14 +372,14 @@ export type ImplementationFormSnapshotNullableScalarRelationFilter = {
   isNot?: Prisma.ImplementationFormSnapshotWhereInput | null
 }
 
-export type ImplementationFormSnapshotImplementationIdSourceFormTemplateIdCompoundUniqueInput = {
-  implementationId: string
+export type ImplementationFormSnapshotActivityIdSourceFormTemplateIdCompoundUniqueInput = {
+  activityId: string
   sourceFormTemplateId: string
 }
 
 export type ImplementationFormSnapshotCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  implementationId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   sourceFormTemplateId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -390,7 +390,7 @@ export type ImplementationFormSnapshotCountOrderByAggregateInput = {
 
 export type ImplementationFormSnapshotMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  implementationId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   sourceFormTemplateId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -401,7 +401,7 @@ export type ImplementationFormSnapshotMaxOrderByAggregateInput = {
 
 export type ImplementationFormSnapshotMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  implementationId?: Prisma.SortOrder
+  activityId?: Prisma.SortOrder
   sourceFormTemplateId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   description?: Prisma.SortOrder
@@ -457,45 +457,45 @@ export type ImplementationFormSnapshotUncheckedUpdateManyWithoutSourceFormTempla
   deleteMany?: Prisma.ImplementationFormSnapshotScalarWhereInput | Prisma.ImplementationFormSnapshotScalarWhereInput[]
 }
 
-export type ImplementationFormSnapshotCreateNestedManyWithoutImplementationInput = {
-  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput> | Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput[]
-  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput[]
-  createMany?: Prisma.ImplementationFormSnapshotCreateManyImplementationInputEnvelope
+export type ImplementationFormSnapshotCreateNestedManyWithoutActivityInput = {
+  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput> | Prisma.ImplementationFormSnapshotCreateWithoutActivityInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput[]
+  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput[]
+  createMany?: Prisma.ImplementationFormSnapshotCreateManyActivityInputEnvelope
   connect?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
 }
 
-export type ImplementationFormSnapshotUncheckedCreateNestedManyWithoutImplementationInput = {
-  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput> | Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput[]
-  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput[]
-  createMany?: Prisma.ImplementationFormSnapshotCreateManyImplementationInputEnvelope
+export type ImplementationFormSnapshotUncheckedCreateNestedManyWithoutActivityInput = {
+  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput> | Prisma.ImplementationFormSnapshotCreateWithoutActivityInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput[]
+  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput[]
+  createMany?: Prisma.ImplementationFormSnapshotCreateManyActivityInputEnvelope
   connect?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
 }
 
-export type ImplementationFormSnapshotUpdateManyWithoutImplementationNestedInput = {
-  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput> | Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput[]
-  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput[]
-  upsert?: Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutImplementationInput | Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutImplementationInput[]
-  createMany?: Prisma.ImplementationFormSnapshotCreateManyImplementationInputEnvelope
+export type ImplementationFormSnapshotUpdateManyWithoutActivityNestedInput = {
+  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput> | Prisma.ImplementationFormSnapshotCreateWithoutActivityInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput[]
+  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput[]
+  upsert?: Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutActivityInput | Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutActivityInput[]
+  createMany?: Prisma.ImplementationFormSnapshotCreateManyActivityInputEnvelope
   set?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
   disconnect?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
   delete?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
   connect?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
-  update?: Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutImplementationInput | Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutImplementationInput[]
-  updateMany?: Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutImplementationInput | Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutImplementationInput[]
+  update?: Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutActivityInput | Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutActivityInput[]
+  updateMany?: Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutActivityInput | Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutActivityInput[]
   deleteMany?: Prisma.ImplementationFormSnapshotScalarWhereInput | Prisma.ImplementationFormSnapshotScalarWhereInput[]
 }
 
-export type ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationNestedInput = {
-  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput> | Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput[]
-  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput[]
-  upsert?: Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutImplementationInput | Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutImplementationInput[]
-  createMany?: Prisma.ImplementationFormSnapshotCreateManyImplementationInputEnvelope
+export type ImplementationFormSnapshotUncheckedUpdateManyWithoutActivityNestedInput = {
+  create?: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput> | Prisma.ImplementationFormSnapshotCreateWithoutActivityInput[] | Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput[]
+  connectOrCreate?: Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput | Prisma.ImplementationFormSnapshotCreateOrConnectWithoutActivityInput[]
+  upsert?: Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutActivityInput | Prisma.ImplementationFormSnapshotUpsertWithWhereUniqueWithoutActivityInput[]
+  createMany?: Prisma.ImplementationFormSnapshotCreateManyActivityInputEnvelope
   set?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
   disconnect?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
   delete?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
   connect?: Prisma.ImplementationFormSnapshotWhereUniqueInput | Prisma.ImplementationFormSnapshotWhereUniqueInput[]
-  update?: Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutImplementationInput | Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutImplementationInput[]
-  updateMany?: Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutImplementationInput | Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutImplementationInput[]
+  update?: Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutActivityInput | Prisma.ImplementationFormSnapshotUpdateWithWhereUniqueWithoutActivityInput[]
+  updateMany?: Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutActivityInput | Prisma.ImplementationFormSnapshotUpdateManyWithWhereWithoutActivityInput[]
   deleteMany?: Prisma.ImplementationFormSnapshotScalarWhereInput | Prisma.ImplementationFormSnapshotScalarWhereInput[]
 }
 
@@ -536,14 +536,14 @@ export type ImplementationFormSnapshotCreateWithoutSourceFormTemplateInput = {
   status: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  implementation: Prisma.ImplementationCreateNestedOneWithoutFormSnapshotsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutFormSnapshotsInput
   fields?: Prisma.ImplementationFormFieldCreateNestedManyWithoutFormSnapshotInput
   requirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutFormSnapshotInput
 }
 
 export type ImplementationFormSnapshotUncheckedCreateWithoutSourceFormTemplateInput = {
   id?: string
-  implementationId: string
+  activityId: string
   name: string
   description?: string | null
   status: string
@@ -584,7 +584,7 @@ export type ImplementationFormSnapshotScalarWhereInput = {
   OR?: Prisma.ImplementationFormSnapshotScalarWhereInput[]
   NOT?: Prisma.ImplementationFormSnapshotScalarWhereInput | Prisma.ImplementationFormSnapshotScalarWhereInput[]
   id?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
-  implementationId?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
+  activityId?: Prisma.UuidFilter<"ImplementationFormSnapshot"> | string
   sourceFormTemplateId?: Prisma.UuidNullableFilter<"ImplementationFormSnapshot"> | string | null
   name?: Prisma.StringFilter<"ImplementationFormSnapshot"> | string
   description?: Prisma.StringNullableFilter<"ImplementationFormSnapshot"> | string | null
@@ -593,7 +593,7 @@ export type ImplementationFormSnapshotScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"ImplementationFormSnapshot"> | Date | string
 }
 
-export type ImplementationFormSnapshotCreateWithoutImplementationInput = {
+export type ImplementationFormSnapshotCreateWithoutActivityInput = {
   id?: string
   name: string
   description?: string | null
@@ -605,7 +605,7 @@ export type ImplementationFormSnapshotCreateWithoutImplementationInput = {
   requirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutFormSnapshotInput
 }
 
-export type ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput = {
+export type ImplementationFormSnapshotUncheckedCreateWithoutActivityInput = {
   id?: string
   sourceFormTemplateId?: string | null
   name: string
@@ -617,30 +617,30 @@ export type ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput 
   requirements?: Prisma.ImplementationRequirementUncheckedCreateNestedManyWithoutFormSnapshotInput
 }
 
-export type ImplementationFormSnapshotCreateOrConnectWithoutImplementationInput = {
+export type ImplementationFormSnapshotCreateOrConnectWithoutActivityInput = {
   where: Prisma.ImplementationFormSnapshotWhereUniqueInput
-  create: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput>
+  create: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput>
 }
 
-export type ImplementationFormSnapshotCreateManyImplementationInputEnvelope = {
-  data: Prisma.ImplementationFormSnapshotCreateManyImplementationInput | Prisma.ImplementationFormSnapshotCreateManyImplementationInput[]
+export type ImplementationFormSnapshotCreateManyActivityInputEnvelope = {
+  data: Prisma.ImplementationFormSnapshotCreateManyActivityInput | Prisma.ImplementationFormSnapshotCreateManyActivityInput[]
   skipDuplicates?: boolean
 }
 
-export type ImplementationFormSnapshotUpsertWithWhereUniqueWithoutImplementationInput = {
+export type ImplementationFormSnapshotUpsertWithWhereUniqueWithoutActivityInput = {
   where: Prisma.ImplementationFormSnapshotWhereUniqueInput
-  update: Prisma.XOR<Prisma.ImplementationFormSnapshotUpdateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedUpdateWithoutImplementationInput>
-  create: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutImplementationInput>
+  update: Prisma.XOR<Prisma.ImplementationFormSnapshotUpdateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedUpdateWithoutActivityInput>
+  create: Prisma.XOR<Prisma.ImplementationFormSnapshotCreateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedCreateWithoutActivityInput>
 }
 
-export type ImplementationFormSnapshotUpdateWithWhereUniqueWithoutImplementationInput = {
+export type ImplementationFormSnapshotUpdateWithWhereUniqueWithoutActivityInput = {
   where: Prisma.ImplementationFormSnapshotWhereUniqueInput
-  data: Prisma.XOR<Prisma.ImplementationFormSnapshotUpdateWithoutImplementationInput, Prisma.ImplementationFormSnapshotUncheckedUpdateWithoutImplementationInput>
+  data: Prisma.XOR<Prisma.ImplementationFormSnapshotUpdateWithoutActivityInput, Prisma.ImplementationFormSnapshotUncheckedUpdateWithoutActivityInput>
 }
 
-export type ImplementationFormSnapshotUpdateManyWithWhereWithoutImplementationInput = {
+export type ImplementationFormSnapshotUpdateManyWithWhereWithoutActivityInput = {
   where: Prisma.ImplementationFormSnapshotScalarWhereInput
-  data: Prisma.XOR<Prisma.ImplementationFormSnapshotUpdateManyMutationInput, Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationInput>
+  data: Prisma.XOR<Prisma.ImplementationFormSnapshotUpdateManyMutationInput, Prisma.ImplementationFormSnapshotUncheckedUpdateManyWithoutActivityInput>
 }
 
 export type ImplementationFormSnapshotCreateWithoutRequirementsInput = {
@@ -650,14 +650,14 @@ export type ImplementationFormSnapshotCreateWithoutRequirementsInput = {
   status: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  implementation: Prisma.ImplementationCreateNestedOneWithoutFormSnapshotsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutFormSnapshotsInput
   sourceFormTemplate?: Prisma.FormTemplateCreateNestedOneWithoutImplementationFormSnapshotsInput
   fields?: Prisma.ImplementationFormFieldCreateNestedManyWithoutFormSnapshotInput
 }
 
 export type ImplementationFormSnapshotUncheckedCreateWithoutRequirementsInput = {
   id?: string
-  implementationId: string
+  activityId: string
   sourceFormTemplateId?: string | null
   name: string
   description?: string | null
@@ -690,14 +690,14 @@ export type ImplementationFormSnapshotUpdateWithoutRequirementsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  implementation?: Prisma.ImplementationUpdateOneRequiredWithoutFormSnapshotsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutFormSnapshotsNestedInput
   sourceFormTemplate?: Prisma.FormTemplateUpdateOneWithoutImplementationFormSnapshotsNestedInput
   fields?: Prisma.ImplementationFormFieldUpdateManyWithoutFormSnapshotNestedInput
 }
 
 export type ImplementationFormSnapshotUncheckedUpdateWithoutRequirementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  implementationId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceFormTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -714,14 +714,14 @@ export type ImplementationFormSnapshotCreateWithoutFieldsInput = {
   status: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  implementation: Prisma.ImplementationCreateNestedOneWithoutFormSnapshotsInput
+  activity: Prisma.ActivityCreateNestedOneWithoutFormSnapshotsInput
   sourceFormTemplate?: Prisma.FormTemplateCreateNestedOneWithoutImplementationFormSnapshotsInput
   requirements?: Prisma.ImplementationRequirementCreateNestedManyWithoutFormSnapshotInput
 }
 
 export type ImplementationFormSnapshotUncheckedCreateWithoutFieldsInput = {
   id?: string
-  implementationId: string
+  activityId: string
   sourceFormTemplateId?: string | null
   name: string
   description?: string | null
@@ -754,14 +754,14 @@ export type ImplementationFormSnapshotUpdateWithoutFieldsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  implementation?: Prisma.ImplementationUpdateOneRequiredWithoutFormSnapshotsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutFormSnapshotsNestedInput
   sourceFormTemplate?: Prisma.FormTemplateUpdateOneWithoutImplementationFormSnapshotsNestedInput
   requirements?: Prisma.ImplementationRequirementUpdateManyWithoutFormSnapshotNestedInput
 }
 
 export type ImplementationFormSnapshotUncheckedUpdateWithoutFieldsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  implementationId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   sourceFormTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -773,7 +773,7 @@ export type ImplementationFormSnapshotUncheckedUpdateWithoutFieldsInput = {
 
 export type ImplementationFormSnapshotCreateManySourceFormTemplateInput = {
   id?: string
-  implementationId: string
+  activityId: string
   name: string
   description?: string | null
   status: string
@@ -788,14 +788,14 @@ export type ImplementationFormSnapshotUpdateWithoutSourceFormTemplateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  implementation?: Prisma.ImplementationUpdateOneRequiredWithoutFormSnapshotsNestedInput
+  activity?: Prisma.ActivityUpdateOneRequiredWithoutFormSnapshotsNestedInput
   fields?: Prisma.ImplementationFormFieldUpdateManyWithoutFormSnapshotNestedInput
   requirements?: Prisma.ImplementationRequirementUpdateManyWithoutFormSnapshotNestedInput
 }
 
 export type ImplementationFormSnapshotUncheckedUpdateWithoutSourceFormTemplateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  implementationId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -807,7 +807,7 @@ export type ImplementationFormSnapshotUncheckedUpdateWithoutSourceFormTemplateIn
 
 export type ImplementationFormSnapshotUncheckedUpdateManyWithoutSourceFormTemplateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  implementationId?: Prisma.StringFieldUpdateOperationsInput | string
+  activityId?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -815,7 +815,7 @@ export type ImplementationFormSnapshotUncheckedUpdateManyWithoutSourceFormTempla
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type ImplementationFormSnapshotCreateManyImplementationInput = {
+export type ImplementationFormSnapshotCreateManyActivityInput = {
   id?: string
   sourceFormTemplateId?: string | null
   name: string
@@ -825,7 +825,7 @@ export type ImplementationFormSnapshotCreateManyImplementationInput = {
   updatedAt?: Date | string
 }
 
-export type ImplementationFormSnapshotUpdateWithoutImplementationInput = {
+export type ImplementationFormSnapshotUpdateWithoutActivityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -837,7 +837,7 @@ export type ImplementationFormSnapshotUpdateWithoutImplementationInput = {
   requirements?: Prisma.ImplementationRequirementUpdateManyWithoutFormSnapshotNestedInput
 }
 
-export type ImplementationFormSnapshotUncheckedUpdateWithoutImplementationInput = {
+export type ImplementationFormSnapshotUncheckedUpdateWithoutActivityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sourceFormTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -849,7 +849,7 @@ export type ImplementationFormSnapshotUncheckedUpdateWithoutImplementationInput 
   requirements?: Prisma.ImplementationRequirementUncheckedUpdateManyWithoutFormSnapshotNestedInput
 }
 
-export type ImplementationFormSnapshotUncheckedUpdateManyWithoutImplementationInput = {
+export type ImplementationFormSnapshotUncheckedUpdateManyWithoutActivityInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   sourceFormTemplateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
@@ -901,14 +901,14 @@ export type ImplementationFormSnapshotCountOutputTypeCountRequirementsArgs<ExtAr
 
 export type ImplementationFormSnapshotSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  implementationId?: boolean
+  activityId?: boolean
   sourceFormTemplateId?: boolean
   name?: boolean
   description?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  implementation?: boolean | Prisma.ImplementationDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceFormTemplate?: boolean | Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs>
   fields?: boolean | Prisma.ImplementationFormSnapshot$fieldsArgs<ExtArgs>
   requirements?: boolean | Prisma.ImplementationFormSnapshot$requirementsArgs<ExtArgs>
@@ -917,33 +917,33 @@ export type ImplementationFormSnapshotSelect<ExtArgs extends runtime.Types.Exten
 
 export type ImplementationFormSnapshotSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  implementationId?: boolean
+  activityId?: boolean
   sourceFormTemplateId?: boolean
   name?: boolean
   description?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  implementation?: boolean | Prisma.ImplementationDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceFormTemplate?: boolean | Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs>
 }, ExtArgs["result"]["implementationFormSnapshot"]>
 
 export type ImplementationFormSnapshotSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  implementationId?: boolean
+  activityId?: boolean
   sourceFormTemplateId?: boolean
   name?: boolean
   description?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  implementation?: boolean | Prisma.ImplementationDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceFormTemplate?: boolean | Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs>
 }, ExtArgs["result"]["implementationFormSnapshot"]>
 
 export type ImplementationFormSnapshotSelectScalar = {
   id?: boolean
-  implementationId?: boolean
+  activityId?: boolean
   sourceFormTemplateId?: boolean
   name?: boolean
   description?: boolean
@@ -952,34 +952,34 @@ export type ImplementationFormSnapshotSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ImplementationFormSnapshotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "implementationId" | "sourceFormTemplateId" | "name" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["implementationFormSnapshot"]>
+export type ImplementationFormSnapshotOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "activityId" | "sourceFormTemplateId" | "name" | "description" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["implementationFormSnapshot"]>
 export type ImplementationFormSnapshotInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  implementation?: boolean | Prisma.ImplementationDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceFormTemplate?: boolean | Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs>
   fields?: boolean | Prisma.ImplementationFormSnapshot$fieldsArgs<ExtArgs>
   requirements?: boolean | Prisma.ImplementationFormSnapshot$requirementsArgs<ExtArgs>
   _count?: boolean | Prisma.ImplementationFormSnapshotCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ImplementationFormSnapshotIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  implementation?: boolean | Prisma.ImplementationDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceFormTemplate?: boolean | Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs>
 }
 export type ImplementationFormSnapshotIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  implementation?: boolean | Prisma.ImplementationDefaultArgs<ExtArgs>
+  activity?: boolean | Prisma.ActivityDefaultArgs<ExtArgs>
   sourceFormTemplate?: boolean | Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs>
 }
 
 export type $ImplementationFormSnapshotPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ImplementationFormSnapshot"
   objects: {
-    implementation: Prisma.$ImplementationPayload<ExtArgs>
+    activity: Prisma.$ActivityPayload<ExtArgs>
     sourceFormTemplate: Prisma.$FormTemplatePayload<ExtArgs> | null
     fields: Prisma.$ImplementationFormFieldPayload<ExtArgs>[]
     requirements: Prisma.$ImplementationRequirementPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    implementationId: string
+    activityId: string
     sourceFormTemplateId: string | null
     name: string
     description: string | null
@@ -1380,7 +1380,7 @@ readonly fields: ImplementationFormSnapshotFieldRefs;
  */
 export interface Prisma__ImplementationFormSnapshotClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  implementation<T extends Prisma.ImplementationDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationDefaultArgs<ExtArgs>>): Prisma.Prisma__ImplementationClient<runtime.Types.Result.GetResult<Prisma.$ImplementationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  activity<T extends Prisma.ActivityDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ActivityDefaultArgs<ExtArgs>>): Prisma.Prisma__ActivityClient<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   sourceFormTemplate<T extends Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationFormSnapshot$sourceFormTemplateArgs<ExtArgs>>): Prisma.Prisma__FormTemplateClient<runtime.Types.Result.GetResult<Prisma.$FormTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   fields<T extends Prisma.ImplementationFormSnapshot$fieldsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationFormSnapshot$fieldsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationFormFieldPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   requirements<T extends Prisma.ImplementationFormSnapshot$requirementsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ImplementationFormSnapshot$requirementsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationRequirementPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1414,7 +1414,7 @@ export interface Prisma__ImplementationFormSnapshotClient<T, Null = never, ExtAr
  */
 export interface ImplementationFormSnapshotFieldRefs {
   readonly id: Prisma.FieldRef<"ImplementationFormSnapshot", 'String'>
-  readonly implementationId: Prisma.FieldRef<"ImplementationFormSnapshot", 'String'>
+  readonly activityId: Prisma.FieldRef<"ImplementationFormSnapshot", 'String'>
   readonly sourceFormTemplateId: Prisma.FieldRef<"ImplementationFormSnapshot", 'String'>
   readonly name: Prisma.FieldRef<"ImplementationFormSnapshot", 'String'>
   readonly description: Prisma.FieldRef<"ImplementationFormSnapshot", 'String'>
