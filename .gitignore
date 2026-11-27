@@ -21,3 +21,6 @@ Thumbs.db
 
 # IDE
 .vscode/
+
+# Arquivos enviados pelos usuários
+/storage/
