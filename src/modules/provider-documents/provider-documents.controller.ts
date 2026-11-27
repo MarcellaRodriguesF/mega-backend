@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 
 import { ApiError } from "../../shared/http/api-error.js";
 import { successResponse } from "../../shared/http/api-response.js";
+import { streamStoredFile } from "../../shared/storage/stream-stored-file.js";
 import { ProviderDocumentsService } from "./provider-documents.service.js";
 import {
   createProviderDocumentFieldsSchema,
@@ -75,43 +76,14 @@ export class ProviderDocumentsController {
   download = async (req: Request, res: Response) => {
     const providerId = readRouteId(req.params.providerId, "ID do provedor");
     const id = readRouteId(req.params.id, "ID do documento");
-    const disposition = req.query.disposition === "inline" ? "inline" : "attachment";
+    const disposition =
+      req.query.disposition === "inline" ? "inline" : "attachment";
     const file = await this.providerDocumentsService.openFile(
       id,
       providerId,
       disposition,
     );
-
-    res.status(200);
-    res.setHeader("Content-Type", file.mimeType);
-    res.setHeader("Content-Length", String(file.sizeBytes));
-    res.setHeader("Content-Disposition", file.contentDisposition);
-    res.setHeader("X-Content-Type-Options", "nosniff");
-    res.setHeader("Cache-Control", "private, no-store");
-    res.setHeader("Access-Control-Expose-Headers", "Content-Disposition");
-
-    file.stream.on("error", () => {
-      console.error("Falha ao transmitir arquivo armazenado.");
-
-      if (!res.headersSent) {
-        res.status(500).json({
-          status: "error",
-          message: "Não foi possível ler o arquivo armazenado.",
-          error: {
-            code: "FILE_STORAGE_ERROR",
-          },
-        });
-        return;
-      }
-
-      res.destroy();
-    });
-
-    res.on("close", () => {
-      file.stream.destroy();
-    });
-
-    file.stream.pipe(res);
+    streamStoredFile(res, file);
   };
 
   update = async (req: Request, res: Response) => {
@@ -123,6 +95,7 @@ export class ProviderDocumentsController {
     if (
       !file &&
       fields.name === undefined &&
+      fields.type === undefined &&
       fields.observations === undefined
     ) {
       throw new ApiError(

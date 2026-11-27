@@ -81,6 +81,7 @@ model Company {
 
   addresses       CompanyAddress[]
   contacts        CompanyContact[]
+  documents       ProviderDocument[]
   opportunities   Opportunity[]
   units           Unit[]
   implementations Implementation[]
@@ -222,7 +223,9 @@ model ProviderContact {
 
 model ProviderDocument {
   id         String @id @default(uuid()) @db.Uuid
-  providerId String @map("provider_id") @db.Uuid
+  providerId String? @map("provider_id") @db.Uuid
+  companyId  String? @map("company_id") @db.Uuid
+  unitId     String? @map("unit_id") @db.Uuid
 
   name         String    @db.VarChar(150)
   type         String?   @db.VarChar(50)
@@ -233,12 +236,16 @@ model ProviderDocument {
   expiresAt    DateTime? @map("expires_at") @db.Date
   observations String?   @db.Text
 
-  provider Provider @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  provider Provider? @relation(fields: [providerId], references: [id], onDelete: Cascade)
+  company  Company?  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  unit     Unit?     @relation("ProviderDocumentUnit", fields: [unitId], references: [id], onDelete: SetNull)
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   @@index([providerId])
+  @@index([companyId])
+  @@index([unitId])
   @@index([type])
   @@index([expiresAt])
   @@map("provider_documents")
@@ -257,6 +264,7 @@ model Unit {
   company         Company            @relation(fields: [companyId], references: [id])
   address         UnitAddress?
   documents       UnitDocument[]
+  companyDocuments ProviderDocument[] @relation("ProviderDocumentUnit")
   connectivities  UnitConnectivity[]
   implementations Implementation[]
   activities      Activity[]

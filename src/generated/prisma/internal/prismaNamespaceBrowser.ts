@@ -257,6 +257,8 @@ export type ProviderContactScalarFieldEnum = (typeof ProviderContactScalarFieldE
 export const ProviderDocumentScalarFieldEnum = {
   id: 'id',
   providerId: 'providerId',
+  companyId: 'companyId',
+  unitId: 'unitId',
   name: 'name',
   type: 'type',
   fileName: 'fileName',

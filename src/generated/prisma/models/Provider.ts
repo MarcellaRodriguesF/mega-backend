@@ -414,10 +414,12 @@ export type ProviderCreateNestedOneWithoutDocumentsInput = {
   connect?: Prisma.ProviderWhereUniqueInput
 }
 
-export type ProviderUpdateOneRequiredWithoutDocumentsNestedInput = {
+export type ProviderUpdateOneWithoutDocumentsNestedInput = {
   create?: Prisma.XOR<Prisma.ProviderCreateWithoutDocumentsInput, Prisma.ProviderUncheckedCreateWithoutDocumentsInput>
   connectOrCreate?: Prisma.ProviderCreateOrConnectWithoutDocumentsInput
   upsert?: Prisma.ProviderUpsertWithoutDocumentsInput
+  disconnect?: Prisma.ProviderWhereInput | boolean
+  delete?: Prisma.ProviderWhereInput | boolean
   connect?: Prisma.ProviderWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProviderUpdateToOneWithWhereWithoutDocumentsInput, Prisma.ProviderUpdateWithoutDocumentsInput>, Prisma.ProviderUncheckedUpdateWithoutDocumentsInput>
 }

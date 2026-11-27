@@ -209,6 +209,7 @@ export type UnitWhereInput = {
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   address?: Prisma.XOR<Prisma.UnitAddressNullableScalarRelationFilter, Prisma.UnitAddressWhereInput> | null
   documents?: Prisma.UnitDocumentListRelationFilter
+  companyDocuments?: Prisma.ProviderDocumentListRelationFilter
   connectivities?: Prisma.UnitConnectivityListRelationFilter
   implementations?: Prisma.ImplementationListRelationFilter
   activities?: Prisma.ActivityListRelationFilter
@@ -226,6 +227,7 @@ export type UnitOrderByWithRelationInput = {
   company?: Prisma.CompanyOrderByWithRelationInput
   address?: Prisma.UnitAddressOrderByWithRelationInput
   documents?: Prisma.UnitDocumentOrderByRelationAggregateInput
+  companyDocuments?: Prisma.ProviderDocumentOrderByRelationAggregateInput
   connectivities?: Prisma.UnitConnectivityOrderByRelationAggregateInput
   implementations?: Prisma.ImplementationOrderByRelationAggregateInput
   activities?: Prisma.ActivityOrderByRelationAggregateInput
@@ -246,6 +248,7 @@ export type UnitWhereUniqueInput = Prisma.AtLeast<{
   company?: Prisma.XOR<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput>
   address?: Prisma.XOR<Prisma.UnitAddressNullableScalarRelationFilter, Prisma.UnitAddressWhereInput> | null
   documents?: Prisma.UnitDocumentListRelationFilter
+  companyDocuments?: Prisma.ProviderDocumentListRelationFilter
   connectivities?: Prisma.UnitConnectivityListRelationFilter
   implementations?: Prisma.ImplementationListRelationFilter
   activities?: Prisma.ActivityListRelationFilter
@@ -290,6 +293,7 @@ export type UnitCreateInput = {
   company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
@@ -306,6 +310,7 @@ export type UnitUncheckedCreateInput = {
   updatedAt?: Date | string
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
@@ -322,6 +327,7 @@ export type UnitUpdateInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
@@ -338,6 +344,7 @@ export type UnitUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
@@ -385,6 +392,11 @@ export type UnitOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type UnitNullableScalarRelationFilter = {
+  is?: Prisma.UnitWhereInput | null
+  isNot?: Prisma.UnitWhereInput | null
+}
+
 export type UnitCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   companyId?: Prisma.SortOrder
@@ -421,11 +433,6 @@ export type UnitMinOrderByAggregateInput = {
 export type UnitScalarRelationFilter = {
   is?: Prisma.UnitWhereInput
   isNot?: Prisma.UnitWhereInput
-}
-
-export type UnitNullableScalarRelationFilter = {
-  is?: Prisma.UnitWhereInput | null
-  isNot?: Prisma.UnitWhereInput | null
 }
 
 export type UnitCreateNestedManyWithoutCompanyInput = {
@@ -468,6 +475,22 @@ export type UnitUncheckedUpdateManyWithoutCompanyNestedInput = {
   update?: Prisma.UnitUpdateWithWhereUniqueWithoutCompanyInput | Prisma.UnitUpdateWithWhereUniqueWithoutCompanyInput[]
   updateMany?: Prisma.UnitUpdateManyWithWhereWithoutCompanyInput | Prisma.UnitUpdateManyWithWhereWithoutCompanyInput[]
   deleteMany?: Prisma.UnitScalarWhereInput | Prisma.UnitScalarWhereInput[]
+}
+
+export type UnitCreateNestedOneWithoutCompanyDocumentsInput = {
+  create?: Prisma.XOR<Prisma.UnitCreateWithoutCompanyDocumentsInput, Prisma.UnitUncheckedCreateWithoutCompanyDocumentsInput>
+  connectOrCreate?: Prisma.UnitCreateOrConnectWithoutCompanyDocumentsInput
+  connect?: Prisma.UnitWhereUniqueInput
+}
+
+export type UnitUpdateOneWithoutCompanyDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.UnitCreateWithoutCompanyDocumentsInput, Prisma.UnitUncheckedCreateWithoutCompanyDocumentsInput>
+  connectOrCreate?: Prisma.UnitCreateOrConnectWithoutCompanyDocumentsInput
+  upsert?: Prisma.UnitUpsertWithoutCompanyDocumentsInput
+  disconnect?: Prisma.UnitWhereInput | boolean
+  delete?: Prisma.UnitWhereInput | boolean
+  connect?: Prisma.UnitWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UnitUpdateToOneWithWhereWithoutCompanyDocumentsInput, Prisma.UnitUpdateWithoutCompanyDocumentsInput>, Prisma.UnitUncheckedUpdateWithoutCompanyDocumentsInput>
 }
 
 export type UnitCreateNestedOneWithoutAddressInput = {
@@ -554,6 +577,7 @@ export type UnitCreateWithoutCompanyInput = {
   updatedAt?: Date | string
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
@@ -569,6 +593,7 @@ export type UnitUncheckedCreateWithoutCompanyInput = {
   updatedAt?: Date | string
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
@@ -614,6 +639,86 @@ export type UnitScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Unit"> | Date | string
 }
 
+export type UnitCreateWithoutCompanyDocumentsInput = {
+  id?: string
+  name: string
+  type: string
+  status?: string
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
+  address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
+  documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
+  implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
+}
+
+export type UnitUncheckedCreateWithoutCompanyDocumentsInput = {
+  id?: string
+  companyId: string
+  name: string
+  type: string
+  status?: string
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
+  documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
+  implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
+  activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
+}
+
+export type UnitCreateOrConnectWithoutCompanyDocumentsInput = {
+  where: Prisma.UnitWhereUniqueInput
+  create: Prisma.XOR<Prisma.UnitCreateWithoutCompanyDocumentsInput, Prisma.UnitUncheckedCreateWithoutCompanyDocumentsInput>
+}
+
+export type UnitUpsertWithoutCompanyDocumentsInput = {
+  update: Prisma.XOR<Prisma.UnitUpdateWithoutCompanyDocumentsInput, Prisma.UnitUncheckedUpdateWithoutCompanyDocumentsInput>
+  create: Prisma.XOR<Prisma.UnitCreateWithoutCompanyDocumentsInput, Prisma.UnitUncheckedCreateWithoutCompanyDocumentsInput>
+  where?: Prisma.UnitWhereInput
+}
+
+export type UnitUpdateToOneWithWhereWithoutCompanyDocumentsInput = {
+  where?: Prisma.UnitWhereInput
+  data: Prisma.XOR<Prisma.UnitUpdateWithoutCompanyDocumentsInput, Prisma.UnitUncheckedUpdateWithoutCompanyDocumentsInput>
+}
+
+export type UnitUpdateWithoutCompanyDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
+  address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
+  documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
+  implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
+}
+
+export type UnitUncheckedUpdateWithoutCompanyDocumentsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
+  documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
+  implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
+  activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
+}
+
 export type UnitCreateWithoutAddressInput = {
   id?: string
   name: string
@@ -624,6 +729,7 @@ export type UnitCreateWithoutAddressInput = {
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
@@ -639,6 +745,7 @@ export type UnitUncheckedCreateWithoutAddressInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
@@ -670,6 +777,7 @@ export type UnitUpdateWithoutAddressInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
@@ -685,6 +793,7 @@ export type UnitUncheckedUpdateWithoutAddressInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
@@ -700,6 +809,7 @@ export type UnitCreateWithoutDocumentsInput = {
   updatedAt?: Date | string
   company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
@@ -715,6 +825,7 @@ export type UnitUncheckedCreateWithoutDocumentsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
@@ -746,6 +857,7 @@ export type UnitUpdateWithoutDocumentsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
@@ -761,6 +873,7 @@ export type UnitUncheckedUpdateWithoutDocumentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
@@ -777,6 +890,7 @@ export type UnitCreateWithoutConnectivitiesInput = {
   company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
@@ -792,6 +906,7 @@ export type UnitUncheckedCreateWithoutConnectivitiesInput = {
   updatedAt?: Date | string
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
@@ -823,6 +938,7 @@ export type UnitUpdateWithoutConnectivitiesInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
@@ -838,6 +954,7 @@ export type UnitUncheckedUpdateWithoutConnectivitiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
 }
@@ -853,6 +970,7 @@ export type UnitCreateWithoutImplementationsInput = {
   company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityCreateNestedManyWithoutUnitInput
 }
@@ -868,6 +986,7 @@ export type UnitUncheckedCreateWithoutImplementationsInput = {
   updatedAt?: Date | string
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   activities?: Prisma.ActivityUncheckedCreateNestedManyWithoutUnitInput
 }
@@ -899,6 +1018,7 @@ export type UnitUpdateWithoutImplementationsInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
 }
@@ -914,6 +1034,7 @@ export type UnitUncheckedUpdateWithoutImplementationsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
 }
@@ -929,6 +1050,7 @@ export type UnitCreateWithoutActivitiesInput = {
   company: Prisma.CompanyCreateNestedOneWithoutUnitsInput
   address?: Prisma.UnitAddressCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationCreateNestedManyWithoutUnitInput
 }
@@ -944,6 +1066,7 @@ export type UnitUncheckedCreateWithoutActivitiesInput = {
   updatedAt?: Date | string
   address?: Prisma.UnitAddressUncheckedCreateNestedOneWithoutUnitInput
   documents?: Prisma.UnitDocumentUncheckedCreateNestedManyWithoutUnitInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput
   connectivities?: Prisma.UnitConnectivityUncheckedCreateNestedManyWithoutUnitInput
   implementations?: Prisma.ImplementationUncheckedCreateNestedManyWithoutUnitInput
 }
@@ -975,6 +1098,7 @@ export type UnitUpdateWithoutActivitiesInput = {
   company?: Prisma.CompanyUpdateOneRequiredWithoutUnitsNestedInput
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
 }
@@ -990,6 +1114,7 @@ export type UnitUncheckedUpdateWithoutActivitiesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
 }
@@ -1014,6 +1139,7 @@ export type UnitUpdateWithoutCompanyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.UnitAddressUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUpdateManyWithoutUnitNestedInput
@@ -1029,6 +1155,7 @@ export type UnitUncheckedUpdateWithoutCompanyInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.UnitAddressUncheckedUpdateOneWithoutUnitNestedInput
   documents?: Prisma.UnitDocumentUncheckedUpdateManyWithoutUnitNestedInput
+  companyDocuments?: Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput
   connectivities?: Prisma.UnitConnectivityUncheckedUpdateManyWithoutUnitNestedInput
   implementations?: Prisma.ImplementationUncheckedUpdateManyWithoutUnitNestedInput
   activities?: Prisma.ActivityUncheckedUpdateManyWithoutUnitNestedInput
@@ -1051,6 +1178,7 @@ export type UnitUncheckedUpdateManyWithoutCompanyInput = {
 
 export type UnitCountOutputType = {
   documents: number
+  companyDocuments: number
   connectivities: number
   implementations: number
   activities: number
@@ -1058,6 +1186,7 @@ export type UnitCountOutputType = {
 
 export type UnitCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   documents?: boolean | UnitCountOutputTypeCountDocumentsArgs
+  companyDocuments?: boolean | UnitCountOutputTypeCountCompanyDocumentsArgs
   connectivities?: boolean | UnitCountOutputTypeCountConnectivitiesArgs
   implementations?: boolean | UnitCountOutputTypeCountImplementationsArgs
   activities?: boolean | UnitCountOutputTypeCountActivitiesArgs
@@ -1078,6 +1207,13 @@ export type UnitCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
  */
 export type UnitCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.UnitDocumentWhereInput
+}
+
+/**
+ * UnitCountOutputType without action
+ */
+export type UnitCountOutputTypeCountCompanyDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProviderDocumentWhereInput
 }
 
 /**
@@ -1114,6 +1250,7 @@ export type UnitSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   address?: boolean | Prisma.Unit$addressArgs<ExtArgs>
   documents?: boolean | Prisma.Unit$documentsArgs<ExtArgs>
+  companyDocuments?: boolean | Prisma.Unit$companyDocumentsArgs<ExtArgs>
   connectivities?: boolean | Prisma.Unit$connectivitiesArgs<ExtArgs>
   implementations?: boolean | Prisma.Unit$implementationsArgs<ExtArgs>
   activities?: boolean | Prisma.Unit$activitiesArgs<ExtArgs>
@@ -1160,6 +1297,7 @@ export type UnitInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   company?: boolean | Prisma.CompanyDefaultArgs<ExtArgs>
   address?: boolean | Prisma.Unit$addressArgs<ExtArgs>
   documents?: boolean | Prisma.Unit$documentsArgs<ExtArgs>
+  companyDocuments?: boolean | Prisma.Unit$companyDocumentsArgs<ExtArgs>
   connectivities?: boolean | Prisma.Unit$connectivitiesArgs<ExtArgs>
   implementations?: boolean | Prisma.Unit$implementationsArgs<ExtArgs>
   activities?: boolean | Prisma.Unit$activitiesArgs<ExtArgs>
@@ -1178,6 +1316,7 @@ export type $UnitPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     company: Prisma.$CompanyPayload<ExtArgs>
     address: Prisma.$UnitAddressPayload<ExtArgs> | null
     documents: Prisma.$UnitDocumentPayload<ExtArgs>[]
+    companyDocuments: Prisma.$ProviderDocumentPayload<ExtArgs>[]
     connectivities: Prisma.$UnitConnectivityPayload<ExtArgs>[]
     implementations: Prisma.$ImplementationPayload<ExtArgs>[]
     activities: Prisma.$ActivityPayload<ExtArgs>[]
@@ -1588,6 +1727,7 @@ export interface Prisma__UnitClient<T, Null = never, ExtArgs extends runtime.Typ
   company<T extends Prisma.CompanyDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CompanyDefaultArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   address<T extends Prisma.Unit$addressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$addressArgs<ExtArgs>>): Prisma.Prisma__UnitAddressClient<runtime.Types.Result.GetResult<Prisma.$UnitAddressPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   documents<T extends Prisma.Unit$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnitDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  companyDocuments<T extends Prisma.Unit$companyDocumentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$companyDocumentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProviderDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   connectivities<T extends Prisma.Unit$connectivitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$connectivitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UnitConnectivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   implementations<T extends Prisma.Unit$implementationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$implementationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ImplementationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   activities<T extends Prisma.Unit$activitiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Unit$activitiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ActivityPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2069,6 +2209,30 @@ export type Unit$documentsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.UnitDocumentScalarFieldEnum | Prisma.UnitDocumentScalarFieldEnum[]
+}
+
+/**
+ * Unit.companyDocuments
+ */
+export type Unit$companyDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProviderDocument
+   */
+  select?: Prisma.ProviderDocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ProviderDocument
+   */
+  omit?: Prisma.ProviderDocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProviderDocumentInclude<ExtArgs> | null
+  where?: Prisma.ProviderDocumentWhereInput
+  orderBy?: Prisma.ProviderDocumentOrderByWithRelationInput | Prisma.ProviderDocumentOrderByWithRelationInput[]
+  cursor?: Prisma.ProviderDocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProviderDocumentScalarFieldEnum | Prisma.ProviderDocumentScalarFieldEnum[]
 }
 
 /**

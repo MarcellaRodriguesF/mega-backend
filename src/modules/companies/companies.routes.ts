@@ -6,6 +6,7 @@ import { authorizePermission } from "../../middlewares/authorization.middleware.
 import { CompaniesController } from "./companies.controller.js";
 import { contactsRoutes } from "../contacts/contacts.routes.js";
 import { companyUnitsRoutes } from "../units/units.routes.js";
+import { companyDocumentsRoutes } from "../provider-documents/company-documents.routes.js";
 import { PERMISSIONS } from "../authorization/authorization.permissions.js";
 
 const companiesRoutes = Router();
@@ -14,6 +15,7 @@ const companiesController = new CompaniesController();
 // Rotas de contatos
 companiesRoutes.use("/:companyId/contacts", contactsRoutes);
 companiesRoutes.use("/:companyId/units", companyUnitsRoutes);
+companiesRoutes.use("/:companyId/documents", companyDocumentsRoutes);
 
 // Rotas de empresas
 companiesRoutes.post(

@@ -37,6 +37,8 @@ export type ProviderDocumentSumAggregateOutputType = {
 export type ProviderDocumentMinAggregateOutputType = {
   id: string | null
   providerId: string | null
+  companyId: string | null
+  unitId: string | null
   name: string | null
   type: string | null
   fileName: string | null
@@ -52,6 +54,8 @@ export type ProviderDocumentMinAggregateOutputType = {
 export type ProviderDocumentMaxAggregateOutputType = {
   id: string | null
   providerId: string | null
+  companyId: string | null
+  unitId: string | null
   name: string | null
   type: string | null
   fileName: string | null
@@ -67,6 +71,8 @@ export type ProviderDocumentMaxAggregateOutputType = {
 export type ProviderDocumentCountAggregateOutputType = {
   id: number
   providerId: number
+  companyId: number
+  unitId: number
   name: number
   type: number
   fileName: number
@@ -92,6 +98,8 @@ export type ProviderDocumentSumAggregateInputType = {
 export type ProviderDocumentMinAggregateInputType = {
   id?: true
   providerId?: true
+  companyId?: true
+  unitId?: true
   name?: true
   type?: true
   fileName?: true
@@ -107,6 +115,8 @@ export type ProviderDocumentMinAggregateInputType = {
 export type ProviderDocumentMaxAggregateInputType = {
   id?: true
   providerId?: true
+  companyId?: true
+  unitId?: true
   name?: true
   type?: true
   fileName?: true
@@ -122,6 +132,8 @@ export type ProviderDocumentMaxAggregateInputType = {
 export type ProviderDocumentCountAggregateInputType = {
   id?: true
   providerId?: true
+  companyId?: true
+  unitId?: true
   name?: true
   type?: true
   fileName?: true
@@ -223,7 +235,9 @@ export type ProviderDocumentGroupByArgs<ExtArgs extends runtime.Types.Extensions
 
 export type ProviderDocumentGroupByOutputType = {
   id: string
-  providerId: string
+  providerId: string | null
+  companyId: string | null
+  unitId: string | null
   name: string
   type: string | null
   fileName: string
@@ -261,7 +275,9 @@ export type ProviderDocumentWhereInput = {
   OR?: Prisma.ProviderDocumentWhereInput[]
   NOT?: Prisma.ProviderDocumentWhereInput | Prisma.ProviderDocumentWhereInput[]
   id?: Prisma.UuidFilter<"ProviderDocument"> | string
-  providerId?: Prisma.UuidFilter<"ProviderDocument"> | string
+  providerId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
+  companyId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
+  unitId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
   name?: Prisma.StringFilter<"ProviderDocument"> | string
   type?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
   fileName?: Prisma.StringFilter<"ProviderDocument"> | string
@@ -272,12 +288,16 @@ export type ProviderDocumentWhereInput = {
   observations?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
-  provider?: Prisma.XOR<Prisma.ProviderScalarRelationFilter, Prisma.ProviderWhereInput>
+  provider?: Prisma.XOR<Prisma.ProviderNullableScalarRelationFilter, Prisma.ProviderWhereInput> | null
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  unit?: Prisma.XOR<Prisma.UnitNullableScalarRelationFilter, Prisma.UnitWhereInput> | null
 }
 
 export type ProviderDocumentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  providerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   fileName?: Prisma.SortOrder
@@ -289,6 +309,8 @@ export type ProviderDocumentOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   provider?: Prisma.ProviderOrderByWithRelationInput
+  company?: Prisma.CompanyOrderByWithRelationInput
+  unit?: Prisma.UnitOrderByWithRelationInput
 }
 
 export type ProviderDocumentWhereUniqueInput = Prisma.AtLeast<{
@@ -296,7 +318,9 @@ export type ProviderDocumentWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProviderDocumentWhereInput | Prisma.ProviderDocumentWhereInput[]
   OR?: Prisma.ProviderDocumentWhereInput[]
   NOT?: Prisma.ProviderDocumentWhereInput | Prisma.ProviderDocumentWhereInput[]
-  providerId?: Prisma.UuidFilter<"ProviderDocument"> | string
+  providerId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
+  companyId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
+  unitId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
   name?: Prisma.StringFilter<"ProviderDocument"> | string
   type?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
   fileName?: Prisma.StringFilter<"ProviderDocument"> | string
@@ -307,12 +331,16 @@ export type ProviderDocumentWhereUniqueInput = Prisma.AtLeast<{
   observations?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
-  provider?: Prisma.XOR<Prisma.ProviderScalarRelationFilter, Prisma.ProviderWhereInput>
+  provider?: Prisma.XOR<Prisma.ProviderNullableScalarRelationFilter, Prisma.ProviderWhereInput> | null
+  company?: Prisma.XOR<Prisma.CompanyNullableScalarRelationFilter, Prisma.CompanyWhereInput> | null
+  unit?: Prisma.XOR<Prisma.UnitNullableScalarRelationFilter, Prisma.UnitWhereInput> | null
 }, "id">
 
 export type ProviderDocumentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  providerId?: Prisma.SortOrder
+  providerId?: Prisma.SortOrderInput | Prisma.SortOrder
+  companyId?: Prisma.SortOrderInput | Prisma.SortOrder
+  unitId?: Prisma.SortOrderInput | Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrderInput | Prisma.SortOrder
   fileName?: Prisma.SortOrder
@@ -335,7 +363,9 @@ export type ProviderDocumentScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProviderDocumentScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProviderDocumentScalarWhereWithAggregatesInput | Prisma.ProviderDocumentScalarWhereWithAggregatesInput[]
   id?: Prisma.UuidWithAggregatesFilter<"ProviderDocument"> | string
-  providerId?: Prisma.UuidWithAggregatesFilter<"ProviderDocument"> | string
+  providerId?: Prisma.UuidNullableWithAggregatesFilter<"ProviderDocument"> | string | null
+  companyId?: Prisma.UuidNullableWithAggregatesFilter<"ProviderDocument"> | string | null
+  unitId?: Prisma.UuidNullableWithAggregatesFilter<"ProviderDocument"> | string | null
   name?: Prisma.StringWithAggregatesFilter<"ProviderDocument"> | string
   type?: Prisma.StringNullableWithAggregatesFilter<"ProviderDocument"> | string | null
   fileName?: Prisma.StringWithAggregatesFilter<"ProviderDocument"> | string
@@ -360,12 +390,16 @@ export type ProviderDocumentCreateInput = {
   observations?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  provider: Prisma.ProviderCreateNestedOneWithoutDocumentsInput
+  provider?: Prisma.ProviderCreateNestedOneWithoutDocumentsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutDocumentsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutCompanyDocumentsInput
 }
 
 export type ProviderDocumentUncheckedCreateInput = {
   id?: string
-  providerId: string
+  providerId?: string | null
+  companyId?: string | null
+  unitId?: string | null
   name: string
   type?: string | null
   fileName: string
@@ -390,12 +424,16 @@ export type ProviderDocumentUpdateInput = {
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  provider?: Prisma.ProviderUpdateOneRequiredWithoutDocumentsNestedInput
+  provider?: Prisma.ProviderUpdateOneWithoutDocumentsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutDocumentsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutCompanyDocumentsNestedInput
 }
 
 export type ProviderDocumentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  providerId?: Prisma.StringFieldUpdateOperationsInput | string
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -410,7 +448,9 @@ export type ProviderDocumentUncheckedUpdateInput = {
 
 export type ProviderDocumentCreateManyInput = {
   id?: string
-  providerId: string
+  providerId?: string | null
+  companyId?: string | null
+  unitId?: string | null
   name: string
   type?: string | null
   fileName: string
@@ -439,7 +479,9 @@ export type ProviderDocumentUpdateManyMutationInput = {
 
 export type ProviderDocumentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  providerId?: Prisma.StringFieldUpdateOperationsInput | string
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -465,6 +507,8 @@ export type ProviderDocumentOrderByRelationAggregateInput = {
 export type ProviderDocumentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  unitId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
@@ -484,6 +528,8 @@ export type ProviderDocumentAvgOrderByAggregateInput = {
 export type ProviderDocumentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  unitId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
@@ -499,6 +545,8 @@ export type ProviderDocumentMaxOrderByAggregateInput = {
 export type ProviderDocumentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   providerId?: Prisma.SortOrder
+  companyId?: Prisma.SortOrder
+  unitId?: Prisma.SortOrder
   name?: Prisma.SortOrder
   type?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
@@ -513,6 +561,48 @@ export type ProviderDocumentMinOrderByAggregateInput = {
 
 export type ProviderDocumentSumOrderByAggregateInput = {
   sizeBytes?: Prisma.SortOrder
+}
+
+export type ProviderDocumentCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput> | Prisma.ProviderDocumentCreateWithoutCompanyInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput | Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyCompanyInputEnvelope
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+}
+
+export type ProviderDocumentUncheckedCreateNestedManyWithoutCompanyInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput> | Prisma.ProviderDocumentCreateWithoutCompanyInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput | Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyCompanyInputEnvelope
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+}
+
+export type ProviderDocumentUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput> | Prisma.ProviderDocumentCreateWithoutCompanyInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput | Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutCompanyInput | Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyCompanyInputEnvelope
+  set?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  disconnect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  delete?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  update?: Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutCompanyInput | Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.ProviderDocumentUpdateManyWithWhereWithoutCompanyInput | Prisma.ProviderDocumentUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
+}
+
+export type ProviderDocumentUncheckedUpdateManyWithoutCompanyNestedInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput> | Prisma.ProviderDocumentCreateWithoutCompanyInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput | Prisma.ProviderDocumentCreateOrConnectWithoutCompanyInput[]
+  upsert?: Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutCompanyInput | Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutCompanyInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyCompanyInputEnvelope
+  set?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  disconnect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  delete?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  update?: Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutCompanyInput | Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutCompanyInput[]
+  updateMany?: Prisma.ProviderDocumentUpdateManyWithWhereWithoutCompanyInput | Prisma.ProviderDocumentUpdateManyWithWhereWithoutCompanyInput[]
+  deleteMany?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
 }
 
 export type ProviderDocumentCreateNestedManyWithoutProviderInput = {
@@ -557,8 +647,68 @@ export type ProviderDocumentUncheckedUpdateManyWithoutProviderNestedInput = {
   deleteMany?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
 }
 
-export type ProviderDocumentCreateWithoutProviderInput = {
+export type ProviderDocumentCreateNestedManyWithoutUnitInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutUnitInput, Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput> | Prisma.ProviderDocumentCreateWithoutUnitInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput | Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyUnitInputEnvelope
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+}
+
+export type ProviderDocumentUncheckedCreateNestedManyWithoutUnitInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutUnitInput, Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput> | Prisma.ProviderDocumentCreateWithoutUnitInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput | Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyUnitInputEnvelope
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+}
+
+export type ProviderDocumentUpdateManyWithoutUnitNestedInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutUnitInput, Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput> | Prisma.ProviderDocumentCreateWithoutUnitInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput | Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput[]
+  upsert?: Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutUnitInput | Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutUnitInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyUnitInputEnvelope
+  set?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  disconnect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  delete?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  update?: Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutUnitInput | Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutUnitInput[]
+  updateMany?: Prisma.ProviderDocumentUpdateManyWithWhereWithoutUnitInput | Prisma.ProviderDocumentUpdateManyWithWhereWithoutUnitInput[]
+  deleteMany?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
+}
+
+export type ProviderDocumentUncheckedUpdateManyWithoutUnitNestedInput = {
+  create?: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutUnitInput, Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput> | Prisma.ProviderDocumentCreateWithoutUnitInput[] | Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput[]
+  connectOrCreate?: Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput | Prisma.ProviderDocumentCreateOrConnectWithoutUnitInput[]
+  upsert?: Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutUnitInput | Prisma.ProviderDocumentUpsertWithWhereUniqueWithoutUnitInput[]
+  createMany?: Prisma.ProviderDocumentCreateManyUnitInputEnvelope
+  set?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  disconnect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  delete?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  connect?: Prisma.ProviderDocumentWhereUniqueInput | Prisma.ProviderDocumentWhereUniqueInput[]
+  update?: Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutUnitInput | Prisma.ProviderDocumentUpdateWithWhereUniqueWithoutUnitInput[]
+  updateMany?: Prisma.ProviderDocumentUpdateManyWithWhereWithoutUnitInput | Prisma.ProviderDocumentUpdateManyWithWhereWithoutUnitInput[]
+  deleteMany?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
+}
+
+export type ProviderDocumentCreateWithoutCompanyInput = {
   id?: string
+  name: string
+  type?: string | null
+  fileName: string
+  storageKey: string
+  mimeType?: string | null
+  sizeBytes?: number | null
+  expiresAt?: Date | string | null
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: Prisma.ProviderCreateNestedOneWithoutDocumentsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutCompanyDocumentsInput
+}
+
+export type ProviderDocumentUncheckedCreateWithoutCompanyInput = {
+  id?: string
+  providerId?: string | null
+  unitId?: string | null
   name: string
   type?: string | null
   fileName: string
@@ -571,8 +721,72 @@ export type ProviderDocumentCreateWithoutProviderInput = {
   updatedAt?: Date | string
 }
 
+export type ProviderDocumentCreateOrConnectWithoutCompanyInput = {
+  where: Prisma.ProviderDocumentWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput>
+}
+
+export type ProviderDocumentCreateManyCompanyInputEnvelope = {
+  data: Prisma.ProviderDocumentCreateManyCompanyInput | Prisma.ProviderDocumentCreateManyCompanyInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProviderDocumentUpsertWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.ProviderDocumentWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProviderDocumentUpdateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedUpdateWithoutCompanyInput>
+  create: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedCreateWithoutCompanyInput>
+}
+
+export type ProviderDocumentUpdateWithWhereUniqueWithoutCompanyInput = {
+  where: Prisma.ProviderDocumentWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProviderDocumentUpdateWithoutCompanyInput, Prisma.ProviderDocumentUncheckedUpdateWithoutCompanyInput>
+}
+
+export type ProviderDocumentUpdateManyWithWhereWithoutCompanyInput = {
+  where: Prisma.ProviderDocumentScalarWhereInput
+  data: Prisma.XOR<Prisma.ProviderDocumentUpdateManyMutationInput, Prisma.ProviderDocumentUncheckedUpdateManyWithoutCompanyInput>
+}
+
+export type ProviderDocumentScalarWhereInput = {
+  AND?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
+  OR?: Prisma.ProviderDocumentScalarWhereInput[]
+  NOT?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
+  id?: Prisma.UuidFilter<"ProviderDocument"> | string
+  providerId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
+  companyId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
+  unitId?: Prisma.UuidNullableFilter<"ProviderDocument"> | string | null
+  name?: Prisma.StringFilter<"ProviderDocument"> | string
+  type?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
+  fileName?: Prisma.StringFilter<"ProviderDocument"> | string
+  storageKey?: Prisma.StringFilter<"ProviderDocument"> | string
+  mimeType?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
+  sizeBytes?: Prisma.IntNullableFilter<"ProviderDocument"> | number | null
+  expiresAt?: Prisma.DateTimeNullableFilter<"ProviderDocument"> | Date | string | null
+  observations?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
+}
+
+export type ProviderDocumentCreateWithoutProviderInput = {
+  id?: string
+  name: string
+  type?: string | null
+  fileName: string
+  storageKey: string
+  mimeType?: string | null
+  sizeBytes?: number | null
+  expiresAt?: Date | string | null
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  company?: Prisma.CompanyCreateNestedOneWithoutDocumentsInput
+  unit?: Prisma.UnitCreateNestedOneWithoutCompanyDocumentsInput
+}
+
 export type ProviderDocumentUncheckedCreateWithoutProviderInput = {
   id?: string
+  companyId?: string | null
+  unitId?: string | null
   name: string
   type?: string | null
   fileName: string
@@ -611,26 +825,132 @@ export type ProviderDocumentUpdateManyWithWhereWithoutProviderInput = {
   data: Prisma.XOR<Prisma.ProviderDocumentUpdateManyMutationInput, Prisma.ProviderDocumentUncheckedUpdateManyWithoutProviderInput>
 }
 
-export type ProviderDocumentScalarWhereInput = {
-  AND?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
-  OR?: Prisma.ProviderDocumentScalarWhereInput[]
-  NOT?: Prisma.ProviderDocumentScalarWhereInput | Prisma.ProviderDocumentScalarWhereInput[]
-  id?: Prisma.UuidFilter<"ProviderDocument"> | string
-  providerId?: Prisma.UuidFilter<"ProviderDocument"> | string
-  name?: Prisma.StringFilter<"ProviderDocument"> | string
-  type?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
-  fileName?: Prisma.StringFilter<"ProviderDocument"> | string
-  storageKey?: Prisma.StringFilter<"ProviderDocument"> | string
-  mimeType?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
-  sizeBytes?: Prisma.IntNullableFilter<"ProviderDocument"> | number | null
-  expiresAt?: Prisma.DateTimeNullableFilter<"ProviderDocument"> | Date | string | null
-  observations?: Prisma.StringNullableFilter<"ProviderDocument"> | string | null
-  createdAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"ProviderDocument"> | Date | string
+export type ProviderDocumentCreateWithoutUnitInput = {
+  id?: string
+  name: string
+  type?: string | null
+  fileName: string
+  storageKey: string
+  mimeType?: string | null
+  sizeBytes?: number | null
+  expiresAt?: Date | string | null
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  provider?: Prisma.ProviderCreateNestedOneWithoutDocumentsInput
+  company?: Prisma.CompanyCreateNestedOneWithoutDocumentsInput
+}
+
+export type ProviderDocumentUncheckedCreateWithoutUnitInput = {
+  id?: string
+  providerId?: string | null
+  companyId?: string | null
+  name: string
+  type?: string | null
+  fileName: string
+  storageKey: string
+  mimeType?: string | null
+  sizeBytes?: number | null
+  expiresAt?: Date | string | null
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProviderDocumentCreateOrConnectWithoutUnitInput = {
+  where: Prisma.ProviderDocumentWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutUnitInput, Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput>
+}
+
+export type ProviderDocumentCreateManyUnitInputEnvelope = {
+  data: Prisma.ProviderDocumentCreateManyUnitInput | Prisma.ProviderDocumentCreateManyUnitInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProviderDocumentUpsertWithWhereUniqueWithoutUnitInput = {
+  where: Prisma.ProviderDocumentWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProviderDocumentUpdateWithoutUnitInput, Prisma.ProviderDocumentUncheckedUpdateWithoutUnitInput>
+  create: Prisma.XOR<Prisma.ProviderDocumentCreateWithoutUnitInput, Prisma.ProviderDocumentUncheckedCreateWithoutUnitInput>
+}
+
+export type ProviderDocumentUpdateWithWhereUniqueWithoutUnitInput = {
+  where: Prisma.ProviderDocumentWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProviderDocumentUpdateWithoutUnitInput, Prisma.ProviderDocumentUncheckedUpdateWithoutUnitInput>
+}
+
+export type ProviderDocumentUpdateManyWithWhereWithoutUnitInput = {
+  where: Prisma.ProviderDocumentScalarWhereInput
+  data: Prisma.XOR<Prisma.ProviderDocumentUpdateManyMutationInput, Prisma.ProviderDocumentUncheckedUpdateManyWithoutUnitInput>
+}
+
+export type ProviderDocumentCreateManyCompanyInput = {
+  id?: string
+  providerId?: string | null
+  unitId?: string | null
+  name: string
+  type?: string | null
+  fileName: string
+  storageKey: string
+  mimeType?: string | null
+  sizeBytes?: number | null
+  expiresAt?: Date | string | null
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProviderDocumentUpdateWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeBytes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.ProviderUpdateOneWithoutDocumentsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutCompanyDocumentsNestedInput
+}
+
+export type ProviderDocumentUncheckedUpdateWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeBytes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProviderDocumentUncheckedUpdateManyWithoutCompanyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeBytes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProviderDocumentCreateManyProviderInput = {
   id?: string
+  companyId?: string | null
+  unitId?: string | null
   name: string
   type?: string | null
   fileName: string
@@ -655,10 +975,14 @@ export type ProviderDocumentUpdateWithoutProviderInput = {
   observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  company?: Prisma.CompanyUpdateOneWithoutDocumentsNestedInput
+  unit?: Prisma.UnitUpdateOneWithoutCompanyDocumentsNestedInput
 }
 
 export type ProviderDocumentUncheckedUpdateWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -673,6 +997,72 @@ export type ProviderDocumentUncheckedUpdateWithoutProviderInput = {
 
 export type ProviderDocumentUncheckedUpdateManyWithoutProviderInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  unitId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeBytes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProviderDocumentCreateManyUnitInput = {
+  id?: string
+  providerId?: string | null
+  companyId?: string | null
+  name: string
+  type?: string | null
+  fileName: string
+  storageKey: string
+  mimeType?: string | null
+  sizeBytes?: number | null
+  expiresAt?: Date | string | null
+  observations?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ProviderDocumentUpdateWithoutUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeBytes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  provider?: Prisma.ProviderUpdateOneWithoutDocumentsNestedInput
+  company?: Prisma.CompanyUpdateOneWithoutDocumentsNestedInput
+}
+
+export type ProviderDocumentUncheckedUpdateWithoutUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  storageKey?: Prisma.StringFieldUpdateOperationsInput | string
+  mimeType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sizeBytes?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  expiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  observations?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProviderDocumentUncheckedUpdateManyWithoutUnitInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  providerId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  companyId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   name?: Prisma.StringFieldUpdateOperationsInput | string
   type?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -690,6 +1080,8 @@ export type ProviderDocumentUncheckedUpdateManyWithoutProviderInput = {
 export type ProviderDocumentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   providerId?: boolean
+  companyId?: boolean
+  unitId?: boolean
   name?: boolean
   type?: boolean
   fileName?: boolean
@@ -700,12 +1092,16 @@ export type ProviderDocumentSelect<ExtArgs extends runtime.Types.Extensions.Inte
   observations?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  provider?: boolean | Prisma.ProviderDefaultArgs<ExtArgs>
+  provider?: boolean | Prisma.ProviderDocument$providerArgs<ExtArgs>
+  company?: boolean | Prisma.ProviderDocument$companyArgs<ExtArgs>
+  unit?: boolean | Prisma.ProviderDocument$unitArgs<ExtArgs>
 }, ExtArgs["result"]["providerDocument"]>
 
 export type ProviderDocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   providerId?: boolean
+  companyId?: boolean
+  unitId?: boolean
   name?: boolean
   type?: boolean
   fileName?: boolean
@@ -716,12 +1112,16 @@ export type ProviderDocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Ty
   observations?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  provider?: boolean | Prisma.ProviderDefaultArgs<ExtArgs>
+  provider?: boolean | Prisma.ProviderDocument$providerArgs<ExtArgs>
+  company?: boolean | Prisma.ProviderDocument$companyArgs<ExtArgs>
+  unit?: boolean | Prisma.ProviderDocument$unitArgs<ExtArgs>
 }, ExtArgs["result"]["providerDocument"]>
 
 export type ProviderDocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   providerId?: boolean
+  companyId?: boolean
+  unitId?: boolean
   name?: boolean
   type?: boolean
   fileName?: boolean
@@ -732,12 +1132,16 @@ export type ProviderDocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Ty
   observations?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  provider?: boolean | Prisma.ProviderDefaultArgs<ExtArgs>
+  provider?: boolean | Prisma.ProviderDocument$providerArgs<ExtArgs>
+  company?: boolean | Prisma.ProviderDocument$companyArgs<ExtArgs>
+  unit?: boolean | Prisma.ProviderDocument$unitArgs<ExtArgs>
 }, ExtArgs["result"]["providerDocument"]>
 
 export type ProviderDocumentSelectScalar = {
   id?: boolean
   providerId?: boolean
+  companyId?: boolean
+  unitId?: boolean
   name?: boolean
   type?: boolean
   fileName?: boolean
@@ -750,25 +1154,35 @@ export type ProviderDocumentSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProviderDocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "providerId" | "name" | "type" | "fileName" | "storageKey" | "mimeType" | "sizeBytes" | "expiresAt" | "observations" | "createdAt" | "updatedAt", ExtArgs["result"]["providerDocument"]>
+export type ProviderDocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "providerId" | "companyId" | "unitId" | "name" | "type" | "fileName" | "storageKey" | "mimeType" | "sizeBytes" | "expiresAt" | "observations" | "createdAt" | "updatedAt", ExtArgs["result"]["providerDocument"]>
 export type ProviderDocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  provider?: boolean | Prisma.ProviderDefaultArgs<ExtArgs>
+  provider?: boolean | Prisma.ProviderDocument$providerArgs<ExtArgs>
+  company?: boolean | Prisma.ProviderDocument$companyArgs<ExtArgs>
+  unit?: boolean | Prisma.ProviderDocument$unitArgs<ExtArgs>
 }
 export type ProviderDocumentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  provider?: boolean | Prisma.ProviderDefaultArgs<ExtArgs>
+  provider?: boolean | Prisma.ProviderDocument$providerArgs<ExtArgs>
+  company?: boolean | Prisma.ProviderDocument$companyArgs<ExtArgs>
+  unit?: boolean | Prisma.ProviderDocument$unitArgs<ExtArgs>
 }
 export type ProviderDocumentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  provider?: boolean | Prisma.ProviderDefaultArgs<ExtArgs>
+  provider?: boolean | Prisma.ProviderDocument$providerArgs<ExtArgs>
+  company?: boolean | Prisma.ProviderDocument$companyArgs<ExtArgs>
+  unit?: boolean | Prisma.ProviderDocument$unitArgs<ExtArgs>
 }
 
 export type $ProviderDocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ProviderDocument"
   objects: {
-    provider: Prisma.$ProviderPayload<ExtArgs>
+    provider: Prisma.$ProviderPayload<ExtArgs> | null
+    company: Prisma.$CompanyPayload<ExtArgs> | null
+    unit: Prisma.$UnitPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    providerId: string
+    providerId: string | null
+    companyId: string | null
+    unitId: string | null
     name: string
     type: string | null
     fileName: string
@@ -1173,7 +1587,9 @@ readonly fields: ProviderDocumentFieldRefs;
  */
 export interface Prisma__ProviderDocumentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  provider<T extends Prisma.ProviderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderDefaultArgs<ExtArgs>>): Prisma.Prisma__ProviderClient<runtime.Types.Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  provider<T extends Prisma.ProviderDocument$providerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderDocument$providerArgs<ExtArgs>>): Prisma.Prisma__ProviderClient<runtime.Types.Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  company<T extends Prisma.ProviderDocument$companyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderDocument$companyArgs<ExtArgs>>): Prisma.Prisma__CompanyClient<runtime.Types.Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  unit<T extends Prisma.ProviderDocument$unitArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProviderDocument$unitArgs<ExtArgs>>): Prisma.Prisma__UnitClient<runtime.Types.Result.GetResult<Prisma.$UnitPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1205,6 +1621,8 @@ export interface Prisma__ProviderDocumentClient<T, Null = never, ExtArgs extends
 export interface ProviderDocumentFieldRefs {
   readonly id: Prisma.FieldRef<"ProviderDocument", 'String'>
   readonly providerId: Prisma.FieldRef<"ProviderDocument", 'String'>
+  readonly companyId: Prisma.FieldRef<"ProviderDocument", 'String'>
+  readonly unitId: Prisma.FieldRef<"ProviderDocument", 'String'>
   readonly name: Prisma.FieldRef<"ProviderDocument", 'String'>
   readonly type: Prisma.FieldRef<"ProviderDocument", 'String'>
   readonly fileName: Prisma.FieldRef<"ProviderDocument", 'String'>
@@ -1613,6 +2031,63 @@ export type ProviderDocumentDeleteManyArgs<ExtArgs extends runtime.Types.Extensi
    * Limit how many ProviderDocuments to delete.
    */
   limit?: number
+}
+
+/**
+ * ProviderDocument.provider
+ */
+export type ProviderDocument$providerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Provider
+   */
+  select?: Prisma.ProviderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Provider
+   */
+  omit?: Prisma.ProviderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProviderInclude<ExtArgs> | null
+  where?: Prisma.ProviderWhereInput
+}
+
+/**
+ * ProviderDocument.company
+ */
+export type ProviderDocument$companyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Company
+   */
+  select?: Prisma.CompanySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Company
+   */
+  omit?: Prisma.CompanyOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CompanyInclude<ExtArgs> | null
+  where?: Prisma.CompanyWhereInput
+}
+
+/**
+ * ProviderDocument.unit
+ */
+export type ProviderDocument$unitArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Unit
+   */
+  select?: Prisma.UnitSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Unit
+   */
+  omit?: Prisma.UnitOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UnitInclude<ExtArgs> | null
+  where?: Prisma.UnitWhereInput
 }
 
 /**

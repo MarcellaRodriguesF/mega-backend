@@ -17,11 +17,30 @@ export class ProviderDocumentsRepository {
     });
   }
 
+  findAllByCompany(companyId: string) {
+    return prisma.providerDocument.findMany({
+      where: { companyId },
+      include: {
+        unit: { select: { id: true, name: true } },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+  }
+
   findById(id: string, providerId: string) {
     return prisma.providerDocument.findFirst({
       where: {
         id,
         providerId,
+      },
+    });
+  }
+
+  findByCompany(id: string, companyId: string) {
+    return prisma.providerDocument.findFirst({
+      where: { id, companyId },
+      include: {
+        unit: { select: { id: true, name: true } },
       },
     });
   }
