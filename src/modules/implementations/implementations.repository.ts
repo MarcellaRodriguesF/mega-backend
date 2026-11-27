@@ -275,7 +275,27 @@ export class ImplementationsRepository {
         _count: { select: { stages: true, activities: true } },
       },
     });
-    return { total, items };
+    const completedActivityCounts = items.length
+      ? await prisma.activity.groupBy({
+          by: ["implementationId"],
+          where: {
+            implementationId: { in: items.map((item) => item.id) },
+            status: "COMPLETED",
+          },
+          _count: { _all: true },
+        })
+      : [];
+
+    return {
+      total,
+      items,
+      completedActivityCountByImplementationId: Object.fromEntries(
+        completedActivityCounts.map((item) => [
+          item.implementationId!,
+          item._count._all,
+        ]),
+      ),
+    };
   }
 
   findById(id: string, db: Db = prisma) {

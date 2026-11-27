@@ -108,7 +108,13 @@ export class ImplementationsService {
   async findAll(query: ListImplementationsQuery) {
     const page = await this.repository.findPage(query);
     return {
-      items: page.items.map(toImplementationSummary),
+      items: page.items.map((item) =>
+        toImplementationSummary({
+          ...item,
+          completedActivityCount:
+            page.completedActivityCountByImplementationId[item.id] ?? 0,
+        }),
+      ),
       page: query.page,
       pageSize: query.pageSize,
       total: page.total,

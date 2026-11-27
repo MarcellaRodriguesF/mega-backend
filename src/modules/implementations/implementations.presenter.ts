@@ -169,6 +169,7 @@ export function toImplementationSummary(item: {
   initialProviderId: string | null;
   initialProviderName: string | null;
   _count: { stages: number; activities: number };
+  completedActivityCount: number;
 }) {
   return {
     id: item.id,
@@ -187,6 +188,7 @@ export function toImplementationSummary(item: {
       : null,
     stageCount: item._count.stages,
     activityCount: item._count.activities,
+    completedActivityCount: item.completedActivityCount,
   };
 }
 
